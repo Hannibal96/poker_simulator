@@ -61,6 +61,10 @@ Position PokerPlayer::GetPosition() {
     return curr_position;
 }
 
+double PokerPlayer::GetID() const {
+    return id_;
+}
+
 double PokerPlayer::GetMoney() const{
     return money_;
 }

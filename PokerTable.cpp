@@ -97,7 +97,13 @@ void PokerTable::Round() {
     }
     assert(abs(total_money) <= 0.1 && "-ASSERT- none zero sum of money, ");
 
+    sort(players.begin(), players.end(), SortByID);
 }
+
+static bool SortByID(PokerPlayer p1, PokerPlayer p2){
+    return p1.GetID() < p2.GetID();
+}
+
 
 void PokerTable::EndRound() {
     curr_pot = 0;
@@ -109,7 +115,9 @@ void PokerTable::EndRound() {
     }
     previous_action = Empty;
     community_cards.clear();
+
 }
+
 
 
 string PokerTable::ToString() const{        //TODO: change printing format to something more nice

@@ -34,6 +34,7 @@ public:
     string ToString() const;
 
 };
+static bool SortByID(PokerPlayer p1, PokerPlayer p2);
 
 std::ostream& operator<<(std::ostream& os, const PokerTable& table);
 

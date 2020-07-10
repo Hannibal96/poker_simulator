@@ -22,7 +22,7 @@ int main() {
     map<HandRank, int > ranks_stats = SetRanksStats();
 
     vector<int> stg_a = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
-    vector<int> stg_b = vector<int>{1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 8};
+    vector<int> stg_b = vector<int>{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 9};
     string name = "TestStrategy";
     Strategy stg = Strategy(stg_a, stg_b, name);
 
