@@ -4,12 +4,11 @@
 
 #ifndef POKER_SIMULATOR_CARD_H
 #define POKER_SIMULATOR_CARD_H
+
+#include "Enums.h"
 #include <iostream>
 
 using namespace std;
-
-enum Suit{Heart , Diamond, Spade, Club};
-enum Value{Duce = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Jack, Queen, King, Ace};
 
 class Card {
 private:

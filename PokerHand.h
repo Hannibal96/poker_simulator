@@ -7,8 +7,7 @@
 
 #include "Card.h"
 #include <vector>
-
-enum HandRank{UnSet, HighCArd, Pair, TwoPairs, Trips, Straight, Flush, FullHouse, Quads, StraightFlush};
+#include "Enums.h"
 
 class PokerHand {
 private:

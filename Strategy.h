@@ -8,10 +8,10 @@
 #include <iostream>
 #include <vector>
 #include "Card.h"
+#include "Enums.h"
 
 using namespace std;
 
-enum Action{Fold, AllIn};
 
 class Strategy {
 private:

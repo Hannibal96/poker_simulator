@@ -229,11 +229,12 @@ bool PokerHand::operator>(const PokerHand& hand){
 
 bool PokerHand::operator==(const PokerHand& hand){
     assert(hand.rank != UnSet && this->rank != UnSet && "-ASSERT- tried to asses hand before assignment of rank");
-    if(hand.rank == this->rank){
-        for(unsigned int idx = 0; idx < characteristic.size() ; idx ++){
-            if(characteristic[idx] != hand.characteristic[idx])
-                return false;
-        }
+    if (hand.rank != this->rank){
+        return false;
+    }
+    for(unsigned int idx = 0; idx < characteristic.size() ; idx ++){
+        if(characteristic[idx] != hand.characteristic[idx])
+            return false;
     }
     return true;
 }

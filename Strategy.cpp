@@ -12,7 +12,6 @@ Strategy::Strategy(vector<int>& unsuited_strategy, vector<int>& suited_strategy,
 Action Strategy::GetAction(Card card_a, Card card_b) {
     Value max_val = (card_a.GetValue() > card_b.GetValue()) ? card_a.GetValue() : card_b.GetValue();
     Value min_val = (card_a.GetValue() <= card_b.GetValue()) ? card_a.GetValue() : card_b.GetValue();
-
     vector<int> strategy = (card_a.GetSuit() == card_b.GetSuit()) ? suited_strategy_ : unsuited_strategy_;
 
     int sum = 0;

@@ -5,6 +5,8 @@
 #include "Deck.h"
 #include "PokerHand.h"
 #include "Strategy.h"
+#include "PokerPlayer.h"
+#include "PokerTable.h"
 
 #define REPEATS 10000000
 
@@ -16,23 +18,31 @@ void UpdateRanksStats(map<HandRank, int > & ranks_stats, PokerHand hand );
 
 int main() {
 
-    vector<int> stg_a = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2};
-    vector<int> stg_b = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1};
-    string name = "Test";
+    map<HandRank, string> ranks_names = SetRanksNames();
+    map<HandRank, int > ranks_stats = SetRanksStats();
+
+    vector<int> stg_a = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
+    vector<int> stg_b = vector<int>{1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 8};
+    string name = "TestStrategy";
     Strategy stg = Strategy(stg_a, stg_b, name);
 
+    string name1 = "Player1";
+    string name2 = "Player2";
+    string name3 = "Player3";
+    string name4 = "Player4";
+
     int counter = 0;
+    PokerPlayer player1 = PokerPlayer(name1, 11, stg, CutOff);
+    PokerPlayer player2 = PokerPlayer(name2, 12, stg, Dealer);
+    PokerPlayer player3 = PokerPlayer(name3, 13, stg, SmallBlind);
+    PokerPlayer player4 = PokerPlayer(name4, 14, stg, BigBlind);
+
+    PokerTable table = PokerTable(player1, player2, player3, player4, 0.25, 0.1, 2.0 ,10);
+
     for(int i=0; i<REPEATS; i++){
-        Deck deck = Deck();
-        deck.Shuffle();
-        Card card1 = deck.DealCard();
-        Card card2 = deck.DealCard();
-        if(stg.GetAction(card1, card2) == AllIn){
-            counter ++;
-        }
-        if( (i+1) % (REPEATS/10) == 0){
-            cout << 100*(double)counter/(i+1) << endl;
-        }
+
+        table.Round();
+        cout << table << endl;
 
     }
 
