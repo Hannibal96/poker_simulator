@@ -33,6 +33,10 @@ PokerHand PokerPlayer::EvaluateHand(vector<Card> community_cards) {
     return best_hand;
 }
 
+PokerHand PokerPlayer::GetPlayerBestHand() const {
+    return best_hand;
+}
+
 Action PokerPlayer::GetAction(PreviousAction previous_action) { // TODO: expand for all the other <position, previous_action> combinations
     assert(last_action == NotAct && "-ASSERT- set action and entering get action");
     if(curr_position == BigBlind && previous_action == Empty) {

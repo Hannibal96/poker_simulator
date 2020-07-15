@@ -35,6 +35,7 @@ public:
     Position GetPosition();
     double GetMoney() const;
     double GetID() const;
+    PokerHand GetPlayerBestHand() const ;
     PokerHand EvaluateHand(vector<Card> community_cards);
     void UpdatePosition();
     void UpdateMoney(double delta);
