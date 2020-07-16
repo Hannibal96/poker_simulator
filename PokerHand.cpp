@@ -239,6 +239,10 @@ bool PokerHand::operator==(const PokerHand& hand){
     return true;
 }
 
+bool PokerHand::operator<(const PokerHand& hand){
+    return !(*this == hand || *this > hand);
+}
+
 string PokerHand::ToString() const{
     string hand_string = "| ";
     for(auto card: hand_cards){

@@ -26,6 +26,7 @@ public:
 
     bool operator>(const Card& card);
     bool operator==(const Card& card);
+    bool operator<(const Card& card);
 
 };
 

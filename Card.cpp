@@ -97,3 +97,8 @@ bool Card::operator==(const Card& card)
 {
     return card.value_ == value_ && card.suit_ == suit_ ;
 }
+
+bool Card::operator<(const Card& card)
+{
+    return !(*this == card || *this > card);
+}

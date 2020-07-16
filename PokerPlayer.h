@@ -44,6 +44,7 @@ public:
     string ToString() const;
     bool operator>(const PokerPlayer& player);
     bool operator==(const PokerPlayer& player);
+    bool operator<(const PokerPlayer& player);
 
 };
 

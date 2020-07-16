@@ -29,6 +29,7 @@ public:
 
     bool operator>(const PokerHand& hand);
     bool operator==(const PokerHand& hand);
+    bool operator<(const PokerHand& hand);
 
 
 };

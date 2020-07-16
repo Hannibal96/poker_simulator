@@ -96,6 +96,11 @@ bool PokerPlayer::operator>(const PokerPlayer &player) {
     return true;
 }
 
+bool PokerPlayer::operator<(const PokerPlayer &player) {
+    return !(*this == player || *this > player);
+}
+
+
 string PokerPlayer::ToString() const{
     string player_string = "Player ID: "+to_string(id_);
     player_string += ", Position: ";
