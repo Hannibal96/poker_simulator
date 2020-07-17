@@ -69,6 +69,10 @@ double PokerPlayer::GetID() const {
     return id_;
 }
 
+string PokerPlayer::GetStrategyName() {
+    return strategy_.GetName();
+}
+
 double PokerPlayer::GetMoney() const{
     return money_;
 }

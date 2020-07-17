@@ -20,3 +20,8 @@ Action Strategy::GetAction(Card card_a, Card card_b) {
     }
     return (max_val-min_val < sum) ? AllIn : Fold ;
 }
+
+string Strategy::GetName() {
+    return name_;
+}
+

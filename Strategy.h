@@ -24,6 +24,7 @@ public:
     ~Strategy() = default;
 
     Action GetAction(Card card_a, Card card_b);
+    string GetName();
 
 };
 

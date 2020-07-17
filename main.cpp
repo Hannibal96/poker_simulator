@@ -8,8 +8,8 @@
 #include "PokerPlayer.h"
 #include "PokerTable.h"
 
-#define REPEATS 10000000
-#define PRINTS 1000000
+#define REPEATS 10000
+#define PRINTS 10000
 
 using namespace std;
 
@@ -112,22 +112,42 @@ int main() {
     string name3 = "Player3";
     string name4 = "Player4";
 
-    PokerPlayer player1 = PokerPlayer(name1, 11, stg_30, CutOff);
-    PokerPlayer player2 = PokerPlayer(name2, 12, stg_30, Dealer);
-    PokerPlayer player3 = PokerPlayer(name3, 13, stg_30, SmallBlind);
-    PokerPlayer player4 = PokerPlayer(name4, 14, stg_30, BigBlind);
+    vector<Strategy> cutoff_possible_strategy = {stg_10, stg_15};
+    vector<Strategy> dealer_possible_strategy = {stg_20, stg_25};
+    vector<Strategy> small_blind_possible_strategy = {stg_30, stg_35};
+    vector<Strategy> big_blind_possible_strategy = {stg_40, stg_45};
 
-    PokerTable table = PokerTable(player1, player2, player3, player4, 0.25, 0.1, 2.0 ,10);
+    for(auto co_stg:cutoff_possible_strategy){
+        for(auto de_stg:dealer_possible_strategy){
+            for(auto sb_stg:small_blind_possible_strategy){
+                for(auto bb_stg:big_blind_possible_strategy){
 
-    for(int i=0; i<REPEATS; i++){
+                    PokerPlayer player1 = PokerPlayer(name1, 11, co_stg, CutOff);
+                    PokerPlayer player2 = PokerPlayer(name2, 12, de_stg, Dealer);
+                    PokerPlayer player3 = PokerPlayer(name3, 13, sb_stg, SmallBlind);
+                    PokerPlayer player4 = PokerPlayer(name4, 14, bb_stg, BigBlind);
+                    PokerTable table = PokerTable(player1, player2, player3, player4, 0.25, 0.1, 2.0 ,10);
 
-        table.Round();
+                    for(int i=0; i<REPEATS; i++){
+                        table.Round();
+                        if((i+1)%PRINTS == 0) {
+                            cout << "==============================================================================================================" << endl;
+                            cout << "============================******************************************************============================" << endl;
+                            cout << "==============================================================================================================" << endl;
+                            cout << "cutoff strategy: " << player1.GetStrategyName() << endl;
+                            cout << "delear strategy: " << player2.GetStrategyName() << endl;
+                            cout << "small blind strategy: " << player3.GetStrategyName() << endl;
+                            cout << "big blind strategy: " << player4.GetStrategyName() << endl;
+                            cout << table << endl;
+                            cout << table.GetStatsSring((i + 1)) << endl;
+                        }
+                    }
 
-        if((i+1)%PRINTS == 0) {
-            cout << table << endl;
-            cout << table.GetStatsSring((i + 1)) << endl;
+                }
+            }
         }
     }
+
 
     return 0;
 }

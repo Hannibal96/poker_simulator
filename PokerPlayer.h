@@ -40,6 +40,7 @@ public:
     void UpdatePosition();
     void UpdateMoney(double delta);
     void UnSetAction();
+    string GetStrategyName();
 
     string ToString() const;
     bool operator>(const PokerPlayer& player);
