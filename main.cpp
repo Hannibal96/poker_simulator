@@ -112,7 +112,7 @@ int main(int argc, char *argv[]) {
     string name3 = "Player3";
     string name4 = "Player4";
 
-    vector<Strategy> cutoff_possible_strategy = {stg_10, stg_15};
+    vector<Strategy> cutoff_possible_strategy;
     switch (atoi(argv[1])){
         case 0:
             cutoff_possible_strategy = {stg_00};
@@ -147,17 +147,14 @@ int main(int argc, char *argv[]) {
         case 50:
             cutoff_possible_strategy = {stg_50};
             break;
-        case 55:
-            cutoff_possible_strategy = {stg_55};
-            break;
         default:
             cout << "-E- Wrong cutoff strategy!" << endl;
             exit(1);
     }
 
-    vector<Strategy> dealer_possible_strategy = {stg_20, stg_25};
-    vector<Strategy> small_blind_possible_strategy = {stg_30, stg_35};
-    vector<Strategy> big_blind_possible_strategy = {stg_40, stg_45};
+    vector<Strategy> dealer_possible_strategy = {stg_00, stg_05, stg_10, stg_15, stg_20, stg_25, stg_30, stg_35, stg_40, stg_45, stg_50};
+    vector<Strategy> small_blind_possible_strategy = {stg_00, stg_05, stg_10, stg_15, stg_20, stg_25, stg_30, stg_35, stg_40, stg_45, stg_50};
+    vector<Strategy> big_blind_possible_strategy = {stg_00, stg_05, stg_10, stg_15, stg_20, stg_25, stg_30, stg_35, stg_40, stg_45, stg_50};
 
     for(auto co_stg:cutoff_possible_strategy){
         for(auto de_stg:dealer_possible_strategy){
