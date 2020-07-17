@@ -3,6 +3,12 @@
 //
 #include <bits/stdc++.h>
 #include "PokerHand.h"
+#include "Card.h"
+
+
+static bool CardGreaterThan(Card c1, Card c2){
+    return c1 > c2;
+}
 
 PokerHand::PokerHand(Card card_a, Card card_b, Card card_c, Card card_d, Card card_e) {
     rank = UnSet;
@@ -11,7 +17,7 @@ PokerHand::PokerHand(Card card_a, Card card_b, Card card_c, Card card_d, Card ca
     hand_cards.push_back(card_c);
     hand_cards.push_back(card_d);
     hand_cards.push_back(card_e);
-    sort(hand_cards.begin(), hand_cards.end(), greater<>());
+    sort(hand_cards.begin(), hand_cards.end(), CardGreaterThan);
     this->SetRank();
 }
 
@@ -24,7 +30,7 @@ PokerHand::PokerHand(vector<Card>& cards) {
     for(auto card:cards){
         hand_cards.push_back(card);
     }
-    sort(hand_cards.begin(), hand_cards.end(), greater<>());
+    sort(hand_cards.begin(), hand_cards.end(), CardGreaterThan);
     this->SetRank();
 }
 

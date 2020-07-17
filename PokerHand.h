@@ -31,12 +31,12 @@ public:
     bool operator==(const PokerHand& hand);
     bool operator<(const PokerHand& hand);
 
-
 };
 
 std::ostream& operator<<(std::ostream& os, const PokerHand& hand);
 
 PokerHand GetBestHand(vector<Card> & seven_cards);
 
+static bool CardGreaterThan(Card c1, Card c2);
 
 #endif //POKER_SIMULATOR_POKERHAND_H

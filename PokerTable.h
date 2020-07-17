@@ -43,7 +43,10 @@ public:
 
 };
 
+static bool SortByHand(PokerPlayer p1, PokerPlayer p2);
+
 static bool SortByID(PokerPlayer p1, PokerPlayer p2);
+
 static void UpdateHandsStats(map<HandRank, int > & ranks_stats, PokerHand hand);
 
 

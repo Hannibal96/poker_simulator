@@ -9,7 +9,7 @@
 #include "PokerTable.h"
 
 #define REPEATS 10000000
-#define PRINTS 100000
+#define PRINTS 1000000
 
 using namespace std;
 

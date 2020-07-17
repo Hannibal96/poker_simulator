@@ -129,7 +129,7 @@ void PokerTable::Round() {
         players[i].EvaluateHand(community_cards);
     }
 
-    sort(players.begin(), players.end(), greater<>());
+    sort(players.begin(), players.end(), SortByHand);
     int winning_counter = 0;
     for(int i=0; i<TABLE_SIZE; i++){
         if(players[0] == players[i])
@@ -286,6 +286,10 @@ static void UpdateHandsStats(map<HandRank, int > & ranks_stats, PokerHand hand )
 
 static bool SortByID(PokerPlayer p1, PokerPlayer p2){
     return p1.GetID() < p2.GetID();
+}
+
+static bool SortByHand(PokerPlayer p1, PokerPlayer p2){
+    return p1 > p2;
 }
 
 void PokerTable::EndRound() {
