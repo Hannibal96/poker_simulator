@@ -17,7 +17,7 @@ map<HandRank, string> SetRanksNames();
 map<HandRank, int > SetRanksStats();
 void UpdateRanksStats(map<HandRank, int > & ranks_stats, PokerHand hand );
 
-int main() {
+int main(int argc, char *argv[]) {
 
     map<HandRank, string> ranks_names = SetRanksNames();
     map<HandRank, int > ranks_stats = SetRanksStats();
@@ -113,6 +113,48 @@ int main() {
     string name4 = "Player4";
 
     vector<Strategy> cutoff_possible_strategy = {stg_10, stg_15};
+    switch (atoi(argv[1])){
+        case 0:
+            cutoff_possible_strategy = {stg_00};
+            break;
+        case 5:
+            cutoff_possible_strategy = {stg_05};
+            break;
+        case 10:
+            cutoff_possible_strategy = {stg_10};
+            break;
+        case 15:
+            cutoff_possible_strategy = {stg_15};
+            break;
+        case 20:
+            cutoff_possible_strategy = {stg_20};
+            break;
+        case 25:
+            cutoff_possible_strategy = {stg_25};
+            break;
+        case 30:
+            cutoff_possible_strategy = {stg_30};
+            break;
+        case 35:
+            cutoff_possible_strategy = {stg_35};
+            break;
+        case 40:
+            cutoff_possible_strategy = {stg_40};
+            break;
+        case 45:
+            cutoff_possible_strategy = {stg_45};
+            break;
+        case 50:
+            cutoff_possible_strategy = {stg_50};
+            break;
+        case 55:
+            cutoff_possible_strategy = {stg_55};
+            break;
+        default:
+            cout << "-E- Wrong cutoff strategy!" << endl;
+            exit(1);
+    }
+
     vector<Strategy> dealer_possible_strategy = {stg_20, stg_25};
     vector<Strategy> small_blind_possible_strategy = {stg_30, stg_35};
     vector<Strategy> big_blind_possible_strategy = {stg_40, stg_45};
