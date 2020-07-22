@@ -152,7 +152,8 @@ int main(int argc, char *argv[]) {
             exit(1);
     }
 
-    vector<Strategy> dealer_possible_strategy = {stg_00, stg_05, stg_10, stg_15, stg_20, stg_25, stg_30, stg_35, stg_40, stg_45, stg_50};
+    //vector<Strategy> dealer_possible_strategy = {stg_00, stg_05, stg_10, stg_15, stg_20, stg_25, stg_30, stg_35, stg_40, stg_45, stg_50};
+    vector<Strategy> dealer_possible_strategy = {stg_40, stg_45, stg_50};
     vector<Strategy> small_blind_possible_strategy = {stg_00, stg_05, stg_10, stg_15, stg_20, stg_25, stg_30, stg_35, stg_40, stg_45, stg_50};
     vector<Strategy> big_blind_possible_strategy = {stg_00, stg_05, stg_10, stg_15, stg_20, stg_25, stg_30, stg_35, stg_40, stg_45, stg_50};
 
