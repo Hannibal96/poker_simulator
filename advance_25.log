@@ -1,0 +1,2088 @@
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FivePercent
+big blind strategy: FivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 8d | Jc | Qs | Kd | Ah | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 9s | 4s | , Action: Fold, 
+Best Hand: | Ah | Kd | Qs | Jc | 9s | = HighCard of: 14, Money: 556921.933310
+
+Player ID: 12, Position: Dealer, Holding Cards: | 2s | 2c | , Action: Fold, 
+Best Hand: | Ah | Kd | Qs | 2c | 2s | = Pair of: 2, Money: 238431.958335
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 8h | 4h | , Action: Fold, 
+Best Hand: | Ah | Kd | Qs | 8d | 8h | = Pair of: 8, Money: -753698.674870
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Js | 7d | , Action: AllIn, 
+Best Hand: | Ah | Kd | Qs | Jc | Js | = Pair of: 11, Money: -41655.216672
+
+=====================================================================
+
+
+HighCard: 17.425565
+Pair: 43.829988
+TwoPairs: 23.478505
+Trips: 4.820110
+Straight: 4.623287
+Flush: 3.026805
+FullHouse: 2.595947
+Quads: 0.168602
+StraightFlush: 0.031190
+
+Empty-BigBlind: 66.618980
+OneRaise-CutOff: 21.630200
+OneRaise-Dealer: 3.783300
+OneRaise-SmallBlind: 3.800730
+TwoRaises-CutOff, Dealer: 1.136750
+TwoRaises-CutOff, SmallBlind: 1.140080
+TwoRaises-CutOff, BigBlind: 1.142380
+TwoRaises-Dealer, SmallBlind: 0.192660
+TwoRaises-Dealer, BigBlind: 0.193650
+TwoRaises-SmallBlind, BigBlind: 0.195630
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.052050
+ThreeRaises-CutOff, Dealer, BigBlind: 0.050920
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.052190
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.008520
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.001960
+
+
+Show Downs Frequency: 4.166790
+Two Players in Frequency: 4.001150
+Three Players in Frequency: 0.163680
+Four Players in Frequency: 0.001960
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FivePercent
+big blind strategy: TenPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 2d | 8s | 2c | Kh | 7d | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 3h | 9c | , Action: Fold, 
+Best Hand: | Kh | 9c | 8s | 2c | 2d | = Pair of: 2, Money: 509167.108313
+
+Player ID: 12, Position: Dealer, Holding Cards: | 7s | 10c | , Action: Fold, 
+Best Hand: | Kh | 7s | 7d | 2c | 2d | = TwoPairs of: 7 and 2, Money: 249082.975002
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 7h | 4h | , Action: Fold, 
+Best Hand: | Kh | 7d | 7h | 2c | 2d | = TwoPairs of: 7 and 2, Money: -742954.533205
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 6s | 8h | , Action: AllIn, 
+Best Hand: | Kh | 8s | 8h | 2c | 2d | = TwoPairs of: 8 and 2, Money: -15295.549998
+
+=====================================================================
+
+
+HighCard: 17.414282
+Pair: 43.820633
+TwoPairs: 23.509040
+Trips: 4.825465
+Straight: 4.615358
+Flush: 3.022852
+FullHouse: 2.594088
+Quads: 0.167043
+StraightFlush: 0.031240
+
+Empty-BigBlind: 66.661530
+OneRaise-CutOff: 20.509230
+OneRaise-Dealer: 3.604010
+OneRaise-SmallBlind: 3.589790
+TwoRaises-CutOff, Dealer: 1.084340
+TwoRaises-CutOff, SmallBlind: 1.089710
+TwoRaises-CutOff, BigBlind: 2.235880
+TwoRaises-Dealer, SmallBlind: 0.185750
+TwoRaises-Dealer, BigBlind: 0.382020
+TwoRaises-SmallBlind, BigBlind: 0.384050
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.049280
+ThreeRaises-CutOff, Dealer, BigBlind: 0.101460
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.102630
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.016220
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.004100
+
+
+Show Downs Frequency: 5.635440
+Two Players in Frequency: 5.361750
+Three Players in Frequency: 0.269590
+Four Players in Frequency: 0.004100
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FivePercent
+big blind strategy: FifteenPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 2h | 2c | 8s | 9c | Js | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | Jc | Ad | , Action: AllIn, 
+Best Hand: | Ad | Jc | Js | 2c | 2h | = TwoPairs of: 11 and 2, Money: 496892.574981
+
+Player ID: 12, Position: Dealer, Holding Cards: | Qs | 3s | , Action: Fold, 
+Best Hand: | Qs | Js | 9c | 2c | 2h | = Pair of: 2, Money: 259544.091668
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | Ah | 5c | , Action: Fold, 
+Best Hand: | Ah | Js | 9c | 2c | 2h | = Pair of: 2, Money: -733311.549872
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Kh | 4d | , Action: Fold, 
+Best Hand: | Kh | Js | 9c | 2c | 2h | = Pair of: 2, Money: -23125.116669
+
+=====================================================================
+
+
+HighCard: 17.415637
+Pair: 43.827883
+TwoPairs: 23.485477
+Trips: 4.828115
+Straight: 4.621300
+Flush: 3.022953
+FullHouse: 2.599333
+Quads: 0.168350
+StraightFlush: 0.030953
+
+Empty-BigBlind: 66.653060
+OneRaise-CutOff: 19.577150
+OneRaise-Dealer: 3.433760
+OneRaise-SmallBlind: 3.432160
+TwoRaises-CutOff, Dealer: 1.042830
+TwoRaises-CutOff, SmallBlind: 1.041650
+TwoRaises-CutOff, BigBlind: 3.178270
+TwoRaises-Dealer, SmallBlind: 0.177470
+TwoRaises-Dealer, BigBlind: 0.545000
+TwoRaises-SmallBlind, BigBlind: 0.545490
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.048290
+ThreeRaises-CutOff, Dealer, BigBlind: 0.146210
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.147690
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.024970
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.006000
+
+
+Show Downs Frequency: 6.903870
+Two Players in Frequency: 6.530710
+Three Players in Frequency: 0.367160
+Four Players in Frequency: 0.006000
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FivePercent
+big blind strategy: TwentyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| As | 6c | 10c | 3h | 8d | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | Ad | Kc | , Action: AllIn, 
+Best Hand: | As | Ad | Kc | 10c | 8d | = Pair of: 14, Money: 497777.216648
+
+Player ID: 12, Position: Dealer, Holding Cards: | 8s | 4d | , Action: Fold, 
+Best Hand: | As | 10c | 8s | 8d | 6c | = Pair of: 8, Money: 270157.283335
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 7s | 2h | , Action: Fold, 
+Best Hand: | As | 10c | 8d | 7s | 6c | = HighCard of: 14, Money: -719911.033207
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 3s | 4c | , Action: Fold, 
+Best Hand: | As | 10c | 8d | 3s | 3h | = Pair of: 3, Money: -48023.466673
+
+=====================================================================
+
+
+HighCard: 17.408953
+Pair: 43.829115
+TwoPairs: 23.484078
+Trips: 4.836202
+Straight: 4.613973
+Flush: 3.026450
+FullHouse: 2.601342
+Quads: 0.168990
+StraightFlush: 0.030898
+
+Empty-BigBlind: 66.642260
+OneRaise-CutOff: 18.494910
+OneRaise-Dealer: 3.250290
+OneRaise-SmallBlind: 3.246160
+TwoRaises-CutOff, Dealer: 0.990580
+TwoRaises-CutOff, SmallBlind: 0.991690
+TwoRaises-CutOff, BigBlind: 4.261400
+TwoRaises-Dealer, SmallBlind: 0.169710
+TwoRaises-Dealer, BigBlind: 0.735090
+TwoRaises-SmallBlind, BigBlind: 0.736920
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.042930
+ThreeRaises-CutOff, Dealer, BigBlind: 0.197840
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.199240
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.032720
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.008260
+
+
+Show Downs Frequency: 8.366380
+Two Players in Frequency: 7.885390
+Three Players in Frequency: 0.472730
+Four Players in Frequency: 0.008260
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FivePercent
+big blind strategy: TwentyfivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| Kc | 9h | 4d | 5s | 6d | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 9c | Ks | , Action: AllIn, 
+Best Hand: | Kc | Ks | 9c | 9h | 6d | = TwoPairs of: 13 and 9, Money: 509423.458314
+
+Player ID: 12, Position: Dealer, Holding Cards: | Jh | Jd | , Action: AllIn, 
+Best Hand: | Kc | Jd | Jh | 9h | 6d | = Pair of: 11, Money: 284635.775001
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 3c | Qh | , Action: Fold, 
+Best Hand: | Kc | Qh | 9h | 6d | 5s | = HighCard of: 13, Money: -708842.916542
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 5h | 2c | , Action: Fold, 
+Best Hand: | Kc | 9h | 6d | 5s | 5h | = Pair of: 5, Money: -85216.316662
+
+=====================================================================
+
+
+HighCard: 17.408973
+Pair: 43.826970
+TwoPairs: 23.489695
+Trips: 4.833353
+Straight: 4.617575
+Flush: 3.029585
+FullHouse: 2.593622
+Quads: 0.168930
+StraightFlush: 0.031297
+
+Empty-BigBlind: 66.654930
+OneRaise-CutOff: 17.324660
+OneRaise-Dealer: 3.045690
+OneRaise-SmallBlind: 3.053660
+TwoRaises-CutOff, Dealer: 0.938870
+TwoRaises-CutOff, SmallBlind: 0.933180
+TwoRaises-CutOff, BigBlind: 5.412940
+TwoRaises-Dealer, SmallBlind: 0.157650
+TwoRaises-Dealer, BigBlind: 0.935360
+TwoRaises-SmallBlind, BigBlind: 0.936120
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.043500
+ThreeRaises-CutOff, Dealer, BigBlind: 0.254550
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.255730
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.042390
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.010770
+
+
+Show Downs Frequency: 9.921060
+Two Players in Frequency: 9.314120
+Three Players in Frequency: 0.596170
+Four Players in Frequency: 0.010770
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FivePercent
+big blind strategy: ThirtyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 7s | Ad | 9d | Kc | 10d | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 7c | 5s | , Action: Fold, 
+Best Hand: | Ad | Kc | 10d | 7c | 7s | = Pair of: 7, Money: 525925.424981
+
+Player ID: 12, Position: Dealer, Holding Cards: | 9c | 2c | , Action: Fold, 
+Best Hand: | Ad | Kc | 10d | 9c | 9d | = Pair of: 9, Money: 293618.133334
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | Qc | Ks | , Action: Fold, 
+Best Hand: | Ad | Kc | Ks | Qc | 10d | = Pair of: 13, Money: -694595.108211
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 10s | 6c | , Action: AllIn, 
+Best Hand: | Ad | Kc | 10s | 10d | 9d | = Pair of: 10, Money: -124948.449984
+
+=====================================================================
+
+
+HighCard: 17.417278
+Pair: 43.807325
+TwoPairs: 23.496150
+Trips: 4.831015
+Straight: 4.621613
+Flush: 3.025723
+FullHouse: 2.601633
+Quads: 0.168132
+StraightFlush: 0.031133
+
+Empty-BigBlind: 66.645070
+OneRaise-CutOff: 16.254220
+OneRaise-Dealer: 2.862900
+OneRaise-SmallBlind: 2.855310
+TwoRaises-CutOff, Dealer: 0.877930
+TwoRaises-CutOff, SmallBlind: 0.880240
+TwoRaises-CutOff, BigBlind: 6.502910
+TwoRaises-Dealer, SmallBlind: 0.149590
+TwoRaises-Dealer, BigBlind: 1.120380
+TwoRaises-SmallBlind, BigBlind: 1.124500
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.041390
+ThreeRaises-CutOff, Dealer, BigBlind: 0.311680
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.308500
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.052950
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.012430
+
+
+Show Downs Frequency: 11.382500
+Two Players in Frequency: 10.655550
+Three Players in Frequency: 0.714520
+Four Players in Frequency: 0.012430
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FivePercent
+big blind strategy: ThirtyfivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 10d | 9d | 8c | 2d | Qh | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 3c | Jc | , Action: Fold, 
+Best Hand: | Qh | Jc | 10d | 9d | 8c | = Straight of: 12 high, Money: 564269.174979
+
+Player ID: 12, Position: Dealer, Holding Cards: | 3h | Qd | , Action: Fold, 
+Best Hand: | Qd | Qh | 10d | 9d | 8c | = Pair of: 12, Money: 309187.266667
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 5h | Qs | , Action: Fold, 
+Best Hand: | Qs | Qh | 10d | 9d | 8c | = Pair of: 12, Money: -681213.308213
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Ad | 4h | , Action: AllIn, 
+Best Hand: | Ad | Qh | 10d | 9d | 8c | = HighCard of: 14, Money: -192243.133308
+
+=====================================================================
+
+
+HighCard: 17.405857
+Pair: 43.821070
+TwoPairs: 23.493758
+Trips: 4.832142
+Straight: 4.625150
+Flush: 3.024170
+FullHouse: 2.598517
+Quads: 0.168130
+StraightFlush: 0.031205
+
+Empty-BigBlind: 66.637330
+OneRaise-CutOff: 15.019920
+OneRaise-Dealer: 2.652520
+OneRaise-SmallBlind: 2.653860
+TwoRaises-CutOff, Dealer: 0.822230
+TwoRaises-CutOff, SmallBlind: 0.819820
+TwoRaises-CutOff, BigBlind: 7.733630
+TwoRaises-Dealer, SmallBlind: 0.141050
+TwoRaises-Dealer, BigBlind: 1.332490
+TwoRaises-SmallBlind, BigBlind: 1.329810
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.037980
+ThreeRaises-CutOff, Dealer, BigBlind: 0.373590
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.368890
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.061310
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.015570
+
+
+Show Downs Frequency: 13.036370
+Two Players in Frequency: 12.179030
+Three Players in Frequency: 0.841770
+Four Players in Frequency: 0.015570
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FivePercent
+big blind strategy: FourtyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| Kd | 3d | 5d | 5c | 10s | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | Qc | 9h | , Action: Fold, 
+Best Hand: | Kd | Qc | 10s | 5c | 5d | = Pair of: 5, Money: 602142.949978
+
+Player ID: 12, Position: Dealer, Holding Cards: | Ac | Jd | , Action: Fold, 
+Best Hand: | Ac | Kd | Jd | 5c | 5d | = Pair of: 5, Money: 322358.041666
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 6h | 4d | , Action: Fold, 
+Best Hand: | Kd | 10s | 6h | 5c | 5d | = Pair of: 5, Money: -666004.841548
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Jc | 10h | , Action: AllIn, 
+Best Hand: | Kd | 10s | 10h | 5c | 5d | = TwoPairs of: 10 and 5, Money: -258496.149971
+
+=====================================================================
+
+
+HighCard: 17.418077
+Pair: 43.829352
+TwoPairs: 23.498415
+Trips: 4.822152
+Straight: 4.617377
+Flush: 3.022883
+FullHouse: 2.591912
+Quads: 0.168870
+StraightFlush: 0.030960
+
+Empty-BigBlind: 66.629530
+OneRaise-CutOff: 13.958970
+OneRaise-Dealer: 2.458010
+OneRaise-SmallBlind: 2.457960
+TwoRaises-CutOff, Dealer: 0.764680
+TwoRaises-CutOff, SmallBlind: 0.760690
+TwoRaises-CutOff, BigBlind: 8.803640
+TwoRaises-Dealer, SmallBlind: 0.131150
+TwoRaises-Dealer, BigBlind: 1.521610
+TwoRaises-SmallBlind, BigBlind: 1.524690
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.035190
+ThreeRaises-CutOff, Dealer, BigBlind: 0.430540
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.432560
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.073270
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.017510
+
+
+Show Downs Frequency: 14.495530
+Two Players in Frequency: 13.506460
+Three Players in Frequency: 0.971560
+Four Players in Frequency: 0.017510
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FivePercent
+big blind strategy: FourtyfivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 4c | Ac | Ah | 6s | 8s | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 4d | 7h | , Action: Fold, 
+Best Hand: | Ac | Ah | 8s | 4c | 4d | = TwoPairs of: 14 and 4, Money: 640888.191644
+
+Player ID: 12, Position: Dealer, Holding Cards: | As | Jd | , Action: Fold, 
+Best Hand: | Ac | As | Ah | Jd | 8s | = Trips of: 14, Money: 334142.641666
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 3c | 6h | , Action: Fold, 
+Best Hand: | Ac | Ah | 8s | 6s | 6h | = TwoPairs of: 14 and 6, Money: -651374.166551
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Kc | 6c | , Action: AllIn, 
+Best Hand: | Ac | Ah | Kc | 6c | 6s | = TwoPairs of: 14 and 6, Money: -323656.666675
+
+=====================================================================
+
+
+HighCard: 17.416877
+Pair: 43.833385
+TwoPairs: 23.495912
+Trips: 4.828745
+Straight: 4.617315
+Flush: 3.018235
+FullHouse: 2.591135
+Quads: 0.167560
+StraightFlush: 0.030835
+
+Empty-BigBlind: 66.645240
+OneRaise-CutOff: 12.828460
+OneRaise-Dealer: 2.269740
+OneRaise-SmallBlind: 2.278550
+TwoRaises-CutOff, Dealer: 0.705890
+TwoRaises-CutOff, SmallBlind: 0.702320
+TwoRaises-CutOff, BigBlind: 9.923090
+TwoRaises-Dealer, SmallBlind: 0.121810
+TwoRaises-Dealer, BigBlind: 1.714200
+TwoRaises-SmallBlind, BigBlind: 1.711640
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.032770
+ThreeRaises-CutOff, Dealer, BigBlind: 0.483680
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.482010
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.080710
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.019890
+
+
+Show Downs Frequency: 15.978010
+Two Players in Frequency: 14.878950
+Three Players in Frequency: 1.079170
+Four Players in Frequency: 0.019890
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FivePercent
+big blind strategy: FiftyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 2c | 2d | 3d | 4s | 8d | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 9s | 10h | , Action: Fold, 
+Best Hand: | 10h | 9s | 8d | 2c | 2d | = Pair of: 2, Money: 680831.866644
+
+Player ID: 12, Position: Dealer, Holding Cards: | Ac | 9d | , Action: Fold, 
+Best Hand: | Ac | 9d | 8d | 2c | 2d | = Pair of: 2, Money: 352131.133332
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 10s | Js | , Action: Fold, 
+Best Hand: | Js | 10s | 8d | 2c | 2d | = Pair of: 2, Money: -635487.433220
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 7c | 3s | , Action: AllIn, 
+Best Hand: | 8d | 3s | 3d | 2c | 2d | = TwoPairs of: 3 and 2, Money: -397475.566706
+
+=====================================================================
+
+
+HighCard: 17.418980
+Pair: 43.815895
+TwoPairs: 23.495487
+Trips: 4.829575
+Straight: 4.623565
+Flush: 3.026380
+FullHouse: 2.591970
+Quads: 0.166665
+StraightFlush: 0.031482
+
+Empty-BigBlind: 66.622190
+OneRaise-CutOff: 11.651870
+OneRaise-Dealer: 2.061060
+OneRaise-SmallBlind: 2.065170
+TwoRaises-CutOff, Dealer: 0.647180
+TwoRaises-CutOff, SmallBlind: 0.645440
+TwoRaises-CutOff, BigBlind: 11.120010
+TwoRaises-Dealer, SmallBlind: 0.109370
+TwoRaises-Dealer, BigBlind: 1.924760
+TwoRaises-SmallBlind, BigBlind: 1.916180
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.029340
+ThreeRaises-CutOff, Dealer, BigBlind: 0.541690
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.550400
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.091960
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.023380
+
+
+Show Downs Frequency: 17.599710
+Two Players in Frequency: 16.362940
+Three Players in Frequency: 1.213390
+Four Players in Frequency: 0.023380
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TenPercent
+big blind strategy: FivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 3h | 2c | Ks | Jd | 2h | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 6h | 7s | , Action: Fold, 
+Best Hand: | Ks | Jd | 7s | 2c | 2h | = Pair of: 2, Money: 519655.324980
+
+Player ID: 12, Position: Dealer, Holding Cards: | 5h | 2d | , Action: Fold, 
+Best Hand: | Ks | Jd | 2c | 2d | 2h | = Trips of: 2, Money: 253065.125002
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 9s | Jc | , Action: Fold, 
+Best Hand: | Ks | Jc | Jd | 2c | 2h | = TwoPairs of: 11 and 2, Money: -620949.299895
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 8d | 10h | , Action: AllIn, 
+Best Hand: | Ks | Jd | 10h | 2c | 2h | = Pair of: 2, Money: -151771.149982
+
+=====================================================================
+
+
+HighCard: 17.407865
+Pair: 43.824135
+TwoPairs: 23.498290
+Trips: 4.831862
+Straight: 4.613923
+Flush: 3.024590
+FullHouse: 2.599108
+Quads: 0.168448
+StraightFlush: 0.031780
+
+Empty-BigBlind: 62.918210
+OneRaise-CutOff: 20.523200
+OneRaise-Dealer: 3.603060
+OneRaise-SmallBlind: 7.330560
+TwoRaises-CutOff, Dealer: 1.089510
+TwoRaises-CutOff, SmallBlind: 2.224900
+TwoRaises-CutOff, BigBlind: 1.082520
+TwoRaises-Dealer, SmallBlind: 0.384310
+TwoRaises-Dealer, BigBlind: 0.186320
+TwoRaises-SmallBlind, BigBlind: 0.383350
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.102100
+ThreeRaises-CutOff, Dealer, BigBlind: 0.049710
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.100690
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.017420
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.004140
+
+
+Show Downs Frequency: 5.624970
+Two Players in Frequency: 5.350910
+Three Players in Frequency: 0.269920
+Four Players in Frequency: 0.004140
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TenPercent
+big blind strategy: TenPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 2s | 7s | 3c | Kh | Js | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 8c | 4c | , Action: Fold, 
+Best Hand: | Kh | Js | 8c | 7s | 4c | = HighCard of: 13, Money: 478767.574983
+
+Player ID: 12, Position: Dealer, Holding Cards: | Jd | Kc | , Action: Fold, 
+Best Hand: | Kc | Kh | Js | Jd | 7s | = TwoPairs of: 13 and 11, Money: 261717.958335
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 8h | 10s | , Action: Fold, 
+Best Hand: | Kh | Js | 10s | 8h | 7s | = HighCard of: 13, Money: -616695.716562
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 6h | Qd | , Action: AllIn, 
+Best Hand: | Kh | Qd | Js | 7s | 6h | = HighCard of: 13, Money: -123789.816652
+
+=====================================================================
+
+
+HighCard: 17.414227
+Pair: 43.823445
+TwoPairs: 23.488608
+Trips: 4.832440
+Straight: 4.615837
+Flush: 3.033333
+FullHouse: 2.592077
+Quads: 0.169013
+StraightFlush: 0.031020
+
+Empty-BigBlind: 62.904850
+OneRaise-CutOff: 19.484870
+OneRaise-Dealer: 3.422630
+OneRaise-SmallBlind: 6.977270
+TwoRaises-CutOff, Dealer: 1.036080
+TwoRaises-CutOff, SmallBlind: 2.123350
+TwoRaises-CutOff, BigBlind: 2.132210
+TwoRaises-Dealer, SmallBlind: 0.364750
+TwoRaises-Dealer, BigBlind: 0.365850
+TwoRaises-SmallBlind, BigBlind: 0.750560
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.098260
+ThreeRaises-CutOff, Dealer, BigBlind: 0.098190
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.199480
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.033930
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.007720
+
+
+Show Downs Frequency: 7.210380
+Two Players in Frequency: 6.772800
+Three Players in Frequency: 0.429860
+Four Players in Frequency: 0.007720
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TenPercent
+big blind strategy: FifteenPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 8d | 2c | 9c | 5h | 8c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | Kc | 4h | , Action: Fold, 
+Best Hand: | Kc | 9c | 8c | 8d | 5h | = Pair of: 8, Money: 463388.458317
+
+Player ID: 12, Position: Dealer, Holding Cards: | 7s | 9h | , Action: Fold, 
+Best Hand: | 9c | 9h | 8c | 8d | 7s | = TwoPairs of: 9 and 8, Money: 269319.925001
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | Qs | 2h | , Action: Fold, 
+Best Hand: | Qs | 8c | 8d | 2c | 2h | = TwoPairs of: 8 and 2, Money: -601005.466565
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Jh | 4s | , Action: AllIn, 
+Best Hand: | Jh | 9c | 8c | 8d | 5h | = Pair of: 8, Money: -131702.916651
+
+=====================================================================
+
+
+HighCard: 17.412208
+Pair: 43.824290
+TwoPairs: 23.487335
+Trips: 4.829475
+Straight: 4.623023
+Flush: 3.028180
+FullHouse: 2.596360
+Quads: 0.168130
+StraightFlush: 0.031000
+
+Empty-BigBlind: 62.922250
+OneRaise-CutOff: 18.582750
+OneRaise-Dealer: 3.242630
+OneRaise-SmallBlind: 6.645640
+TwoRaises-CutOff, Dealer: 0.994050
+TwoRaises-CutOff, SmallBlind: 2.039670
+TwoRaises-CutOff, BigBlind: 3.036470
+TwoRaises-Dealer, SmallBlind: 0.350310
+TwoRaises-Dealer, BigBlind: 0.529090
+TwoRaises-SmallBlind, BigBlind: 1.068900
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.094780
+ThreeRaises-CutOff, Dealer, BigBlind: 0.141490
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.289540
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.049940
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.012490
+
+
+Show Downs Frequency: 8.606730
+Two Players in Frequency: 8.018490
+Three Players in Frequency: 0.575750
+Four Players in Frequency: 0.012490
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TenPercent
+big blind strategy: TwentyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| Ah | 4s | 10h | 6h | Qh | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 7c | 5c | , Action: Fold, 
+Best Hand: | Ah | Qh | 10h | 7c | 6h | = HighCard of: 14, Money: 462743.133318
+
+Player ID: 12, Position: Dealer, Holding Cards: | 9c | Jh | , Action: Fold, 
+Best Hand: | Ah | Qh | Jh | 10h | 6h | = Flush of: 14 high, Money: 281947.066668
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 2d | 8c | , Action: Fold, 
+Best Hand: | Ah | Qh | 10h | 8c | 6h | = HighCard of: 14, Money: -583602.399902
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Kc | 9h | , Action: AllIn, 
+Best Hand: | Ah | Qh | 10h | 9h | 6h | = Flush of: 14 high, Money: -161087.799980
+
+=====================================================================
+
+
+HighCard: 17.412882
+Pair: 43.842100
+TwoPairs: 23.489070
+Trips: 4.822675
+Straight: 4.617468
+Flush: 3.021187
+FullHouse: 2.594980
+Quads: 0.168612
+StraightFlush: 0.031025
+
+Empty-BigBlind: 62.890840
+OneRaise-CutOff: 17.536740
+OneRaise-Dealer: 3.090920
+OneRaise-SmallBlind: 6.295910
+TwoRaises-CutOff, Dealer: 0.946870
+TwoRaises-CutOff, SmallBlind: 1.941210
+TwoRaises-CutOff, BigBlind: 4.071870
+TwoRaises-Dealer, SmallBlind: 0.333520
+TwoRaises-Dealer, BigBlind: 0.697730
+TwoRaises-SmallBlind, BigBlind: 1.440890
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.089910
+ThreeRaises-CutOff, Dealer, BigBlind: 0.189620
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.391370
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.066440
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.016160
+
+
+Show Downs Frequency: 10.185590
+Two Players in Frequency: 9.432090
+Three Players in Frequency: 0.737340
+Four Players in Frequency: 0.016160
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TenPercent
+big blind strategy: TwentyfivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 8d | 2c | 2h | 8s | 7h | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | As | Qd | , Action: AllIn, 
+Best Hand: | As | 8s | 8d | 2c | 2h | = TwoPairs of: 8 and 2, Money: 479467.191650
+
+Player ID: 12, Position: Dealer, Holding Cards: | 5d | Jd | , Action: Fold, 
+Best Hand: | Jd | 8s | 8d | 2c | 2h | = TwoPairs of: 8 and 2, Money: 292445.833334
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | Qh | 9h | , Action: Fold, 
+Best Hand: | Qh | 8s | 8d | 2c | 2h | = TwoPairs of: 8 and 2, Money: -564220.241573
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 4c | 5c | , Action: Fold, 
+Best Hand: | 8s | 8d | 7h | 2c | 2h | = TwoPairs of: 8 and 2, Money: -207692.783310
+
+=====================================================================
+
+
+HighCard: 17.407670
+Pair: 43.815787
+TwoPairs: 23.511160
+Trips: 4.831425
+Straight: 4.619630
+Flush: 3.021345
+FullHouse: 2.594740
+Quads: 0.166890
+StraightFlush: 0.031352
+
+Empty-BigBlind: 62.902700
+OneRaise-CutOff: 16.475100
+OneRaise-Dealer: 2.892690
+OneRaise-SmallBlind: 5.889010
+TwoRaises-CutOff, Dealer: 0.891550
+TwoRaises-CutOff, SmallBlind: 1.825830
+TwoRaises-CutOff, BigBlind: 5.162000
+TwoRaises-Dealer, SmallBlind: 0.312490
+TwoRaises-Dealer, BigBlind: 0.888140
+TwoRaises-SmallBlind, BigBlind: 1.823080
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.084370
+ThreeRaises-CutOff, Dealer, BigBlind: 0.244690
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.504230
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.083880
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.020240
+
+
+Show Downs Frequency: 11.840500
+Two Players in Frequency: 10.903090
+Three Players in Frequency: 0.917170
+Four Players in Frequency: 0.020240
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TenPercent
+big blind strategy: ThirtyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 5s | Jd | 6s | 3h | Jh | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 7h | 10d | , Action: Fold, 
+Best Hand: | Jd | Jh | 10d | 7h | 6s | = Pair of: 11, Money: 492975.374983
+
+Player ID: 12, Position: Dealer, Holding Cards: | 8h | 2c | , Action: Fold, 
+Best Hand: | Jd | Jh | 8h | 6s | 5s | = Pair of: 11, Money: 306328.266667
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 9s | Jc | , Action: Fold, 
+Best Hand: | Jc | Jd | Jh | 9s | 6s | = Trips of: 11, Money: -547589.424909
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 10c | 5c | , Action: AllIn, 
+Best Hand: | Jd | Jh | 10c | 5c | 5s | = TwoPairs of: 11 and 5, Money: -251714.216640
+
+=====================================================================
+
+
+HighCard: 17.422745
+Pair: 43.813310
+TwoPairs: 23.500833
+Trips: 4.827015
+Straight: 4.614785
+Flush: 3.025867
+FullHouse: 2.595463
+Quads: 0.168912
+StraightFlush: 0.031070
+
+Empty-BigBlind: 62.903320
+OneRaise-CutOff: 15.431670
+OneRaise-Dealer: 2.709780
+OneRaise-SmallBlind: 5.518590
+TwoRaises-CutOff, Dealer: 0.837690
+TwoRaises-CutOff, SmallBlind: 1.717910
+TwoRaises-CutOff, BigBlind: 6.188980
+TwoRaises-Dealer, SmallBlind: 0.297320
+TwoRaises-Dealer, BigBlind: 1.071240
+TwoRaises-SmallBlind, BigBlind: 2.199930
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.080520
+ThreeRaises-CutOff, Dealer, BigBlind: 0.298500
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.614890
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.104650
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.025010
+
+
+Show Downs Frequency: 13.436640
+Two Players in Frequency: 12.313070
+Three Players in Frequency: 1.098560
+Four Players in Frequency: 0.025010
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TenPercent
+big blind strategy: ThirtyfivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| Qd | 4h | 8h | 5c | Ks | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 5s | Qc | , Action: Fold, 
+Best Hand: | Ks | Qc | Qd | 5c | 5s | = TwoPairs of: 12 and 5, Money: 529357.433315
+
+Player ID: 12, Position: Dealer, Holding Cards: | Js | Ac | , Action: Fold, 
+Best Hand: | Ac | Ks | Qd | Js | 8h | = HighCard of: 14, Money: 318854.983333
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 2d | Kd | , Action: Fold, 
+Best Hand: | Ks | Kd | Qd | 8h | 5c | = Pair of: 13, Money: -523384.116581
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Qh | 3h | , Action: AllIn, 
+Best Hand: | Ks | Qd | Qh | 8h | 5c | = Pair of: 12, Money: -324828.300008
+
+=====================================================================
+
+
+HighCard: 17.405955
+Pair: 43.819378
+TwoPairs: 23.501803
+Trips: 4.831313
+Straight: 4.618515
+Flush: 3.029200
+FullHouse: 2.595285
+Quads: 0.167745
+StraightFlush: 0.030808
+
+Empty-BigBlind: 62.906500
+OneRaise-CutOff: 14.249070
+OneRaise-Dealer: 2.516090
+OneRaise-SmallBlind: 5.106310
+TwoRaises-CutOff, Dealer: 0.778860
+TwoRaises-CutOff, SmallBlind: 1.599400
+TwoRaises-CutOff, BigBlind: 7.359330
+TwoRaises-Dealer, SmallBlind: 0.274180
+TwoRaises-Dealer, BigBlind: 1.274060
+TwoRaises-SmallBlind, BigBlind: 2.614780
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.076240
+ThreeRaises-CutOff, Dealer, BigBlind: 0.354560
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.734310
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.125520
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.030790
+
+
+Show Downs Frequency: 15.222030
+Two Players in Frequency: 13.900610
+Three Players in Frequency: 1.290630
+Four Players in Frequency: 0.030790
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TenPercent
+big blind strategy: FourtyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| Qh | 10d | Qd | 5d | 3c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | Ks | 4s | , Action: Fold, 
+Best Hand: | Ks | Qd | Qh | 10d | 5d | = Pair of: 12, Money: 563999.149981
+
+Player ID: 12, Position: Dealer, Holding Cards: | 2s | 5h | , Action: Fold, 
+Best Hand: | Qd | Qh | 10d | 5d | 5h | = TwoPairs of: 12 and 5, Money: 331702.658333
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 8d | Js | , Action: Fold, 
+Best Hand: | Qd | Qh | Js | 10d | 8d | = Pair of: 12, Money: -502349.141586
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Jd | 8h | , Action: AllIn, 
+Best Hand: | Qd | Qh | Jd | 10d | 8h | = Pair of: 12, Money: -393352.666700
+
+=====================================================================
+
+
+HighCard: 17.427320
+Pair: 43.829228
+TwoPairs: 23.479750
+Trips: 4.827872
+Straight: 4.614970
+Flush: 3.027588
+FullHouse: 2.594642
+Quads: 0.167380
+StraightFlush: 0.031250
+
+Empty-BigBlind: 62.912000
+OneRaise-CutOff: 13.196750
+OneRaise-Dealer: 2.335420
+OneRaise-SmallBlind: 4.738340
+TwoRaises-CutOff, Dealer: 0.729560
+TwoRaises-CutOff, SmallBlind: 1.478150
+TwoRaises-CutOff, BigBlind: 8.414120
+TwoRaises-Dealer, SmallBlind: 0.257330
+TwoRaises-Dealer, BigBlind: 1.454430
+TwoRaises-SmallBlind, BigBlind: 2.980970
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.071490
+ThreeRaises-CutOff, Dealer, BigBlind: 0.407030
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.846550
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.142400
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.035460
+
+
+Show Downs Frequency: 16.817490
+Two Players in Frequency: 15.314560
+Three Players in Frequency: 1.467470
+Four Players in Frequency: 0.035460
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TenPercent
+big blind strategy: FourtyfivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 9h | Jd | 9s | 8h | 7s | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 8s | Jc | , Action: Fold, 
+Best Hand: | Jc | Jd | 9s | 9h | 8s | = TwoPairs of: 11 and 9, Money: 604626.666646
+
+Player ID: 12, Position: Dealer, Holding Cards: | 5s | 3h | , Action: Fold, 
+Best Hand: | Jd | 9s | 9h | 8h | 7s | = Pair of: 9, Money: 343949.208332
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 8d | 8c | , Action: AllIn, 
+Best Hand: | 9s | 9h | 8c | 8d | 8h | = FullHouse of: 9, full of: 8, Money: -482329.024924
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 6d | Ad | , Action: AllIn, 
+Best Hand: | Ad | Jd | 9s | 9h | 8h | = Pair of: 9, Money: -466246.850053
+
+=====================================================================
+
+
+HighCard: 17.409678
+Pair: 43.823712
+TwoPairs: 23.504810
+Trips: 4.830477
+Straight: 4.616335
+Flush: 3.022013
+FullHouse: 2.595180
+Quads: 0.166437
+StraightFlush: 0.031358
+
+Empty-BigBlind: 62.896660
+OneRaise-CutOff: 12.153560
+OneRaise-Dealer: 2.158400
+OneRaise-SmallBlind: 4.355580
+TwoRaises-CutOff, Dealer: 0.674180
+TwoRaises-CutOff, SmallBlind: 1.363910
+TwoRaises-CutOff, BigBlind: 9.464250
+TwoRaises-Dealer, SmallBlind: 0.242100
+TwoRaises-Dealer, BigBlind: 1.630160
+TwoRaises-SmallBlind, BigBlind: 3.366800
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.066700
+ThreeRaises-CutOff, Dealer, BigBlind: 0.462630
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.961880
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.162270
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.040920
+
+
+Show Downs Frequency: 18.435800
+Two Players in Frequency: 16.741400
+Three Players in Frequency: 1.653480
+Four Players in Frequency: 0.040920
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TenPercent
+big blind strategy: FiftyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 6h | Qd | Ah | 10s | 7h | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 7c | 2c | , Action: Fold, 
+Best Hand: | Ah | Qd | 10s | 7c | 7h | = Pair of: 7, Money: 644468.516646
+
+Player ID: 12, Position: Dealer, Holding Cards: | 3d | 5c | , Action: Fold, 
+Best Hand: | Ah | Qd | 10s | 7h | 6h | = HighCard of: 14, Money: 360353.908332
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 5d | Qc | , Action: Fold, 
+Best Hand: | Ah | Qc | Qd | 10s | 7h | = Pair of: 12, Money: -458444.024933
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Jd | 4d | , Action: AllIn, 
+Best Hand: | Ah | Qd | Jd | 10s | 7h | = HighCard of: 14, Money: -546378.400069
+
+=====================================================================
+
+
+HighCard: 17.407228
+Pair: 43.832935
+TwoPairs: 23.491357
+Trips: 4.825890
+Straight: 4.622935
+Flush: 3.025313
+FullHouse: 2.596342
+Quads: 0.167080
+StraightFlush: 0.030920
+
+Empty-BigBlind: 62.921250
+OneRaise-CutOff: 11.027750
+OneRaise-Dealer: 1.959380
+OneRaise-SmallBlind: 3.962220
+TwoRaises-CutOff, Dealer: 0.609990
+TwoRaises-CutOff, SmallBlind: 1.249430
+TwoRaises-CutOff, BigBlind: 10.573010
+TwoRaises-Dealer, SmallBlind: 0.215980
+TwoRaises-Dealer, BigBlind: 1.829880
+TwoRaises-SmallBlind, BigBlind: 3.763000
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.058620
+ThreeRaises-CutOff, Dealer, BigBlind: 0.521180
+ThreeRaises-CutOff, SmallBlind, BigBlind: 1.079430
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.182670
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.046210
+
+
+Show Downs Frequency: 20.129400
+Two Players in Frequency: 18.241290
+Three Players in Frequency: 1.841900
+Four Players in Frequency: 0.046210
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FifteenPercent
+big blind strategy: FivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 7d | 5s | 8c | Jc | 5h | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 10s | 4d | , Action: Fold, 
+Best Hand: | Jc | 10s | 8c | 5s | 5h | = Pair of: 5, Money: 512302.466648
+
+Player ID: 12, Position: Dealer, Holding Cards: | Kc | 6c | , Action: Fold, 
+Best Hand: | Kc | Jc | 8c | 5s | 5h | = Pair of: 5, Money: 261656.566668
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | Ks | Jh | , Action: AllIn, 
+Best Hand: | Ks | Jc | Jh | 5s | 5h | = TwoPairs of: 11 and 5, Money: -530951.266584
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Qc | 8d | , Action: Fold, 
+Best Hand: | Qc | 8c | 8d | 5s | 5h | = TwoPairs of: 8 and 5, Money: -243007.766643
+
+=====================================================================
+
+
+HighCard: 17.418543
+Pair: 43.813730
+TwoPairs: 23.494105
+Trips: 4.827910
+Straight: 4.625495
+Flush: 3.027925
+FullHouse: 2.592112
+Quads: 0.168645
+StraightFlush: 0.031535
+
+Empty-BigBlind: 59.768670
+OneRaise-CutOff: 19.572090
+OneRaise-Dealer: 3.435040
+OneRaise-SmallBlind: 10.325070
+TwoRaises-CutOff, Dealer: 1.042850
+TwoRaises-CutOff, SmallBlind: 3.175530
+TwoRaises-CutOff, BigBlind: 1.038260
+TwoRaises-Dealer, SmallBlind: 0.548230
+TwoRaises-Dealer, BigBlind: 0.176030
+TwoRaises-SmallBlind, BigBlind: 0.545950
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.145500
+ThreeRaises-CutOff, Dealer, BigBlind: 0.047970
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.148270
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.024450
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.006090
+
+
+Show Downs Frequency: 6.899130
+Two Players in Frequency: 6.526850
+Three Players in Frequency: 0.366190
+Four Players in Frequency: 0.006090
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FifteenPercent
+big blind strategy: TenPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 7d | 9c | Js | 8h | Qd | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | Kh | 8d | , Action: Fold, 
+Best Hand: | Kh | Qd | Js | 8d | 8h | = Pair of: 8, Money: 472781.599984
+
+Player ID: 12, Position: Dealer, Holding Cards: | 10c | 10h | , Action: AllIn, 
+Best Hand: | Qd | Js | 10c | 9c | 8h | = Straight of: 12 high, Money: 273030.175001
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | Ad | 9h | , Action: AllIn, 
+Best Hand: | Ad | Qd | Js | 9c | 9h | = Pair of: 9, Money: -540967.874915
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 7c | 2h | , Action: Fold, 
+Best Hand: | Qd | Js | 9c | 7c | 7d | = Pair of: 7, Money: -204843.899978
+
+=====================================================================
+
+
+HighCard: 17.408593
+Pair: 43.831652
+TwoPairs: 23.488325
+Trips: 4.828855
+Straight: 4.611435
+Flush: 3.030642
+FullHouse: 2.599982
+Quads: 0.168758
+StraightFlush: 0.031758
+
+Empty-BigBlind: 59.729650
+OneRaise-CutOff: 18.593080
+OneRaise-Dealer: 3.268410
+OneRaise-SmallBlind: 9.815070
+TwoRaises-CutOff, Dealer: 0.994630
+TwoRaises-CutOff, SmallBlind: 3.030930
+TwoRaises-CutOff, BigBlind: 2.037740
+TwoRaises-Dealer, SmallBlind: 0.525120
+TwoRaises-Dealer, BigBlind: 0.349010
+TwoRaises-SmallBlind, BigBlind: 1.071940
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.139300
+ThreeRaises-CutOff, Dealer, BigBlind: 0.093380
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.290240
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.049890
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.011610
+
+
+Show Downs Frequency: 8.593790
+Two Players in Frequency: 8.009370
+Three Players in Frequency: 0.572810
+Four Players in Frequency: 0.011610
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FifteenPercent
+big blind strategy: FifteenPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 8s | 3d | 10c | 4c | 7c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 9s | 8h | , Action: Fold, 
+Best Hand: | 10c | 9s | 8s | 8h | 7c | = Pair of: 8, Money: 457245.641652
+
+Player ID: 12, Position: Dealer, Holding Cards: | 2c | 8c | , Action: Fold, 
+Best Hand: | 10c | 8c | 7c | 4c | 2c | = Flush of: 10 high, Money: 283360.866668
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 4d | 2s | , Action: Fold, 
+Best Hand: | 10c | 8s | 7c | 4c | 4d | = Pair of: 4, Money: -533650.791583
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 10d | 6h | , Action: AllIn, 
+Best Hand: | 10c | 10d | 8s | 7c | 6h | = Pair of: 10, Money: -206955.716644
+
+=====================================================================
+
+
+HighCard: 17.404230
+Pair: 43.820267
+TwoPairs: 23.497575
+Trips: 4.831383
+Straight: 4.621857
+Flush: 3.025723
+FullHouse: 2.597703
+Quads: 0.169942
+StraightFlush: 0.031320
+
+Empty-BigBlind: 59.725410
+OneRaise-CutOff: 17.721280
+OneRaise-Dealer: 3.119190
+OneRaise-SmallBlind: 9.352030
+TwoRaises-CutOff, Dealer: 0.961700
+TwoRaises-CutOff, SmallBlind: 2.892170
+TwoRaises-CutOff, BigBlind: 2.906680
+TwoRaises-Dealer, SmallBlind: 0.501610
+TwoRaises-Dealer, BigBlind: 0.502460
+TwoRaises-SmallBlind, BigBlind: 1.538360
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.135400
+ThreeRaises-CutOff, Dealer, BigBlind: 0.136930
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.418380
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.071460
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.016940
+
+
+Show Downs Frequency: 10.082090
+Two Players in Frequency: 9.302980
+Three Players in Frequency: 0.762170
+Four Players in Frequency: 0.016940
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FifteenPercent
+big blind strategy: TwentyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 4h | 3h | As | 10h | 9c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 5c | Jh | , Action: Fold, 
+Best Hand: | As | Jh | 10h | 9c | 5c | = HighCard of: 14, Money: 460755.349985
+
+Player ID: 12, Position: Dealer, Holding Cards: | Qc | Kd | , Action: Fold, 
+Best Hand: | As | Kd | Qc | 10h | 9c | = HighCard of: 14, Money: 291343.150001
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 3c | Ac | , Action: Fold, 
+Best Hand: | Ac | As | 10h | 3c | 3h | = TwoPairs of: 14 and 3, Money: -515120.783254
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Ad | 10s | , Action: AllIn, 
+Best Hand: | As | Ad | 10s | 10h | 9c | = TwoPairs of: 14 and 10, Money: -236977.716643
+
+=====================================================================
+
+
+HighCard: 17.423217
+Pair: 43.824188
+TwoPairs: 23.488495
+Trips: 4.824210
+Straight: 4.618543
+Flush: 3.026285
+FullHouse: 2.596300
+Quads: 0.167972
+StraightFlush: 0.030790
+
+Empty-BigBlind: 59.750610
+OneRaise-CutOff: 16.719160
+OneRaise-Dealer: 2.936780
+OneRaise-SmallBlind: 8.834820
+TwoRaises-CutOff, Dealer: 0.908320
+TwoRaises-CutOff, SmallBlind: 2.764390
+TwoRaises-CutOff, BigBlind: 3.897260
+TwoRaises-Dealer, SmallBlind: 0.479520
+TwoRaises-Dealer, BigBlind: 0.667020
+TwoRaises-SmallBlind, BigBlind: 2.041200
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.129170
+ThreeRaises-CutOff, Dealer, BigBlind: 0.186820
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.563420
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.098080
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.023430
+
+
+Show Downs Frequency: 11.758630
+Two Players in Frequency: 10.757710
+Three Players in Frequency: 0.977490
+Four Players in Frequency: 0.023430
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FifteenPercent
+big blind strategy: TwentyfivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| As | 3d | 10s | Qc | 5d | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 7s | 6h | , Action: Fold, 
+Best Hand: | As | Qc | 10s | 7s | 6h | = HighCard of: 14, Money: 475320.783318
+
+Player ID: 12, Position: Dealer, Holding Cards: | 2d | Kh | , Action: Fold, 
+Best Hand: | As | Kh | Qc | 10s | 5d | = HighCard of: 14, Money: 304191.783333
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 3h | Jd | , Action: Fold, 
+Best Hand: | As | Qc | Jd | 3d | 3h | = Pair of: 3, Money: -493880.999926
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 8d | 2h | , Action: AllIn, 
+Best Hand: | As | Qc | 10s | 8d | 5d | = HighCard of: 14, Money: -285631.566655
+
+=====================================================================
+
+
+HighCard: 17.415602
+Pair: 43.813428
+TwoPairs: 23.505950
+Trips: 4.828925
+Straight: 4.622732
+Flush: 3.022095
+FullHouse: 2.592205
+Quads: 0.167818
+StraightFlush: 0.031245
+
+Empty-BigBlind: 59.705020
+OneRaise-CutOff: 15.707990
+OneRaise-Dealer: 2.753640
+OneRaise-SmallBlind: 8.283140
+TwoRaises-CutOff, Dealer: 0.852870
+TwoRaises-CutOff, SmallBlind: 2.606120
+TwoRaises-CutOff, BigBlind: 4.944550
+TwoRaises-Dealer, SmallBlind: 0.446420
+TwoRaises-Dealer, BigBlind: 0.853850
+TwoRaises-SmallBlind, BigBlind: 2.615690
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.121380
+ThreeRaises-CutOff, Dealer, BigBlind: 0.235430
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.721540
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.122580
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.029780
+
+
+Show Downs Frequency: 13.550210
+Two Players in Frequency: 12.319500
+Three Players in Frequency: 1.200930
+Four Players in Frequency: 0.029780
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FifteenPercent
+big blind strategy: ThirtyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 5d | 6h | 6d | 5s | 4c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 5c | 4h | , Action: Fold, 
+Best Hand: | 6d | 6h | 5c | 5s | 5d | = FullHouse of: 6, full of: 5, Money: 488916.633318
+
+Player ID: 12, Position: Dealer, Holding Cards: | 2d | 8h | , Action: Fold, 
+Best Hand: | 8h | 6d | 6h | 5s | 5d | = TwoPairs of: 6 and 5, Money: 315735.691666
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | As | 4s | , Action: Fold, 
+Best Hand: | As | 6d | 6h | 5s | 5d | = TwoPairs of: 6 and 5, Money: -471945.158265
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Kd | Jc | , Action: AllIn, 
+Best Hand: | Kd | 6d | 6h | 5s | 5d | = TwoPairs of: 6 and 5, Money: -332707.166678
+
+=====================================================================
+
+
+HighCard: 17.403568
+Pair: 43.834398
+TwoPairs: 23.496053
+Trips: 4.827038
+Straight: 4.623075
+Flush: 3.022943
+FullHouse: 2.594030
+Quads: 0.168205
+StraightFlush: 0.030693
+
+Empty-BigBlind: 59.743620
+OneRaise-CutOff: 14.678970
+OneRaise-Dealer: 2.590340
+OneRaise-SmallBlind: 7.766120
+TwoRaises-CutOff, Dealer: 0.803750
+TwoRaises-CutOff, SmallBlind: 2.449900
+TwoRaises-CutOff, BigBlind: 5.933190
+TwoRaises-Dealer, SmallBlind: 0.422480
+TwoRaises-Dealer, BigBlind: 1.025660
+TwoRaises-SmallBlind, BigBlind: 3.116940
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.114680
+ThreeRaises-CutOff, Dealer, BigBlind: 0.285540
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.882530
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.149500
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.036780
+
+
+Show Downs Frequency: 15.220950
+Two Players in Frequency: 13.751920
+Three Players in Frequency: 1.432250
+Four Players in Frequency: 0.036780
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FifteenPercent
+big blind strategy: ThirtyfivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 5h | Jc | Ac | 2s | 5c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | Ad | 4s | , Action: AllIn, 
+Best Hand: | Ac | Ad | Jc | 5c | 5h | = TwoPairs of: 14 and 5, Money: 524046.133316
+
+Player ID: 12, Position: Dealer, Holding Cards: | 8c | 2d | , Action: Fold, 
+Best Hand: | Ac | 5c | 5h | 2s | 2d | = TwoPairs of: 5 and 2, Money: 328225.408333
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 4c | 10h | , Action: Fold, 
+Best Hand: | Ac | Jc | 10h | 5c | 5h | = Pair of: 5, Money: -447988.641606
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Qs | Kh | , Action: AllIn, 
+Best Hand: | Ac | Kh | Qs | 5c | 5h | = Pair of: 5, Money: -404282.900036
+
+=====================================================================
+
+
+HighCard: 17.412605
+Pair: 43.822398
+TwoPairs: 23.497267
+Trips: 4.826770
+Straight: 4.624607
+Flush: 3.023448
+FullHouse: 2.593415
+Quads: 0.168465
+StraightFlush: 0.031025
+
+Empty-BigBlind: 59.718450
+OneRaise-CutOff: 13.591790
+OneRaise-Dealer: 2.397630
+OneRaise-SmallBlind: 7.189500
+TwoRaises-CutOff, Dealer: 0.747030
+TwoRaises-CutOff, SmallBlind: 2.270160
+TwoRaises-CutOff, BigBlind: 7.045690
+TwoRaises-Dealer, SmallBlind: 0.388070
+TwoRaises-Dealer, BigBlind: 1.220920
+TwoRaises-SmallBlind, BigBlind: 3.705700
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.108400
+ThreeRaises-CutOff, Dealer, BigBlind: 0.340650
+ThreeRaises-CutOff, SmallBlind, BigBlind: 1.053500
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.178060
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.044450
+
+
+Show Downs Frequency: 17.102630
+Two Players in Frequency: 15.377570
+Three Players in Frequency: 1.680610
+Four Players in Frequency: 0.044450
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FifteenPercent
+big blind strategy: FourtyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 3c | 2s | 8d | Jd | 8h | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 4h | 3h | , Action: Fold, 
+Best Hand: | Jd | 8d | 8h | 3c | 3h | = TwoPairs of: 8 and 3, Money: 558684.383315
+
+Player ID: 12, Position: Dealer, Holding Cards: | 9h | 5h | , Action: Fold, 
+Best Hand: | Jd | 9h | 8d | 8h | 5h | = Pair of: 8, Money: 341587.724999
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 5d | 4s | , Action: Fold, 
+Best Hand: | Jd | 8d | 8h | 5d | 4s | = Pair of: 8, Money: -418288.641614
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 9d | Ac | , Action: AllIn, 
+Best Hand: | Ac | Jd | 9d | 8d | 8h | = Pair of: 8, Money: -481983.466720
+
+=====================================================================
+
+
+HighCard: 17.420368
+Pair: 43.807117
+TwoPairs: 23.496053
+Trips: 4.833435
+Straight: 4.618060
+Flush: 3.027640
+FullHouse: 2.598750
+Quads: 0.167173
+StraightFlush: 0.031405
+
+Empty-BigBlind: 59.750490
+OneRaise-CutOff: 12.578980
+OneRaise-Dealer: 2.225020
+OneRaise-SmallBlind: 6.663130
+TwoRaises-CutOff, Dealer: 0.693650
+TwoRaises-CutOff, SmallBlind: 2.108960
+TwoRaises-CutOff, BigBlind: 8.037640
+TwoRaises-Dealer, SmallBlind: 0.363760
+TwoRaises-Dealer, BigBlind: 1.384480
+TwoRaises-SmallBlind, BigBlind: 4.229640
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.102860
+ThreeRaises-CutOff, Dealer, BigBlind: 0.395400
+ThreeRaises-CutOff, SmallBlind, BigBlind: 1.206970
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.207040
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.051980
+
+
+Show Downs Frequency: 18.782380
+Two Players in Frequency: 16.818130
+Three Players in Frequency: 1.912270
+Four Players in Frequency: 0.051980
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FifteenPercent
+big blind strategy: FourtyfivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 10c | 5h | 10h | Qh | 5d | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | Jc | 2h | , Action: Fold, 
+Best Hand: | Qh | 10c | 10h | 5d | 5h | = TwoPairs of: 10 and 5, Money: 601350.033314
+
+Player ID: 12, Position: Dealer, Holding Cards: | 4h | 4s | , Action: Fold, 
+Best Hand: | Qh | 10c | 10h | 5d | 5h | = TwoPairs of: 10 and 5, Money: 355352.099999
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 8c | Ks | , Action: Fold, 
+Best Hand: | Ks | 10c | 10h | 5d | 5h | = TwoPairs of: 10 and 5, Money: -393679.883290
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Kd | 4c | , Action: AllIn, 
+Best Hand: | Kd | 10c | 10h | 5d | 5h | = TwoPairs of: 10 and 5, Money: -563022.250068
+
+=====================================================================
+
+
+HighCard: 17.409970
+Pair: 43.811237
+TwoPairs: 23.496595
+Trips: 4.834010
+Straight: 4.623075
+Flush: 3.029210
+FullHouse: 2.595827
+Quads: 0.168577
+StraightFlush: 0.031497
+
+Empty-BigBlind: 59.762550
+OneRaise-CutOff: 11.577620
+OneRaise-Dealer: 2.053110
+OneRaise-SmallBlind: 6.122010
+TwoRaises-CutOff, Dealer: 0.646250
+TwoRaises-CutOff, SmallBlind: 1.944500
+TwoRaises-CutOff, BigBlind: 9.031680
+TwoRaises-Dealer, SmallBlind: 0.336860
+TwoRaises-Dealer, BigBlind: 1.563900
+TwoRaises-SmallBlind, BigBlind: 4.752930
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.092360
+ThreeRaises-CutOff, Dealer, BigBlind: 0.444670
+ThreeRaises-CutOff, SmallBlind, BigBlind: 1.376650
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.234560
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.060350
+
+
+Show Downs Frequency: 20.484710
+Two Players in Frequency: 18.276120
+Three Players in Frequency: 2.148240
+Four Players in Frequency: 0.060350
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: FifteenPercent
+big blind strategy: FiftyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 3c | Qh | 2s | 8s | Qs | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 4h | 7h | , Action: Fold, 
+Best Hand: | Qs | Qh | 8s | 7h | 4h | = Pair of: 12, Money: 635304.508314
+
+Player ID: 12, Position: Dealer, Holding Cards: | 6c | 7d | , Action: Fold, 
+Best Hand: | Qs | Qh | 8s | 7d | 6c | = Pair of: 12, Money: 369609.216665
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 7s | 8d | , Action: Fold, 
+Best Hand: | Qs | Qh | 8s | 8d | 7s | = TwoPairs of: 12 and 8, Money: -362255.358304
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 6h | 2h | , Action: AllIn, 
+Best Hand: | Qs | Qh | 8s | 2s | 2h | = TwoPairs of: 12 and 2, Money: -642658.366744
+
+=====================================================================
+
+
+HighCard: 17.400455
+Pair: 43.819025
+TwoPairs: 23.501800
+Trips: 4.831288
+Straight: 4.620080
+Flush: 3.027473
+FullHouse: 2.599495
+Quads: 0.168435
+StraightFlush: 0.031950
+
+Empty-BigBlind: 59.745400
+OneRaise-CutOff: 10.507790
+OneRaise-Dealer: 1.873590
+OneRaise-SmallBlind: 5.570900
+TwoRaises-CutOff, Dealer: 0.590230
+TwoRaises-CutOff, SmallBlind: 1.776700
+TwoRaises-CutOff, BigBlind: 10.114050
+TwoRaises-Dealer, SmallBlind: 0.308130
+TwoRaises-Dealer, BigBlind: 1.750340
+TwoRaises-SmallBlind, BigBlind: 5.300610
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.086540
+ThreeRaises-CutOff, Dealer, BigBlind: 0.499290
+ThreeRaises-CutOff, SmallBlind, BigBlind: 1.548150
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.261470
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.066810
+
+
+Show Downs Frequency: 22.302320
+Two Players in Frequency: 19.840060
+Three Players in Frequency: 2.395450
+Four Players in Frequency: 0.066810
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TwentyPercent
+big blind strategy: FivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 6h | Ad | 9d | 4c | 7c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | Jh | 10d | , Action: Fold, 
+Best Hand: | Ad | Jh | 10d | 9d | 7c | = HighCard of: 14, Money: 524679.558315
+
+Player ID: 12, Position: Dealer, Holding Cards: | Kc | Ks | , Action: AllIn, 
+Best Hand: | Ad | Kc | Ks | 9d | 7c | = Pair of: 13, Money: 275921.233334
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 8h | 2h | , Action: Fold, 
+Best Hand: | Ad | 9d | 8h | 7c | 6h | = HighCard of: 14, Money: -454385.241607
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 3c | 3h | , Action: Fold, 
+Best Hand: | Ad | 9d | 7c | 3c | 3h | = Pair of: 3, Money: -346215.550015
+
+=====================================================================
+
+
+HighCard: 17.403645
+Pair: 43.829363
+TwoPairs: 23.495215
+Trips: 4.826738
+Straight: 4.617715
+Flush: 3.028380
+FullHouse: 2.598762
+Quads: 0.168475
+StraightFlush: 0.031707
+
+Empty-BigBlind: 56.173810
+OneRaise-CutOff: 18.499490
+OneRaise-Dealer: 3.243670
+OneRaise-SmallBlind: 13.725420
+TwoRaises-CutOff, Dealer: 0.986660
+TwoRaises-CutOff, SmallBlind: 4.257140
+TwoRaises-CutOff, BigBlind: 0.984320
+TwoRaises-Dealer, SmallBlind: 0.730390
+TwoRaises-Dealer, BigBlind: 0.172870
+TwoRaises-SmallBlind, BigBlind: 0.738360
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.198400
+ThreeRaises-CutOff, Dealer, BigBlind: 0.046000
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.202040
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.033110
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.008320
+
+
+Show Downs Frequency: 8.357610
+Two Players in Frequency: 7.869740
+Three Players in Frequency: 0.479550
+Four Players in Frequency: 0.008320
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TwentyPercent
+big blind strategy: TenPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 3h | 3d | 4d | 7h | 7c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 3s | 6d | , Action: Fold, 
+Best Hand: | 7c | 7h | 3s | 3d | 3h | = FullHouse of: 7, full of: 3, Money: 482393.366651
+
+Player ID: 12, Position: Dealer, Holding Cards: | Qs | 4h | , Action: Fold, 
+Best Hand: | Qs | 7c | 7h | 4d | 4h | = TwoPairs of: 7 and 4, Money: 287631.441667
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | Js | 9d | , Action: Fold, 
+Best Hand: | Js | 7c | 7h | 3d | 3h | = TwoPairs of: 7 and 3, Money: -473794.041602
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 2c | 8s | , Action: AllIn, 
+Best Hand: | 8s | 7c | 7h | 3d | 3h | = TwoPairs of: 7 and 3, Money: -296230.766661
+
+=====================================================================
+
+
+HighCard: 17.420520
+Pair: 43.836810
+TwoPairs: 23.477908
+Trips: 4.829207
+Straight: 4.620170
+Flush: 3.025212
+FullHouse: 2.591745
+Quads: 0.167585
+StraightFlush: 0.030842
+
+Empty-BigBlind: 56.145900
+OneRaise-CutOff: 17.547060
+OneRaise-Dealer: 3.084930
+OneRaise-SmallBlind: 13.045020
+TwoRaises-CutOff, Dealer: 0.942770
+TwoRaises-CutOff, SmallBlind: 4.068990
+TwoRaises-CutOff, BigBlind: 1.936380
+TwoRaises-Dealer, SmallBlind: 0.702090
+TwoRaises-Dealer, BigBlind: 0.335260
+TwoRaises-SmallBlind, BigBlind: 1.436900
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.191210
+ThreeRaises-CutOff, Dealer, BigBlind: 0.089500
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.391590
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.066700
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.015700
+
+
+Show Downs Frequency: 10.177090
+Two Players in Frequency: 9.422390
+Three Players in Frequency: 0.739000
+Four Players in Frequency: 0.015700
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TwentyPercent
+big blind strategy: FifteenPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 10s | 2d | 8c | Qc | 10d | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | As | 7c | , Action: AllIn, 
+Best Hand: | As | Qc | 10s | 10d | 8c | = Pair of: 10, Money: 468528.999985
+
+Player ID: 12, Position: Dealer, Holding Cards: | 9d | 6s | , Action: Fold, 
+Best Hand: | Qc | 10s | 10d | 9d | 8c | = Pair of: 10, Money: 295090.608334
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | Qs | Ks | , Action: AllIn, 
+Best Hand: | Ks | Qc | Qs | 10s | 10d | = TwoPairs of: 12 and 10, Money: -469991.224936
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 2h | 7h | , Action: Fold, 
+Best Hand: | Qc | 10s | 10d | 2d | 2h | = TwoPairs of: 10 and 2, Money: -293628.383327
+
+=====================================================================
+
+
+HighCard: 17.406882
+Pair: 43.841138
+TwoPairs: 23.482475
+Trips: 4.829637
+Straight: 4.622553
+Flush: 3.023835
+FullHouse: 2.593342
+Quads: 0.169297
+StraightFlush: 0.030840
+
+Empty-BigBlind: 56.142040
+OneRaise-CutOff: 16.737930
+OneRaise-Dealer: 2.953820
+OneRaise-SmallBlind: 12.425200
+TwoRaises-CutOff, Dealer: 0.904200
+TwoRaises-CutOff, SmallBlind: 3.890960
+TwoRaises-CutOff, BigBlind: 2.756450
+TwoRaises-Dealer, SmallBlind: 0.669050
+TwoRaises-Dealer, BigBlind: 0.478070
+TwoRaises-SmallBlind, BigBlind: 2.045110
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.184000
+ThreeRaises-CutOff, Dealer, BigBlind: 0.129800
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.563600
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.095570
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.024200
+
+
+Show Downs Frequency: 11.741010
+Two Players in Frequency: 10.743840
+Three Players in Frequency: 0.972970
+Four Players in Frequency: 0.024200
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TwentyPercent
+big blind strategy: TwentyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 8s | 9c | 6d | 2c | 4c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 10d | 10s | , Action: AllIn, 
+Best Hand: | 10s | 10d | 9c | 8s | 6d | = Pair of: 10, Money: 473399.008319
+
+Player ID: 12, Position: Dealer, Holding Cards: | 9h | 2s | , Action: Fold, 
+Best Hand: | 9c | 9h | 8s | 2c | 2s | = TwoPairs of: 9 and 2, Money: 305237.391667
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 3s | Qh | , Action: Fold, 
+Best Hand: | Qh | 9c | 8s | 6d | 4c | = HighCard of: 12, Money: -461152.616605
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 4s | Qs | , Action: Fold, 
+Best Hand: | Qs | 9c | 8s | 4c | 4s | = Pair of: 4, Money: -317483.783338
+
+=====================================================================
+
+
+HighCard: 17.410342
+Pair: 43.821357
+TwoPairs: 23.504957
+Trips: 4.826117
+Straight: 4.616722
+Flush: 3.025510
+FullHouse: 2.596223
+Quads: 0.167485
+StraightFlush: 0.031285
+
+Empty-BigBlind: 56.167550
+OneRaise-CutOff: 15.787210
+OneRaise-Dealer: 2.780580
+OneRaise-SmallBlind: 11.730420
+TwoRaises-CutOff, Dealer: 0.859210
+TwoRaises-CutOff, SmallBlind: 3.697720
+TwoRaises-CutOff, BigBlind: 3.680900
+TwoRaises-Dealer, SmallBlind: 0.638940
+TwoRaises-Dealer, BigBlind: 0.636870
+TwoRaises-SmallBlind, BigBlind: 2.747080
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.175320
+ThreeRaises-CutOff, Dealer, BigBlind: 0.174550
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.763800
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.128060
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.031790
+
+
+Show Downs Frequency: 13.534240
+Two Players in Frequency: 12.260720
+Three Players in Frequency: 1.241730
+Four Players in Frequency: 0.031790
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TwentyPercent
+big blind strategy: TwentyfivePercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 7s | 6h | As | 6c | 10c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 8d | 8s | , Action: AllIn, 
+Best Hand: | As | 8s | 8d | 6c | 6h | = TwoPairs of: 8 and 6, Money: 483489.341652
+
+Player ID: 12, Position: Dealer, Holding Cards: | Ah | 10s | , Action: Fold, 
+Best Hand: | As | Ah | 10c | 10s | 7s | = TwoPairs of: 14 and 10, Money: 318377.475000
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 2s | Qh | , Action: Fold, 
+Best Hand: | As | Qh | 10c | 6c | 6h | = Pair of: 6, Money: -442969.233278
+
+Player ID: 14, Position: BigBlind, Holding Cards: | Qc | 4c | , Action: Fold, 
+Best Hand: | As | Qc | 10c | 6c | 6h | = Pair of: 6, Money: -358897.583354
+
+=====================================================================
+
+
+HighCard: 17.406470
+Pair: 43.832935
+TwoPairs: 23.494528
+Trips: 4.827447
+Straight: 4.618560
+Flush: 3.025245
+FullHouse: 2.596475
+Quads: 0.167288
+StraightFlush: 0.031053
+
+Empty-BigBlind: 56.136660
+OneRaise-CutOff: 14.805450
+OneRaise-Dealer: 2.602620
+OneRaise-SmallBlind: 10.999620
+TwoRaises-CutOff, Dealer: 0.812540
+TwoRaises-CutOff, SmallBlind: 3.489970
+TwoRaises-CutOff, BigBlind: 4.689580
+TwoRaises-Dealer, SmallBlind: 0.603520
+TwoRaises-Dealer, BigBlind: 0.811340
+TwoRaises-SmallBlind, BigBlind: 3.472500
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.166160
+ThreeRaises-CutOff, Dealer, BigBlind: 0.224100
+ThreeRaises-CutOff, SmallBlind, BigBlind: 0.979550
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.165840
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.040550
+
+
+Show Downs Frequency: 15.455650
+Two Players in Frequency: 13.879450
+Three Players in Frequency: 1.535650
+Four Players in Frequency: 0.040550
+==============================================================================================================
+============================******************************************************============================
+==============================================================================================================
+cutoff strategy: TwentyfivePercent
+delear strategy: FivePercent
+small blind strategy: TwentyPercent
+big blind strategy: ThirtyPercent
+=====================================================================
+========= Table: 10, #Hand: 10000000
+
+| 6h | Ah | 9h | 3d | 6c | 
+
+Player ID: 11, Position: CutOff, Holding Cards: | 9s | 6s | , Action: Fold, 
+Best Hand: | 9s | 9h | 6c | 6s | 6h | = FullHouse of: 9, full of: 6, Money: 496018.999985
+
+Player ID: 12, Position: Dealer, Holding Cards: | 3c | 9d | , Action: Fold, 
+Best Hand: | Ah | 9d | 9h | 6c | 6h | = TwoPairs of: 9 and 6, Money: 327475.633333
+
+Player ID: 13, Position: SmallBlind, Holding Cards: | 10s | 10d | , Action: AllIn, 
+Best Hand: | Ah | 10s | 10d | 6c | 6h | = TwoPairs of: 10 and 6, Money: -418752.433284
+
+Player ID: 14, Position: BigBlind, Holding Cards: | 3s | 5c | , Action: Fold, 
+Best Hand: | Ah | 6c | 6h | 3s | 3d | = TwoPairs of: 6 and 3, Money: -404742.200032
+
+=====================================================================
+
+
+HighCard: 17.419042
+Pair: 43.826975
+TwoPairs: 23.497357
+Trips: 4.829182
+Straight: 4.616238
+Flush: 3.017850
+FullHouse: 2.595028
+Quads: 0.167722
+StraightFlush: 0.030605
+
+Empty-BigBlind: 56.169300
+OneRaise-CutOff: 13.868050
+OneRaise-Dealer: 2.445110
+OneRaise-SmallBlind: 10.303790
+TwoRaises-CutOff, Dealer: 0.758300
+TwoRaises-CutOff, SmallBlind: 3.268380
+TwoRaises-CutOff, BigBlind: 5.621260
+TwoRaises-Dealer, SmallBlind: 0.568470
+TwoRaises-Dealer, BigBlind: 0.972070
+TwoRaises-SmallBlind, BigBlind: 4.165520
+ThreeRaises-CutOff, Dealer, SmallBlind: 0.156730
+ThreeRaises-CutOff, Dealer, BigBlind: 0.270470
+ThreeRaises-CutOff, SmallBlind, BigBlind: 1.177560
+ThreeRaises-Dealer, SmallBlind, BigBlind: 0.204450
+FourRaises-CutOff, Dealer, SmallBlind, BigBlind: 0.050540
+
+
+Show Downs Frequency: 17.213750
+Two Players in Frequency: 15.354000
+Three Players in Frequency: 1.809210
+Four Players in Frequency: 0.050540
