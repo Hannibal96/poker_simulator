@@ -16,14 +16,13 @@ using namespace std;
 class Strategy {
 private:
     string name_;
-    vector<int> unsuited_strategy_;
-    vector<int> suited_strategy_;
 
 public:
-    Strategy(vector<int>& unsuited_strategy, vector<int>& suited_strategy, string& name);
+    Strategy() = default;
     ~Strategy() = default;
 
-    Action GetAction(Card card_a, Card card_b);
+    Action GetAction();
+    void UpdateParameters();
     string GetName();
 
 };

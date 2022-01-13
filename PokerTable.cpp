@@ -6,28 +6,29 @@
 #include <bits/stdc++.h>
 
 
-PokerTable::PokerTable(PokerPlayer plater_a, PokerPlayer plater_b, PokerPlayer plater_c, PokerPlayer plater_d,
-                       double big_blind, double small_blind, double all_in, int table_id) {
+PokerTable::PokerTable(PokerPlayer const & player_a , PokerPlayer const & player_b,
+                       PokerPlayer const & player_c, PokerPlayer const & player_d,
+                       double big_blind, double small_blind, double all_in, int table_id, bool update_positions, int repeats) {
 
-    players.push_back(plater_a);
-    players.push_back(plater_b);
-    players.push_back(plater_c);
-    players.push_back(plater_d);
+    players.push_back(player_a);
+    players.push_back(player_b);
+    players.push_back(player_c);
+    players.push_back(player_d);
 
     big_blind_ = big_blind;
     small_blind_ = small_blind;
     all_in_ = all_in;
     table_id_ = table_id;
 
+    repeats_ = repeats;
+
     curr_pot = 0;
+    curr_history = BigBlind_In;
+
     curr_co_idx = 0;
     hands_counter = 0;
-    show_down_counter = 0;
-    two_players_in_counter = 0;
-    three_players_in_counter = 0;
-    four_players_in_counter = 0;
 
-    cut_off_in = dealer_in = small_blind_in = big_blind_in = false;
+    update_positions_ = update_positions;
 
     hands_stats = map<HandRank, int>();
     for (int rank = HighCArd; rank != StraightFlush + 1; rank++) {
@@ -36,7 +37,7 @@ PokerTable::PokerTable(PokerPlayer plater_a, PokerPlayer plater_b, PokerPlayer p
     }
 
     for (int scenario = BigBlind_In; scenario != CutOff_Dealer_SmallBlind_BigBlind_In + 1; scenario++) {
-        auto curr_scenario = static_cast<Scenarios >(scenario);
+        auto curr_scenario = static_cast<History >(scenario);
         scenarios_stats[curr_scenario] = 0;
     }
 
@@ -68,13 +69,109 @@ PokerTable::PokerTable(PokerPlayer plater_a, PokerPlayer plater_b, PokerPlayer p
                        { CutOff_Dealer_SmallBlind_BigBlind_In, "FourRaises-CutOff, Dealer, SmallBlind, BigBlind" },};
 }
 
+
+void PokerTable::UpdateHistory(Position position, Action action) {
+    assert(action != NotAct);
+    if(action == Fold)
+        return;
+
+    if(curr_history == SmallBlind_In){
+        if(position == BigBlind) {
+            curr_history = SmallBlind_BigBlind_In;
+            return;
+        }
+    }
+
+    else if(curr_history == Dealer_In){
+        if(position == SmallBlind) {
+            curr_history = Dealer_SmallBlind_In;
+            return;
+        }
+        else if(position == BigBlind) {
+            curr_history = Dealer_BigBlind_In;
+            return;
+        }
+    }
+
+    else if(curr_history == Dealer_SmallBlind_In){
+        if(position == BigBlind) {
+            curr_history = Dealer_SmallBlind_BigBlind_In;
+            return;
+        }
+    }
+
+    else if(curr_history == CutOff_In){
+        if(position == Dealer) {
+            curr_history = CutOff_Dealer_In;
+            return;
+        }
+        else if(position == SmallBlind) {
+            curr_history = CutOff_SmallBlind_In;
+            return;
+        }
+        else if(position == BigBlind) {
+            curr_history = CutOff_BigBlind_In;
+            return;
+        }
+
+    }
+
+    else if(curr_history == CutOff_Dealer_In){
+        if(position == SmallBlind)        {
+            curr_history = CutOff_Dealer_SmallBlind_In;
+            return;
+        }
+        else if(position == BigBlind)        {
+            curr_history = CutOff_Dealer_BigBlind_In;
+            return;
+        }
+    }
+
+    else if(curr_history == CutOff_SmallBlind_In){
+        if(position == BigBlind){
+            curr_history = CutOff_SmallBlind_BigBlind_In;
+            return;
+        }
+    }
+
+    else if(curr_history == CutOff_Dealer_SmallBlind_In){
+        if(position == BigBlind)        {
+            curr_history = CutOff_Dealer_SmallBlind_BigBlind_In;
+            return;
+        }
+    }
+
+    else if(curr_history == BigBlind_In){
+        if(position == CutOff){
+            curr_history = CutOff_In;
+            return;
+        }
+        else if (position == Dealer) {
+            curr_history = Dealer_In;
+            return;
+        }
+        else if (position == SmallBlind)        {
+            curr_history = SmallBlind_In;
+            return;
+        }
+        else if (position == BigBlind) {
+            curr_history = BigBlind_In;
+            return;
+        }
+    }
+
+    cout << curr_history << endl;
+    assert(false);
+}
+
 void PokerTable::Round() {
-    EndRound();
+
+    StartRound();
 
     Deck deck = Deck();
     deck.Shuffle();
 
-    for(int i=0 ; i<TABLE_SIZE ; i++){    // posts blinds
+    for(int i=0 ; i<TABLE_SIZE ; i++){    // post blinds
         if(players[i].GetPosition() == SmallBlind){
             players[i].UpdateMoney(-small_blind_);
             curr_pot += small_blind_;
@@ -90,164 +187,151 @@ void PokerTable::Round() {
     }
 
     for(int i=0 ; i<TABLE_SIZE ; i++){      // playing
-        Action action = players[(curr_co_idx+i)%TABLE_SIZE].GetAction(previous_action); // starts plays from CO
-        if(action == AllIn){
-            previous_action = static_cast<PreviousAction >(previous_action+1);
-            if(players[(curr_co_idx+i)%TABLE_SIZE].GetPosition() == CutOff || players[(curr_co_idx+i)%TABLE_SIZE].GetPosition() == Dealer){
-                players[(curr_co_idx+i)%TABLE_SIZE].UpdateMoney(-all_in_);
+
+        Action action = players[(curr_co_idx+i)%TABLE_SIZE].GetAction(curr_history); // starts plays from CO
+        UpdateHistory(players[(curr_co_idx+i)%TABLE_SIZE].GetPosition(), action);
+
+        if(action == AllIn) {
+            if (players[(curr_co_idx + i) % TABLE_SIZE].GetPosition() == CutOff
+                || players[(curr_co_idx + i) % TABLE_SIZE].GetPosition() == Dealer) {
+                players[(curr_co_idx + i) % TABLE_SIZE].UpdateMoney(-all_in_);
                 curr_pot += all_in_;
-                if(players[(curr_co_idx+i)%TABLE_SIZE].GetPosition() == CutOff){
-                    cut_off_in = true;
-                } else{
-                    dealer_in = true;
-                }
-            }
-            else if(players[(curr_co_idx+i)%TABLE_SIZE].GetPosition() == SmallBlind){
-                players[(curr_co_idx+i)%TABLE_SIZE].UpdateMoney(-all_in_ + small_blind_);
+            } else if (players[(curr_co_idx + i) % TABLE_SIZE].GetPosition() == SmallBlind) {
+                players[(curr_co_idx + i) % TABLE_SIZE].UpdateMoney(-all_in_ + small_blind_);
                 curr_pot += (+all_in_ - small_blind_);
-                small_blind_in = true;
-            }
-            else if(players[(curr_co_idx+i)%TABLE_SIZE].GetPosition() == BigBlind){
-                players[(curr_co_idx+i)%TABLE_SIZE].UpdateMoney(-all_in_ + big_blind_);
+            } else if (players[(curr_co_idx + i) % TABLE_SIZE].GetPosition() == BigBlind) {
+                players[(curr_co_idx + i) % TABLE_SIZE].UpdateMoney(-all_in_ + big_blind_);
                 curr_pot += (+all_in_ - big_blind_);
-                big_blind_in = true;
             }
         }
     }
 
-    // deal community cards
-    deck.DealCard();
-    community_cards.push_back(deck.DealCard());
-    community_cards.push_back(deck.DealCard());
-    community_cards.push_back(deck.DealCard());
-    deck.DealCard();
-    community_cards.push_back(deck.DealCard());
-    deck.DealCard();
-    community_cards.push_back(deck.DealCard());
+    for(int r=0 ; r<repeats_; r++) {
+        community_cards.clear();
 
-    for(int i=0 ; i<TABLE_SIZE ; i++) {      // evaluate hands
-        players[i].EvaluateHand(community_cards);
-    }
+        // deal community cards
+        deck.DealCard();
+        community_cards.push_back(deck.DealCard());
+        community_cards.push_back(deck.DealCard());
+        community_cards.push_back(deck.DealCard());
+        deck.DealCard();
+        community_cards.push_back(deck.DealCard());
+        deck.DealCard();
+        community_cards.push_back(deck.DealCard());
 
-    sort(players.begin(), players.end(), SortByHand);
-    int winning_counter = 0;
-    for(int i=0; i<TABLE_SIZE; i++){
-        if(players[0] == players[i])
-            winning_counter ++;
-    }
-    double wins_money = (double)(curr_pot)/winning_counter;
-    for(int i=0; i<winning_counter; i++){
-        players[i].UpdateMoney(wins_money);
-    }
-
-    // TODO: put stats update in function
-    bool sanity_check = false;
-    if(cut_off_in){
-        if(dealer_in){
-            if(small_blind_in){
-                if(big_blind_in){
-                    scenarios_stats[CutOff_Dealer_SmallBlind_BigBlind_In] ++;
-                    sanity_check = true;
-                } else{
-                    scenarios_stats[CutOff_Dealer_SmallBlind_In] ++;
-                    sanity_check = true;
-                }
-            }
-            else{
-                if(big_blind_in){
-                    scenarios_stats[CutOff_Dealer_BigBlind_In] ++;
-                    sanity_check = true;
-                } else{
-                    scenarios_stats[CutOff_Dealer_In] ++;
-                    sanity_check = true;
-                }
-            }
+        for (int i = 0; i < TABLE_SIZE; i++) {      // evaluate hands
+            players[i].EvaluateHand(community_cards);
         }
-        else{           // cut off in dealer out
-            if(small_blind_in){
-                if(big_blind_in){
-                    scenarios_stats[CutOff_SmallBlind_BigBlind_In] ++;
-                    sanity_check = true;
-                } else{
-                    scenarios_stats[CutOff_SmallBlind_In] ++;
-                    sanity_check = true;
-                }
-            }
-            else{
-                if(big_blind_in){
-                    scenarios_stats[CutOff_BigBlind_In] ++;
-                    sanity_check = true;
-                } else{
-                    scenarios_stats[CutOff_In] ++;
-                    sanity_check = true;
-                }
-            }
+
+        bool flag_01_eq, flag_23_eq, flag_01_ge, flag_23_ge, flag_01_lo, flag_23_lo, flag_final_eq, flag_final_ge, flag_final_lo;
+        flag_01_eq = (players[0] == players[1]);
+        flag_01_ge = (players[0] > players[1]);
+        flag_01_lo = !(flag_01_eq || flag_01_ge);
+        flag_23_eq = (players[2] == players[3]);
+        flag_23_ge = (players[2] > players[3]);
+        flag_23_lo = !(flag_23_eq || flag_23_ge);
+
+        flag_final_eq = players[(int)(flag_01_lo)] == players[2+(int)(flag_23_lo)];
+        flag_final_ge = players[(int)(flag_01_lo)] > players[2+(int)(flag_23_lo)];
+        flag_final_lo = !(flag_final_ge || flag_final_eq);
+
+        vector<int> winning_idx = vector<int>();
+        //1000
+        if(flag_01_ge and flag_final_ge)
+            winning_idx.push_back(0);
+        //0100
+        else if(flag_01_lo and flag_final_ge)
+            winning_idx.push_back(1);
+        //0010
+        else if(flag_23_ge and flag_final_lo)
+            winning_idx.push_back(2);
+        //0001
+        else if(flag_23_lo and flag_final_lo)
+            winning_idx.push_back(3);
+        //1100
+        else if(flag_01_eq and flag_final_ge){
+            winning_idx.push_back(0);
+            winning_idx.push_back(1);
         }
-    }
-    else{                   // cut_off_folds
-        if(dealer_in){
-            if(small_blind_in){
-                if(big_blind_in){
-                    scenarios_stats[Dealer_SmallBlind_BigBlind_In] ++;
-                    sanity_check = true;
-                } else{
-                    scenarios_stats[Dealer_SmallBlind_In] ++;
-                    sanity_check = true;
-                }
-            }
-            else{
-                if(big_blind_in){
-                    scenarios_stats[Dealer_BigBlind_In] ++;
-                    sanity_check = true;
-                } else{
-                    scenarios_stats[Dealer_In] ++;
-                    sanity_check = true;
-                }
-            }
+        //1010
+        else if(flag_01_ge and flag_23_ge and flag_final_eq){
+            winning_idx.push_back(0);
+            winning_idx.push_back(2);
         }
-        else{           // cut off in dealer out
-            if(small_blind_in){
-                if(big_blind_in){
-                    scenarios_stats[SmallBlind_BigBlind_In] ++;
-                    sanity_check = true;
-                } else{
-                    scenarios_stats[SmallBlind_In] ++;
-                    sanity_check = true;
-                }
-            }
-            else{
-                scenarios_stats[BigBlind_In] ++;
-                sanity_check = true;
-            }
+        //1001
+        else if(flag_01_ge and flag_23_lo and flag_final_eq){
+            winning_idx.push_back(0);
+            winning_idx.push_back(3);
         }
+        //0110
+        else if(flag_01_lo and flag_23_ge and flag_final_eq){
+            winning_idx.push_back(1);
+            winning_idx.push_back(2);
+        }
+        //0101
+        else if(flag_01_lo and flag_23_lo and flag_final_eq){
+            winning_idx.push_back(1);
+            winning_idx.push_back(3);
+        }
+        //0011
+        else if(flag_23_eq and flag_final_lo){
+            winning_idx.push_back(2);
+            winning_idx.push_back(3);
+        }
+        //1110
+        else if(flag_final_eq and flag_01_eq and flag_23_ge){
+            winning_idx.push_back(0);
+            winning_idx.push_back(1);
+            winning_idx.push_back(2);
+        }
+        //1101
+        else if(flag_final_eq and flag_01_eq and flag_23_lo){
+            winning_idx.push_back(0);
+            winning_idx.push_back(1);
+            winning_idx.push_back(3);
+        }
+        //1011
+        else if(flag_final_eq and flag_01_ge and flag_23_eq){
+            winning_idx.push_back(0);
+            winning_idx.push_back(2);
+            winning_idx.push_back(3);
+        }
+        //0111
+        else if(flag_final_eq and flag_01_lo and flag_23_eq){
+            winning_idx.push_back(1);
+            winning_idx.push_back(2);
+            winning_idx.push_back(3);
+        }
+        //1111
+        else if(flag_23_eq and flag_final_eq and flag_01_eq){
+            winning_idx.push_back(0);
+            winning_idx.push_back(1);
+            winning_idx.push_back(2);
+            winning_idx.push_back(3);
+        }
+        else
+            assert(false);
+
+        unsigned int winning_counter=winning_idx.size();
+
+        double wins_money = (double) (curr_pot) / (repeats_ * winning_counter);
+        for(auto idx: winning_idx){
+            players[idx].UpdateMoney(wins_money);
+        }
+
     }
 
-    assert(sanity_check);
-
-    if(previous_action == TwoRaises){
-        two_players_in_counter ++;
-        show_down_counter ++;
-    } else if(previous_action == ThreeRaises){
-        three_players_in_counter ++;
-        show_down_counter ++;
-    } else if(previous_action == FourRaises){
-        four_players_in_counter ++;
-        show_down_counter ++;
-    } else if(previous_action == OneRaise){    }
-    else {
-        assert(false);
-    }
+    scenarios_stats[curr_history] ++;
 
     hands_counter++;
     double total_money = 0;
-    for(auto x:players){
+    for(auto const & x :players){
         total_money += x.GetMoney();
         UpdateHandsStats(hands_stats, x.GetPlayerBestHand());
     }
     assert(abs(total_money) <= 0.1 && "-ASSERT- none zero sum of money, ");
 
-    sort(players.begin(), players.end(), SortByID);
-
+    EndRound();
 }
 
 static void UpdateHandsStats(map<HandRank, int > & ranks_stats, PokerHand hand ){
@@ -293,19 +377,29 @@ static bool SortByHand(PokerPlayer p1, PokerPlayer p2){
 }
 
 void PokerTable::EndRound() {
-    curr_pot = 0;
-    //curr_co_idx = (curr_co_idx + 1) % TABLE_SIZE;
+
     for(int i=0;i<TABLE_SIZE;i++){
-        //players[i].UpdatePosition();
+        players[i].UpdateTable();
+    }
+}
+
+
+void PokerTable::StartRound() {
+    curr_pot = 0;
+    if(update_positions_)
+        curr_co_idx = (curr_co_idx + 1) % TABLE_SIZE;
+    for(int i=0;i<TABLE_SIZE;i++){
+        if(update_positions_)
+            players[i].UpdatePosition();
+        players[i].ResetReward();
         players[i].MockHand();
         players[i].UnSetAction();
     }
-    previous_action = Empty;
+    curr_history = BigBlind_In;
     community_cards.clear();
 
-    cut_off_in = dealer_in = small_blind_in = big_blind_in = false;
-
 }
+
 
 string PokerTable::GetStatsSring(int iteration) {
     string stats_string;
@@ -325,15 +419,11 @@ string PokerTable::GetStatsSring(int iteration) {
         exit(8);
     }
     assert(abs(100-percentage_sum) < 0.01);
-    stats_string += "\n";
-    stats_string += "\nShow Downs Frequency: "+to_string(100*(double)(show_down_counter)/iteration);
-    stats_string += "\nTwo Players in Frequency: "+to_string(100*(double)(two_players_in_counter)/iteration);
-    stats_string += "\nThree Players in Frequency: "+to_string(100*(double)(three_players_in_counter)/iteration);
-    stats_string += "\nFour Players in Frequency: "+to_string(100*(double)(four_players_in_counter)/iteration);
+
     return stats_string;
 }
 
-string PokerTable::ToString() const{        //TODO: change printing format to something more nice
+string PokerTable::ToString() {        //TODO: change printing format to something more nice
     string table_string = "=====================================================================\n";
     table_string += "========= Table: "+to_string(table_id_)+", #Hand: "+to_string(hands_counter)+"\n\n| ";
 
@@ -350,7 +440,7 @@ string PokerTable::ToString() const{        //TODO: change printing format to so
 
 }
 
-std::ostream& operator<<(std::ostream& os, const PokerTable& table){
+std::ostream& operator<<(std::ostream& os,  PokerTable& table){
     os << table.ToString();
     return os;
 }

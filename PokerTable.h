@@ -8,6 +8,7 @@
 #include <vector>
 #include "PokerPlayer.h"
 #include "Deck.h"
+#include "SlimDeck.h"
 #include "Enums.h"
 
 using namespace std;
@@ -21,25 +22,28 @@ private:
     double curr_pot;
     double big_blind_, small_blind_, all_in_;
     int table_id_;
-    int hands_counter, show_down_counter, two_players_in_counter, three_players_in_counter, four_players_in_counter;
-    PreviousAction previous_action;
+    int hands_counter;
+    int repeats_;
+    History curr_history;
 
     map<HandRank, int> hands_stats;
     map<HandRank, string> ranks_names;
 
-    map<Scenarios, int> scenarios_stats;
-    map<Scenarios, string> scenarios_names;
-    bool cut_off_in, dealer_in, small_blind_in, big_blind_in;
-
+    map<History, int> scenarios_stats;
+    map<History, string> scenarios_names;
+    bool update_positions_;
     void EndRound();
+    void StartRound();
+    void UpdateHistory(Position position, Action action);
 
 public:
-    PokerTable(PokerPlayer plater_a, PokerPlayer plater_b, PokerPlayer plater_c, PokerPlayer plater_d,
-            double big_blind, double small_blind, double all_in, int table_id);
+    PokerTable(PokerPlayer const & player_a, PokerPlayer const & player_b,
+               PokerPlayer const & player_c, PokerPlayer const & player_d,
+               double big_blind, double small_blind, double all_in, int table_id, bool update_positions, int repeats);
     ~PokerTable() = default;
     void Round();
     string GetStatsSring(int iteration);
-    string ToString() const;
+    string ToString() ;
 
 };
 
@@ -50,6 +54,6 @@ static bool SortByID(PokerPlayer p1, PokerPlayer p2);
 static void UpdateHandsStats(map<HandRank, int > & ranks_stats, PokerHand hand);
 
 
-std::ostream& operator<<(std::ostream& os, const PokerTable& table);
+std::ostream& operator<<(std::ostream& os, PokerTable& table);
 
 #endif //POKER_SIMULATOR_POKERTABLE_H

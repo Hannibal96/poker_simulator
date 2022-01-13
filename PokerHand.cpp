@@ -17,6 +17,7 @@ PokerHand::PokerHand(Card card_a, Card card_b, Card card_c, Card card_d, Card ca
     hand_cards.push_back(card_c);
     hand_cards.push_back(card_d);
     hand_cards.push_back(card_e);
+
     sort(hand_cards.begin(), hand_cards.end(), CardGreaterThan);
     this->SetRank();
 }
@@ -110,8 +111,8 @@ void PokerHand::SetRank() {
             hand_cards[2].GetValue() == hand_cards[3].GetValue() && hand_cards[2].GetValue() == hand_cards[4].GetValue()) {
         assert(rank == UnSet && "-ASSERT- double rank assignment");
         rank = FullHouse;
-        characteristic.push_back(hand_cards[0].GetValue());
         characteristic.push_back(hand_cards[2].GetValue());
+        characteristic.push_back(hand_cards[0].GetValue());
     }
 
     // trips are charectries by tripes value and two kickers

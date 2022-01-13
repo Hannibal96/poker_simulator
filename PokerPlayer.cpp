@@ -5,19 +5,14 @@
 #include "PokerPlayer.h"
 
 
-PokerPlayer::PokerPlayer(string &name, int id, Strategy& strategy, Position initial_position)
-:name_(name), strategy_(strategy), id_(id), money_(0.0), curr_position(initial_position), last_action(NotAct)
+PokerPlayer::PokerPlayer(string &name, int id, VectorStrategy& strategy, Position initial_position)
+:name_(name), vector_strategy(strategy), id_(id), money_(0.0), curr_reward_(0.0), curr_position(initial_position),
+last_action(NotAct), bandit_table()
 {}
 
 void PokerPlayer::AddHoldingCards(Card card_a) {
     assert(holding_cards.size() < 2 && "-ASSET- too many holdings cards");
     holding_cards.push_back(card_a);
-}
-
-void PokerPlayer::AddHoldingCards(Card card_a, Card card_b) {
-    assert(holding_cards.size() < 2 && "-ASSET- too many holdings cards");
-    holding_cards.push_back(card_a);
-    holding_cards.push_back(card_b);
 }
 
 void PokerPlayer::MockHand() {
@@ -27,6 +22,7 @@ void PokerPlayer::MockHand() {
 
 
 PokerHand PokerPlayer::EvaluateHand(vector<Card> community_cards) {
+
     vector<Card> all_cards = holding_cards;
     all_cards.insert(all_cards.end(), community_cards.begin(), community_cards.end());
     best_hand = GetBestHand(all_cards);
@@ -37,24 +33,102 @@ PokerHand PokerPlayer::GetPlayerBestHand() const {
     return best_hand;
 }
 
-Action PokerPlayer::GetAction(PreviousAction previous_action) { // TODO: expand for all the other <position, previous_action> combinations
+int CalcHand(Card a, Card b){
+    int hand_num;
+    if(a.GetSuit() != b.GetSuit()) {
+        if (a.GetValue() >= b.GetValue()) {
+            hand_num = (a.GetValue() - 2) * 13 + (b.GetValue() - 2);
+        } else {
+            hand_num = (b.GetValue() - 2) * 13 + (a.GetValue() - 2);
+        }
+    }
+    else{
+        if (a.GetValue() >= b.GetValue()) {
+            hand_num = (b.GetValue() - 2) * 13 + (a.GetValue() - 2);
+        } else {
+            hand_num = (a.GetValue() - 2) * 13 + (b.GetValue() - 2);
+        }
+    }
+    return hand_num;
+}
+
+
+Action PokerPlayer::GetAction(History history) {
+
     assert(last_action == NotAct && "-ASSERT- set action and entering get action");
-    if(curr_position == BigBlind && previous_action == Empty) {
+    if(curr_position == BigBlind && history == BigBlind_In) {
         last_action = AllIn;
         return AllIn;
     }
-    Action action = strategy_.GetAction(holding_cards[0], holding_cards[1]);
-    last_action = action;
-    return action;
-}
 
-Action PokerPlayer::GetAction() const{
-    assert(last_action != NotAct && "-ASSERT- unset action");
+    /*
+    last_action = vector_strategy.GetAction(holding_cards[0], holding_cards[1]);
+    return last_action;*/
+
+    int hand_num = CalcHand(holding_cards[0], holding_cards[1]);
+
+    Situation situation;
+
+    if(curr_position == CutOff){
+        situation = CO;
+        assert(history == BigBlind_In);
+    }
+
+    else if(curr_position == Dealer){
+        if(history == BigBlind_In)
+            situation = DE;
+        else if(history == CutOff_In)
+            situation = DE_CO;
+        else
+            assert(false);
+    }
+
+    else if(curr_position == SmallBlind){
+        if(history == BigBlind_In)
+            situation = SB;
+        else if(history == CutOff_In)
+            situation = SB_CO;
+        else if(history == Dealer_In)
+            situation = SB_DE;
+        else if(history == CutOff_Dealer_In)
+            situation = SB_CO_DE;
+        else
+            assert(false);
+    }
+
+    else if(curr_position == BigBlind){
+        if(history == CutOff_In)
+            situation = BB_CO;
+        else if(history == Dealer_In)
+            situation = BB_DE;
+        else if(history == SmallBlind_In)
+            situation = BB_SB;
+        else if(history == CutOff_Dealer_In)
+            situation = BB_CO_DE;
+        else if(history == CutOff_SmallBlind_In)
+            situation = BB_CO_SB;
+        else if(history == Dealer_SmallBlind_In)
+            situation = BB_DE_SB;
+        else if(history == CutOff_Dealer_SmallBlind_In)
+            situation = BB_CO_DE_SB;
+        else
+            assert(false);
+    }
+
+    else{
+        assert(false);
+    }
+
+    last_situation = situation;
+    State state{situation, hand_num};
+
+    last_action = bandit_table.get_action(state);
     return last_action;
 }
 
 void PokerPlayer::UpdateMoney(double delta) {
     money_ += delta;
+    curr_reward_ += delta;
 }
 
 void PokerPlayer::UpdatePosition() {
@@ -70,7 +144,7 @@ double PokerPlayer::GetID() const {
 }
 
 string PokerPlayer::GetStrategyName() {
-    return strategy_.GetName();
+    return vector_strategy.GetName();
 }
 
 double PokerPlayer::GetMoney() const{
@@ -80,6 +154,18 @@ double PokerPlayer::GetMoney() const{
 void PokerPlayer::UnSetAction() {
     last_action = NotAct;
 }
+
+void PokerPlayer::ResetReward(){
+    curr_reward_ = 0.0;
+}
+
+
+void PokerPlayer::UpdateTable() {
+
+    int hand_num = CalcHand(holding_cards[0], holding_cards[1]);
+    bandit_table.update_table(last_situation, hand_num, last_action, curr_reward_);
+}
+
 
 bool PokerPlayer::operator==(const PokerPlayer &player) {
     assert(last_action != NotAct && "-ASSERT- unset last action");
@@ -97,7 +183,6 @@ bool PokerPlayer::operator>(const PokerPlayer &player) {
     if(this->last_action == Fold &&  player.last_action == AllIn)
         return false;
     assert(false && "-ASSERT- not supposed to reach this part");
-    return true;
 }
 
 bool PokerPlayer::operator<(const PokerPlayer &player) {
@@ -105,7 +190,7 @@ bool PokerPlayer::operator<(const PokerPlayer &player) {
 }
 
 
-string PokerPlayer::ToString() const{
+string PokerPlayer::ToString() {
     string player_string = "Player ID: "+to_string(id_);
     player_string += ", Position: ";
     switch (curr_position){
@@ -138,13 +223,15 @@ string PokerPlayer::ToString() const{
     }
 
     player_string += ", \nBest Hand: "+best_hand.ToString();
-
     player_string += ", Money: "+to_string(money_);
+    player_string += ", Reward: "+to_string(curr_reward_);
+
+    player_string += bandit_table.ToString();
 
     return "\n"+player_string+"\n";
 }
 
-std::ostream& operator<<(std::ostream& os, const PokerPlayer& player){
+std::ostream& operator<<(std::ostream& os, PokerPlayer& player){
     os << player.ToString();
     return os;
 }
