@@ -28,6 +28,23 @@ Card Deck::DealCard() {
     return dealt_card;
 }
 
+void Deck::DisCard(Card card){
+    auto pos = find(cards.begin(), cards.end(), card);
+    if(pos == cards.end())
+        throw ;
+    cards.erase(pos);
+}
+
+Card Deck::DealRandCard() {
+
+    int r = rand() % cards.size();
+    Card c = cards[r];
+    auto pos = find(cards.begin(), cards.end(), cards[r]);
+    cards.erase(pos);
+    return c;
+}
+
+
 void Deck::Shuffle() {
     curr_seed ++;
     shuffle(cards.begin(), cards.end(), std::mt19937( time(nullptr) + curr_seed));

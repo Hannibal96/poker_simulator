@@ -9,6 +9,7 @@ using namespace std;
 
 #include <vector>
 #include "Card.h"
+#include <random>
 
 class Deck {
 public:
@@ -16,7 +17,10 @@ public:
     ~Deck() = default;
 
     Card DealCard();
+    Card DealRandCard();
+
     void Shuffle();
+    void DisCard(Card card);
 
     string ToString() const;
     static int curr_seed;

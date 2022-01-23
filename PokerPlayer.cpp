@@ -21,17 +21,50 @@ void PokerPlayer::MockHand() {
 }
 
 
-PokerHand PokerPlayer::EvaluateHand(vector<Card> community_cards) {
+uint16_t calc_hand_hash(uint8_t c1, uint8_t c2, uint8_t c3, uint8_t c4, uint8_t c5, uint8_t p1, uint8_t p2 ){
+    auto key_p = card[c1] + card[c2] + card[c3] + card[c4] + card[c5] + card[p1] + card[p2];
 
-    vector<Card> all_cards = holding_cards;
-    all_cards.insert(all_cards.end(), community_cards.begin(), community_cards.end());
-    best_hand = GetBestHand(all_cards);
-    return best_hand;
+    int_fast8_t is_suit = flush_check[key_p >> FLUSH_BIT_SHIFT];
+
+    if (NOT_A_SUIT != is_suit) {
+        auto * const s = suit_kronecker[is_suit];
+        return flush_ranks[s[c1] | s[c2] | s[c3] | s[c4] | s[c5] | s[p1] | s[p2]];
+    }
+    auto const hash = FACE_BIT_MASK & (uint32_t) (31 * (uint64_t) key_p);
+    return rank_hash[offsets[hash >> RANK_OFFSET_SHIFT] + (hash & RANK_HASH_MOD)];
 }
 
-PokerHand PokerPlayer::GetPlayerBestHand() const {
-    return best_hand;
+
+uint32_t PokerPlayer::EvaluateHandHash(vector<Card> community_cards) {
+
+    map<Suit, uint8_t> suit_converter = {{Heart, 1}, {Diamond, 2}, {Spade, 0},{Club, 3}};
+
+    uint8_t c0 = uint8_t(14 - community_cards[0].GetValue()) * 4 + suit_converter[community_cards[0].GetSuit()];
+    uint8_t c1 = uint8_t(14 - community_cards[1].GetValue()) * 4 + suit_converter[community_cards[1].GetSuit()];
+    uint8_t c2 = uint8_t(14 - community_cards[2].GetValue()) * 4 + suit_converter[community_cards[2].GetSuit()];
+    uint8_t c3 = uint8_t(14 - community_cards[3].GetValue()) * 4 + suit_converter[community_cards[3].GetSuit()];
+    uint8_t c4 = uint8_t(14 - community_cards[4].GetValue()) * 4 + suit_converter[community_cards[4].GetSuit()];
+    uint8_t c5 = uint8_t(14 - holding_cards[0].GetValue()) * 4 + suit_converter[holding_cards[0].GetSuit()];
+    uint8_t c6 = uint8_t(14 - holding_cards[1].GetValue()) * 4 + suit_converter[holding_cards[1].GetSuit()];
+
+
+    //chrono::steady_clock sc;   // create an object of `steady_clock` class
+    //auto start = sc.now();     // start timer
+
+    best_hand_hash = calc_hand_hash(c0, c1, c2, c3, c4, c5, c6);
+
+    //auto end = sc.now();       // end timer (starting & ending is done by measuring the time at the moment the process started & ended respectively)
+    //auto time_span = static_cast<chrono::duration<double>>(end - start);   // measure time span between start & end
+    //cout<<"Operation took: "<<time_span.count()<<" seconds !!!";
+
+    return best_hand_hash;
 }
+
+
+uint32_t PokerPlayer::GetPlayerBestHashHand() const {
+    return best_hand_hash;
+}
+
 
 int CalcHand(Card a, Card b){
     int hand_num;
@@ -58,6 +91,7 @@ Action PokerPlayer::GetAction(History history) {
     assert(last_action == NotAct && "-ASSERT- set action and entering get action");
     if(curr_position == BigBlind && history == BigBlind_In) {
         last_action = AllIn;
+        last_situation = CO;
         return AllIn;
     }
 
@@ -160,7 +194,18 @@ void PokerPlayer::ResetReward(){
 }
 
 
+Card PokerPlayer::GetHoldingCard1(){
+    return holding_cards[0];
+}
+
+Card PokerPlayer::GetHoldingCard2(){
+    return holding_cards[1];
+}
+
 void PokerPlayer::UpdateTable() {
+    if(curr_position == BigBlind && last_situation == CO){
+        return;
+    }
 
     int hand_num = CalcHand(holding_cards[0], holding_cards[1]);
     bandit_table.update_table(last_situation, hand_num, last_action, curr_reward_);
@@ -169,7 +214,7 @@ void PokerPlayer::UpdateTable() {
 
 bool PokerPlayer::operator==(const PokerPlayer &player) {
     assert(last_action != NotAct && "-ASSERT- unset last action");
-    return this->last_action == player.last_action && this->best_hand == player.best_hand;
+    return this->last_action == player.last_action && this->best_hand_hash == player.best_hand_hash;
 }
 
 bool PokerPlayer::operator>(const PokerPlayer &player) {
@@ -177,7 +222,7 @@ bool PokerPlayer::operator>(const PokerPlayer &player) {
     if(this == &player)
         return false;
     if(this->last_action == player.last_action)
-        return this->best_hand > player.best_hand;
+        return this->best_hand_hash > player.best_hand_hash;
     if(this->last_action == AllIn &&  player.last_action == Fold)
         return true;
     if(this->last_action == Fold &&  player.last_action == AllIn)
@@ -222,7 +267,8 @@ string PokerPlayer::ToString() {
             break;
     }
 
-    player_string += ", \nBest Hand: "+best_hand.ToString();
+    //player_string += ", \nBest Hand: " + best_hand.ToString();
+    player_string += ", \nBest Hand: " + to_string(best_hand_hash);
     player_string += ", Money: "+to_string(money_);
     player_string += ", Reward: "+to_string(curr_reward_);
 

@@ -3,4 +3,4 @@ project(poker_simulator)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(poker_simulator main.cpp Card.cpp Card.h Deck.cpp Deck.h PokerHand.cpp PokerHand.h Strategy.cpp Strategy.h PokerPlayer.cpp PokerPlayer.h PokerTable.cpp PokerTable.h Enums.h Q_table.cpp Q_table.h Bandit_table.cpp Bandit_table.h VectorStrategy.cpp VectorStrategy.h SlimDeck.cpp SlimDeck.h)
+add_executable(poker_simulator main.cpp Card.cpp Card.h Deck.cpp Deck.h Strategy.cpp Strategy.h PokerPlayer.cpp PokerPlayer.h PokerTable.cpp PokerTable.h Enums.h Q_table.cpp Q_table.h Bandit_table.cpp Bandit_table.h VectorStrategy.cpp VectorStrategy.h SlimDeck.cpp SlimDeck.h)

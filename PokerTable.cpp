@@ -207,6 +207,17 @@ void PokerTable::Round() {
     }
 
     for(int r=0 ; r<repeats_; r++) {
+        if(r != 0 && r%5 ==0){
+
+            deck = Deck();
+            for(int i=0 ; i<TABLE_SIZE ; i++){
+                deck.DisCard(players[i].GetHoldingCard1());
+                deck.DisCard(players[i].GetHoldingCard2());
+            }
+            deck.Shuffle();
+
+        }
+
         community_cards.clear();
 
         // deal community cards
@@ -219,8 +230,11 @@ void PokerTable::Round() {
         deck.DealCard();
         community_cards.push_back(deck.DealCard());
 
+
+
+
         for (int i = 0; i < TABLE_SIZE; i++) {      // evaluate hands
-            players[i].EvaluateHand(community_cards);
+            players[i].EvaluateHandHash(community_cards);
         }
 
         bool flag_01_eq, flag_23_eq, flag_01_ge, flag_23_ge, flag_01_lo, flag_23_lo, flag_final_eq, flag_final_ge, flag_final_lo;
@@ -234,6 +248,7 @@ void PokerTable::Round() {
         flag_final_eq = players[(int)(flag_01_lo)] == players[2+(int)(flag_23_lo)];
         flag_final_ge = players[(int)(flag_01_lo)] > players[2+(int)(flag_23_lo)];
         flag_final_lo = !(flag_final_ge || flag_final_eq);
+
 
         vector<int> winning_idx = vector<int>();
         //1000
@@ -327,54 +342,36 @@ void PokerTable::Round() {
     double total_money = 0;
     for(auto const & x :players){
         total_money += x.GetMoney();
-        UpdateHandsStats(hands_stats, x.GetPlayerBestHand());
+        UpdateHandsStats(hands_stats, x.GetPlayerBestHashHand());
     }
     assert(abs(total_money) <= 0.1 && "-ASSERT- none zero sum of money, ");
 
     EndRound();
 }
 
-static void UpdateHandsStats(map<HandRank, int > & ranks_stats, PokerHand hand ){
-    switch (hand.GetRank()) {
-        case HighCArd:
-            ranks_stats[HighCArd] ++;
-            break;
-        case Pair:
-            ranks_stats[Pair] ++;
-            break;
-        case TwoPairs:
-            ranks_stats[TwoPairs] ++;
-            break;
-        case Trips:
-            ranks_stats[Trips] ++;
-            break;
-        case Straight:
-            ranks_stats[Straight] ++;
-            break;
-        case Flush:
-            ranks_stats[Flush] ++;
-            break;
-        case FullHouse:
-            ranks_stats[FullHouse] ++;
-            break;
-        case Quads:
-            ranks_stats[Quads] ++;
-            break;
-        case StraightFlush:
-            ranks_stats[StraightFlush] ++;
-            break;
-        case UnSet:
-            assert(false);
-    }
+static void UpdateHandsStats(map<HandRank, int > & ranks_stats, uint32_t hand_hash ){
+    if(hand_hash < 1296)
+        ranks_stats[HighCArd] ++;
+    else if(hand_hash < 4141)
+        ranks_stats[Pair] ++;
+    else if(hand_hash < 5004)
+        ranks_stats[TwoPairs] ++;
+    else if(hand_hash < 5854)
+        ranks_stats[Trips] ++;
+    else if(hand_hash < 5864)
+        ranks_stats[Straight] ++;
+    else if(hand_hash < 7141)
+        ranks_stats[Flush] ++;
+    else if(hand_hash < 7297)
+        ranks_stats[FullHouse] ++;
+    else if(hand_hash < 7453)
+        ranks_stats[Quads] ++;
+    else if(hand_hash <= 7462)
+        ranks_stats[StraightFlush] ++;
+    else
+        assert(false);
 }
 
-static bool SortByID(PokerPlayer p1, PokerPlayer p2){
-    return p1.GetID() < p2.GetID();
-}
-
-static bool SortByHand(PokerPlayer p1, PokerPlayer p2){
-    return p1 > p2;
-}
 
 void PokerTable::EndRound() {
 

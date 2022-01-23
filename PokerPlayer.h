@@ -6,13 +6,13 @@
 #define POKER_SIMULATOR_POKERPLAYER_H
 
 #include "Strategy.h"
-#include "PokerHand.h"
 #include "Enums.h"
 #include "Bandit_table.h"
 #include "VectorStrategy.h"
 #include "Q_table.h"
 #include <bits/stdc++.h>
 #include <iostream>
+#include "hashes.h"
 
 class PokerPlayer {
 private:
@@ -21,7 +21,7 @@ private:
     double money_, curr_reward_;
 
     vector<Card> holding_cards;
-    PokerHand best_hand;
+    uint32_t best_hand_hash;
     Position curr_position;
 
     Action last_action;
@@ -37,10 +37,14 @@ public:
     void MockHand();
     Action GetAction(History history);
     Position GetPosition();
+
+    Card GetHoldingCard1();
+    Card GetHoldingCard2();
+
     double GetMoney() const;
     double GetID() const;
-    PokerHand GetPlayerBestHand() const ;
-    PokerHand EvaluateHand(vector<Card> community_cards);
+    uint32_t GetPlayerBestHashHand() const ;
+    uint32_t EvaluateHandHash(vector<Card> community_cards);
     void UpdatePosition();
     void UpdateMoney(double delta);
     void UnSetAction();
@@ -56,7 +60,5 @@ public:
     bool operator<(const PokerPlayer& player);
 
 };
-
-std::ostream& operator<<(std::ostream& os, PokerHand& hand);
 
 #endif //POKER_SIMULATOR_POKERPLAYER_H

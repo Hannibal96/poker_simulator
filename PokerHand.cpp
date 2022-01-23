@@ -59,6 +59,7 @@ void PokerHand::SetRank() {
         && hand_cards[0].GetValue() == hand_cards[3].GetValue()+3 && hand_cards[0].GetValue() == hand_cards[4].GetValue()+4) {
         if(flush_flag){
             characteristic = vector<Value>();
+            characteristic.push_back(hand_cards[0].GetValue());
             rank = StraightFlush;
         } else {
             characteristic.push_back(hand_cards[0].GetValue());
@@ -71,6 +72,7 @@ void PokerHand::SetRank() {
             hand_cards[1].GetValue()+1 == hand_cards[4].GetValue()+4 && hand_cards[0].GetValue() == Ace && hand_cards[1].GetValue() == Five) {
         if(flush_flag){
             characteristic = vector<Value>();
+            characteristic.push_back(hand_cards[1].GetValue());
             rank = StraightFlush;
         } else {
             characteristic.push_back(hand_cards[1].GetValue());
