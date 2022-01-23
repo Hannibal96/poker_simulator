@@ -54,22 +54,47 @@ int main(int argc, char *argv[]) {
 
     }
 
+    vector<double> factors = {0.1, 0.5, 1.0, 2.0, 5.0, 10.0};
+    std::random_device rd;  // Will be used to obtain a seed for the random number engine
+    std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+    double r = dis(gen);
+    auto idx = (unsigned int) (6 * r);
+
+    double factor = factors[idx];
+
+    double bb = 0.25 * factor,
+            sb = 0.1 * factor,
+            all_in = 2.0 * factor;
+
+
+    double epsilon_co = dis(gen),
+            epsilon_de = dis(gen),
+            epsilon_sb = dis(gen),
+            epsilon_bb = dis(gen);
+
+
+    cout << "==============================================================================================================" << endl;
+    cout << "====================================== Factor:" << factor << "==========================================================" << endl;
+    cout << "====================================== Epsilons:" << epsilon_co << ", " << epsilon_de << ", " << epsilon_sb << ", " << epsilon_bb  << "==========================================================" << endl;
+    cout << "==============================================================================================================" << endl;
+
     for(auto co_stg:cutoff_possible_strategy){
         for(auto de_stg:dealer_possible_strategy){
             for(auto sb_stg:small_blind_possible_strategy){
                 for(auto bb_stg:big_blind_possible_strategy){
 
-                    PokerPlayer player1 = PokerPlayer(name1, 11, co_stg, CutOff);
-                    PokerPlayer player2 = PokerPlayer(name2, 12, de_stg, Dealer);
-                    PokerPlayer player3 = PokerPlayer(name3, 13, sb_stg, SmallBlind);
-                    PokerPlayer player4 = PokerPlayer(name4, 14, bb_stg, BigBlind);
-                    PokerTable table = PokerTable(player1, player2, player3, player4, 8*0.25, 8*0.1, 8*2.0 ,10, false, 20);
+                    PokerPlayer player1 = PokerPlayer(name1, 11, co_stg, CutOff, epsilon_co);
+                    PokerPlayer player2 = PokerPlayer(name2, 12, de_stg, Dealer, epsilon_de);
+                    PokerPlayer player3 = PokerPlayer(name3, 13, sb_stg, SmallBlind, epsilon_sb);
+                    PokerPlayer player4 = PokerPlayer(name4, 14, bb_stg, BigBlind, epsilon_bb);
+                    PokerTable table = PokerTable(player1, player2, player3, player4, bb, sb, all_in ,10, false, 20);
 
                     for(int i=0; i<REPEATS; i++){
 
                         table.Round();
 
-                        if((i+1)%PRINTS == 0) {
+                        if((i+1)%PRINTS == 0 || i == 0) {
                             cout << "==============================================================================================================" << endl;
                             cout << "============================******************************************************============================" << endl;
                             cout << "==============================================================================================================" << endl;

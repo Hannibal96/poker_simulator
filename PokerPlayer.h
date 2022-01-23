@@ -31,7 +31,7 @@ private:
     VectorStrategy vector_strategy;
 
 public:
-    PokerPlayer(string& name, int id, VectorStrategy& strategy, Position initial_position);
+    PokerPlayer(string& name, int id, VectorStrategy& strategy, Position initial_position, double epsilon);
     ~PokerPlayer() = default;
     void AddHoldingCards(Card card_a);
     void MockHand();

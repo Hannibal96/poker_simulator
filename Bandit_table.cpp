@@ -4,8 +4,8 @@
 
 #include "Bandit_table.h"
 
-Bandit_table::Bandit_table() {
-
+Bandit_table::Bandit_table(double epsilon) {
+    epsilon_ = epsilon;
     for(int situation = CO; situation <= BB_CO_DE_SB ; situation++){
         for(int hand = 0; hand < 169 ; hand ++){
             for(int act = Fold ; act <= AllIn ; act ++ ){
@@ -40,7 +40,7 @@ Action Bandit_table::get_action(Situation situation, int hand){
         std::uniform_real_distribution<> dis(0.0, 1.0);
 
         double r = dis(gen);
-        if(r >= 0.5)
+        if(r >= epsilon_)
             return AllIn;
         return Fold;
     }

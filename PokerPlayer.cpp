@@ -5,10 +5,13 @@
 #include "PokerPlayer.h"
 
 
-PokerPlayer::PokerPlayer(string &name, int id, VectorStrategy& strategy, Position initial_position)
+PokerPlayer::PokerPlayer(string &name, int id, VectorStrategy& strategy, Position initial_position, double epsilon)
 :name_(name), vector_strategy(strategy), id_(id), money_(0.0), curr_reward_(0.0), curr_position(initial_position),
-last_action(NotAct), bandit_table()
-{}
+last_action(NotAct), bandit_table(epsilon)
+{
+
+
+}
 
 void PokerPlayer::AddHoldingCards(Card card_a) {
     assert(holding_cards.size() < 2 && "-ASSET- too many holdings cards");

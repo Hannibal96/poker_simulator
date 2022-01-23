@@ -16,9 +16,10 @@ class Bandit_table{
 
 private:
     map<TableEntry , tuple<double, int, int> > table_;
-
+    double epsilon_;
 public:
-    Bandit_table();
+
+    Bandit_table(double epsilon=0.5);
     ~Bandit_table() = default;
     Action get_action(Situation situation, int hand);
     Action get_action(State);
