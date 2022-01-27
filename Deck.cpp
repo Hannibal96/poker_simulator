@@ -11,6 +11,7 @@
 
 int Deck::curr_seed = 0;
 
+
 Deck::Deck() {
     for ( int valInt = Duce; valInt != Ace+1; valInt++ ){
         auto val = static_cast<Value >(valInt);
@@ -47,7 +48,12 @@ Card Deck::DealRandCard() {
 
 void Deck::Shuffle() {
     curr_seed ++;
-    shuffle(cards.begin(), cards.end(), std::mt19937( time(nullptr) + curr_seed));
+
+    static std::random_device rd;  // Will be used to obtain a seed for the random number engine
+    static std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
+    static std::uniform_int_distribution<> dis(1, 999999999);
+
+    shuffle(cards.begin(), cards.end(), std::mt19937( time(nullptr) + dis(gen)));
 }
 
 
