@@ -17,6 +17,9 @@ class Bandit_table{
 private:
     map<TableEntry , tuple<double, int, int> > table_;
     double epsilon_;
+
+    static int class_counter;
+
 public:
 
     Bandit_table(double epsilon=0.5);

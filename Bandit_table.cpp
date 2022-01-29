@@ -4,6 +4,8 @@
 
 #include "Bandit_table.h"
 
+int Bandit_table::class_counter = 0;
+
 Bandit_table::Bandit_table(double epsilon) {
     epsilon_ = epsilon;
     for(int situation = CO; situation <= BB_CO_DE_SB ; situation++){
@@ -15,6 +17,9 @@ Bandit_table::Bandit_table(double epsilon) {
             }
         }
     }
+
+    class_counter ++;
+    srand(time(nullptr) + class_counter);   // Initialization, should only be called once.
 }
 
 double Bandit_table::calc_action_value(Situation situation, int hand, Action act, bool ucb){
@@ -34,14 +39,11 @@ double Bandit_table::calc_action_value(Situation situation, int hand, Action act
 
 Action Bandit_table::get_action(Situation situation, int hand){
 
-    std::random_device rd;  // Will be used to obtain a seed for the random number engine
-    std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
-    std::uniform_real_distribution<> dis(0.0, 1.0);
+    double r = (double)rand() / RAND_MAX;
 
-    double r = dis(gen);
     if(r <= epsilon_) {
-        r = dis(gen);
-        if(r >= 0.5)
+        r = rand() % 2;
+        if(r == 1)
             return AllIn;
         return Fold;
     }
@@ -54,7 +56,7 @@ Action Bandit_table::get_action(Situation situation, int hand){
     else if (avg_all_in < avg_fold)
         return Fold;
 
-    r = dis(gen);
+    r = (double)rand() / RAND_MAX;
     if(r >= 0.5)
         return AllIn;
     return Fold;
