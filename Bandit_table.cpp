@@ -17,7 +17,7 @@ Bandit_table::Bandit_table(double epsilon) {
     }
 }
 
-double Bandit_table::calc_ucb(Situation situation, int hand, Action act){
+double Bandit_table::calc_action_value(Situation situation, int hand, Action act, bool ucb){
     State s{situation, hand};
     TableEntry entry{s, act};
 
@@ -25,7 +25,10 @@ double Bandit_table::calc_ucb(Situation situation, int hand, Action act){
     int N = get<1>(table_[entry]);
     int n = get<2>(table_[entry]);
 
-    return total_reward / (n+!n) + sqrt(2 * log(N+!N) / (n+!n))  ;
+    if(ucb)
+        return total_reward / (n+!n) + sqrt(2 * log(N+!N) / (n+!n))  ;
+
+    return total_reward / (n+!n);
 }
 
 
@@ -43,18 +46,8 @@ Action Bandit_table::get_action(Situation situation, int hand){
         return Fold;
     }
 
-    State s{situation, hand};
-    TableEntry entry_all_in{s, AllIn};
-    TableEntry entry_fold{s, Fold};
-
-    double all_reward = get<0>(table_[entry_all_in]);
-    double fold_reward = get<0>(table_[entry_fold]);
-
-    int all_n = get<2>(table_[entry_all_in]);
-    int fold_n = get<2>(table_[entry_fold]);
-
-    double avg_all_in = all_reward / (all_n + !all_n);
-    double avg_fold = fold_reward / (fold_n + !fold_n);
+    double avg_all_in = calc_action_value(situation, hand, AllIn, false)  ;
+    double avg_fold = calc_action_value(situation, hand, Fold, false) ;
 
     if(avg_all_in > avg_fold)
         return AllIn;
@@ -184,8 +177,9 @@ string Bandit_table::ToString() {
                 temp_string += "\n"+ num2string(hand) + "\t|";
 
                 for(int situation=CO; situation <= BB_CO_DE_SB; situation++){
-                    double diff = calc_ucb(static_cast<Situation>(situation), hand, AllIn) -
-                                  calc_ucb(static_cast<Situation>(situation), hand, Fold);
+                    double diff = calc_action_value(static_cast<Situation>(situation), hand, AllIn, false) -
+                                  calc_action_value(static_cast<Situation>(situation), hand, Fold, false);
+
                     change = change or ((bool) diff);
 
                     if(diff != 0){

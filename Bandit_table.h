@@ -24,7 +24,7 @@ public:
     Action get_action(Situation situation, int hand);
     Action get_action(State);
     void update_table(Situation situation, int hand, Action act, double reward);
-    double calc_ucb(Situation situation, int hand, Action act);
+    double calc_action_value(Situation situation, int hand, Action act, bool ucb);
     string ToString();
 };
 
