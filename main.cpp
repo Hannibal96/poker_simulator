@@ -68,10 +68,10 @@ int main(int argc, char *argv[]) {
             all_in = 2.0 * factor;
 
 
-    double epsilon_co = dis(gen),
-            epsilon_de = dis(gen),
-            epsilon_sb = dis(gen),
-            epsilon_bb = dis(gen);
+    double epsilon_co = 0.1,
+            epsilon_de = 0.1,
+            epsilon_sb = 0.1,
+            epsilon_bb = 0.1;
 
 
     cout << "==============================================================================================================" << endl;

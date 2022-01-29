@@ -31,7 +31,42 @@ double Bandit_table::calc_ucb(Situation situation, int hand, Action act){
 
 Action Bandit_table::get_action(Situation situation, int hand){
 
-    double UCB_all_in = calc_ucb(situation, hand, AllIn)  ;
+    std::random_device rd;  // Will be used to obtain a seed for the random number engine
+    std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
+    std::uniform_real_distribution<> dis(0.0, 1.0);
+
+    double r = dis(gen);
+    if(r <= epsilon_) {
+        r = dis(gen);
+        if(r >= 0.5)
+            return AllIn;
+        return Fold;
+    }
+
+    State s{situation, hand};
+    TableEntry entry_all_in{s, AllIn};
+    TableEntry entry_fold{s, Fold};
+
+    double all_reward = get<0>(table_[entry_all_in]);
+    double fold_reward = get<0>(table_[entry_fold]);
+
+    int all_n = get<2>(table_[entry_all_in]);
+    int fold_n = get<2>(table_[entry_fold]);
+
+    double avg_all_in = all_reward / (all_n + !all_n);
+    double avg_fold = fold_reward / (fold_n + !fold_n);
+
+    if(avg_all_in > avg_fold)
+        return AllIn;
+    else if (avg_all_in < avg_fold)
+        return Fold;
+
+    r = dis(gen);
+    if(r >= 0.5)
+        return AllIn;
+    return Fold;
+
+    /*double UCB_all_in = calc_ucb(situation, hand, AllIn)  ;
     double UCB_fold = calc_ucb(situation, hand, Fold) ;
 
     if(UCB_all_in == UCB_fold){
@@ -47,7 +82,7 @@ Action Bandit_table::get_action(Situation situation, int hand){
 
     if(UCB_all_in >= UCB_fold )
         return AllIn;
-    return Fold;
+    return Fold;*/
 }
 
 Action Bandit_table::get_action(State state){

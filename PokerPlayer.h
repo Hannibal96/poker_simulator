@@ -18,7 +18,8 @@ class PokerPlayer {
 private:
     string name_;
     int id_;
-    double money_, curr_reward_;
+    double curr_reward_;
+    long double money_;
 
     vector<Card> holding_cards;
     uint32_t best_hand_hash;
