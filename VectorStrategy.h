@@ -9,7 +9,6 @@
 #include <vector>
 #include "Card.h"
 #include "Enums.h"
-#include "Strategy.h"
 
 using namespace std;
 

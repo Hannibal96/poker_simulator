@@ -28,11 +28,13 @@ private:
     Action last_action;
     Situation last_situation;
 
-    Bandit_table bandit_table;
-    VectorStrategy vector_strategy;
+    Strategy strategy_;
+
+    //Bandit_table bandit_table;
+    //VectorStrategy vector_strategy;
 
 public:
-    PokerPlayer(string& name, int id, VectorStrategy& strategy, Position initial_position, double epsilon);
+    PokerPlayer(string& name, int id, Strategy& strategy, Position initial_position);
     ~PokerPlayer() = default;
     void AddHoldingCards(Card card_a);
     void MockHand();

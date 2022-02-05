@@ -9,6 +9,9 @@
 #include <vector>
 #include "Card.h"
 #include "Enums.h"
+#include "Bandit_table.h"
+#include <bits/stdc++.h>
+#include "VectorStrategy.h"
 
 using namespace std;
 
@@ -16,13 +19,21 @@ using namespace std;
 class Strategy {
 private:
     string name_;
+    map<Situation, VectorStrategy> vectors_strategy;
+    Bandit_table bandit;
 
 public:
-    Strategy() = default;
+    Strategy();
     ~Strategy() = default;
 
-    Action GetAction();
-    void UpdateParameters();
+    void UpdateBandit(Situation situation, double start_epsilon, double final_epsilon, double decay,
+                      double tie_break_epsilon, int decay_cycle);
+    void UpdateVector(Situation situation, VectorStrategy& vector);
+
+    Bandit_table get_bandit();
+
+    Action GetAction(Situation situation, Card a, Card b);
+    void UpdateParameters(Situation situation, Card a, Card b, Action act, double reward);
     string GetName();
 
 };

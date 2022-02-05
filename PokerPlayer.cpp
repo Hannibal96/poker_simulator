@@ -5,12 +5,11 @@
 #include "PokerPlayer.h"
 
 
-PokerPlayer::PokerPlayer(string &name, int id, VectorStrategy& strategy, Position initial_position, double epsilon)
-:name_(name), vector_strategy(strategy), id_(id), money_(0.0), curr_reward_(0.0), curr_position(initial_position),
-last_action(NotAct), bandit_table(epsilon)
+PokerPlayer::PokerPlayer(string &name, int id, Strategy& strategy, Position initial_position)
+:name_(name), id_(id), money_(0.0), curr_reward_(0.0), curr_position(initial_position),
+last_action(NotAct)
 {
-
-
+    strategy_ = strategy;
 }
 
 void PokerPlayer::AddHoldingCards(Card card_a) {
@@ -69,24 +68,7 @@ uint32_t PokerPlayer::GetPlayerBestHashHand() const {
 }
 
 
-int CalcHand(Card a, Card b){
-    int hand_num;
-    if(a.GetSuit() != b.GetSuit()) {
-        if (a.GetValue() >= b.GetValue()) {
-            hand_num = (a.GetValue() - 2) * 13 + (b.GetValue() - 2);
-        } else {
-            hand_num = (b.GetValue() - 2) * 13 + (a.GetValue() - 2);
-        }
-    }
-    else{
-        if (a.GetValue() >= b.GetValue()) {
-            hand_num = (b.GetValue() - 2) * 13 + (a.GetValue() - 2);
-        } else {
-            hand_num = (a.GetValue() - 2) * 13 + (b.GetValue() - 2);
-        }
-    }
-    return hand_num;
-}
+
 
 
 Action PokerPlayer::GetAction(History history) {
@@ -102,7 +84,7 @@ Action PokerPlayer::GetAction(History history) {
     last_action = vector_strategy.GetAction(holding_cards[0], holding_cards[1]);
     return last_action;*/
 
-    int hand_num = CalcHand(holding_cards[0], holding_cards[1]);
+    //int hand_num = CalcHand(holding_cards[0], holding_cards[1]);
 
     Situation situation;
 
@@ -157,9 +139,10 @@ Action PokerPlayer::GetAction(History history) {
     }
 
     last_situation = situation;
-    State state{situation, hand_num};
+    //State state{situation, hand_num};
 
-    last_action = bandit_table.get_action(state);
+    //last_action = bandit_table.get_action(last_situation, holding_cards[0], holding_cards[1]);
+    last_action = strategy_.GetAction(last_situation, holding_cards[0], holding_cards[1]);
     return last_action;
 }
 
@@ -181,7 +164,7 @@ double PokerPlayer::GetID() const {
 }
 
 string PokerPlayer::GetStrategyName() {
-    return vector_strategy.GetName();
+    return strategy_.GetName();
 }
 
 double PokerPlayer::GetMoney() const{
@@ -210,8 +193,9 @@ void PokerPlayer::UpdateTable() {
         return;
     }
 
-    int hand_num = CalcHand(holding_cards[0], holding_cards[1]);
-    bandit_table.update_table(last_situation, hand_num, last_action, curr_reward_);
+    //int hand_num = CalcHand(holding_cards[0], holding_cards[1]);
+    // bandit_table.update_table(last_situation, holding_cards[0], holding_cards[1], last_action, curr_reward_);
+    strategy_.UpdateParameters(last_situation, holding_cards[0], holding_cards[1], last_action, curr_reward_);
 }
 
 
@@ -275,7 +259,7 @@ string PokerPlayer::ToString() {
     player_string += ", Money: "+to_string(money_);
     player_string += ", Reward: "+to_string(curr_reward_);
 
-    player_string += bandit_table.ToString();
+    player_string += strategy_.get_bandit().ToString();
 
     return "\n"+player_string+"\n";
 }

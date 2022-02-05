@@ -6,8 +6,7 @@
 
 int Bandit_table::class_counter = 0;
 
-Bandit_table::Bandit_table(double epsilon) {
-    epsilon_ = epsilon;
+Bandit_table::Bandit_table() {
     for(int situation = CO; situation <= BB_CO_DE_SB ; situation++){
         for(int hand = 0; hand < 169 ; hand ++){
             for(int act = Fold ; act <= AllIn ; act ++ ){
@@ -21,6 +20,16 @@ Bandit_table::Bandit_table(double epsilon) {
     class_counter ++;
     srand(time(nullptr) + class_counter);   // Initialization, should only be called once.
 }
+
+void Bandit_table::update_parameters(Situation situation, double start_epsilon, double final_epsilon, double decay,
+                                     double tie_break_epsilon, int decay_cycle){
+    situation_epsilon_map[situation] = start_epsilon;
+    situation_final_epsilon_map[situation] = final_epsilon;
+    situation_decay_map[situation] = decay;
+    situation_tie_break_map[situation] = tie_break_epsilon;
+    situation_decay_cycle_map[situation] = decay_cycle;
+}
+
 
 double Bandit_table::calc_action_value(Situation situation, int hand, Action act, bool ucb){
     State s{situation, hand};
@@ -37,11 +46,40 @@ double Bandit_table::calc_action_value(Situation situation, int hand, Action act
 }
 
 
-Action Bandit_table::get_action(Situation situation, int hand){
+int Bandit_table::CalcHandIdx(Card a, Card b){
+    int hand_num;
+    if(a.GetSuit() != b.GetSuit()) {
+        if (a.GetValue() >= b.GetValue()) {
+            hand_num = (a.GetValue() - 2) * 13 + (b.GetValue() - 2);
+        } else {
+            hand_num = (b.GetValue() - 2) * 13 + (a.GetValue() - 2);
+        }
+    }
+    else{
+        if (a.GetValue() >= b.GetValue()) {
+            hand_num = (b.GetValue() - 2) * 13 + (a.GetValue() - 2);
+        } else {
+            hand_num = (a.GetValue() - 2) * 13 + (b.GetValue() - 2);
+        }
+    }
+    return hand_num;
+}
 
+Action Bandit_table::get_action(Situation situation, Card a, Card b){
+
+    int hand = CalcHandIdx(a, b);
     double r = (double)rand() / RAND_MAX;
 
-    if(r <= epsilon_) {
+    double epsilon, tie_break_epsilon;
+    if(situation_epsilon_map.find(situation) == situation_epsilon_map.end()){ // situation was not specified used first value
+        epsilon = situation_epsilon_map.begin()->second;
+        tie_break_epsilon = situation_tie_break_map.begin()->second;
+    } else {
+        epsilon = situation_epsilon_map[situation];
+        tie_break_epsilon = situation_tie_break_map[situation];
+    }
+
+    if(r <= epsilon) {
         r = rand() % 2;
         if(r == 1)
             return AllIn;
@@ -57,34 +95,22 @@ Action Bandit_table::get_action(Situation situation, int hand){
         return Fold;
 
     r = (double)rand() / RAND_MAX;
-    if(r >= 0.5)
+    if(r >= tie_break_epsilon)
         return AllIn;
     return Fold;
 
-    /*double UCB_all_in = calc_ucb(situation, hand, AllIn)  ;
-    double UCB_fold = calc_ucb(situation, hand, Fold) ;
-
-    if(UCB_all_in == UCB_fold){
-        std::random_device rd;  // Will be used to obtain a seed for the random number engine
-        std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
-        std::uniform_real_distribution<> dis(0.0, 1.0);
-
-        double r = dis(gen);
-        if(r >= epsilon_)
-            return AllIn;
-        return Fold;
-    }
-
-    if(UCB_all_in >= UCB_fold )
-        return AllIn;
-    return Fold;*/
 }
 
-Action Bandit_table::get_action(State state){
-    return get_action(state.first, state.second);
-}
+//Action Bandit_table::get_action(State state){
+//    return get_action(state.first, state.second);
+//}
 
-void Bandit_table::update_table(Situation situation, int hand, Action act, double reward){
+void Bandit_table::update_table(Situation situation, Card a, Card b, Action act, double reward){
+
+    if(situation_epsilon_map.size() == 0)
+        return;
+
+    int hand = CalcHandIdx(a, b);
     State s{situation, hand};
     TableEntry entry, comp_entry;
 
@@ -103,6 +129,34 @@ void Bandit_table::update_table(Situation situation, int hand, Action act, doubl
     get<1>(table_[comp_entry]) ++;
 
     get<2>(table_[entry]) ++;
+
+    int counter = get<2>(table_[entry]), cycle_decay;
+    double epsilon, final_epsilon, epsilon_decay;
+    if(situation_decay_cycle_map.find(situation) == situation_decay_cycle_map.end()){
+        cycle_decay = situation_decay_cycle_map.begin()->second;
+        epsilon = situation_epsilon_map.begin()->second;
+        final_epsilon = situation_final_epsilon_map.begin()->second;
+        epsilon_decay = situation_decay_map.begin()->second;
+    }else {
+        cycle_decay = situation_decay_cycle_map[situation];
+        epsilon = situation_epsilon_map[situation];
+        final_epsilon = situation_final_epsilon_map[situation];
+        epsilon_decay = situation_decay_map[situation];
+    }
+
+    if(counter % cycle_decay == 0 && epsilon > final_epsilon){
+        epsilon *= epsilon_decay;
+        if(epsilon < final_epsilon)
+            epsilon = final_epsilon;
+
+        if(situation_decay_cycle_map.find(situation) == situation_decay_cycle_map.end()){
+            situation_epsilon_map.begin()->second = epsilon;
+        }else{
+            situation_epsilon_map[situation] = epsilon;
+        }
+    }
+
+
 }
 
 
@@ -155,7 +209,14 @@ string Bandit_table::ToString() {
     bandit_string += "========== Bandit Table: \n\t|";
 
     for(int situation=CO; situation <= BB_CO_DE_SB; situation++){
-        bandit_string += "\t  "+converter[situation] + " | \t ";
+        string epsilon_str;
+        if(situation_epsilon_map.find(static_cast<Situation>(situation)) == situation_epsilon_map.end()){
+            epsilon_str = "~";
+        } else{
+            epsilon_str = to_string(situation_epsilon_map[static_cast<Situation>(situation)]);
+        }
+
+        bandit_string += "   "+converter[situation] + ": " + epsilon_str + "  | ";
     }
 
     for(int card_a = 0 ; card_a < 13 ; card_a++){
