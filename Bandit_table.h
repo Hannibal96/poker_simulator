@@ -16,7 +16,7 @@ class Bandit_table{
 private:
     map<TableEntry , tuple<double, int, int> > table_;
     map<Situation, double> situation_epsilon_map, situation_final_epsilon_map, situation_decay_map, situation_tie_break_map;
-    map<Situation, int> situation_decay_cycle_map;
+    map<Situation, int> situation_decay_cycle_map, situation_decay_counter;
 
     //double epsilon_, final_epsilon_, decay_;
     //int decay_cycle_;

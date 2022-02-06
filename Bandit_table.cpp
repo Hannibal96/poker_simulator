@@ -28,6 +28,7 @@ void Bandit_table::update_parameters(Situation situation, double start_epsilon, 
     situation_decay_map[situation] = decay;
     situation_tie_break_map[situation] = tie_break_epsilon;
     situation_decay_cycle_map[situation] = decay_cycle;
+    situation_decay_counter[situation] = 0;
 }
 
 
@@ -107,7 +108,7 @@ Action Bandit_table::get_action(Situation situation, Card a, Card b){
 
 void Bandit_table::update_table(Situation situation, Card a, Card b, Action act, double reward){
 
-    if(situation_epsilon_map.size() == 0)
+    if(situation_epsilon_map.empty())
         return;
 
     int hand = CalcHandIdx(a, b);
@@ -130,19 +131,25 @@ void Bandit_table::update_table(Situation situation, Card a, Card b, Action act,
 
     get<2>(table_[entry]) ++;
 
-    int counter = get<2>(table_[entry]), cycle_decay;
+    int counter, cycle_decay;
     double epsilon, final_epsilon, epsilon_decay;
     if(situation_decay_cycle_map.find(situation) == situation_decay_cycle_map.end()){
         cycle_decay = situation_decay_cycle_map.begin()->second;
         epsilon = situation_epsilon_map.begin()->second;
         final_epsilon = situation_final_epsilon_map.begin()->second;
         epsilon_decay = situation_decay_map.begin()->second;
+        situation_decay_counter.begin()->second ++;
+        counter = situation_decay_counter.begin()->second;
     }else {
         cycle_decay = situation_decay_cycle_map[situation];
         epsilon = situation_epsilon_map[situation];
         final_epsilon = situation_final_epsilon_map[situation];
         epsilon_decay = situation_decay_map[situation];
+        situation_decay_counter[situation] ++;
+        counter = situation_decay_counter[situation];
     }
+
+
 
     if(counter % cycle_decay == 0 && epsilon > final_epsilon){
         epsilon *= epsilon_decay;
@@ -211,12 +218,15 @@ string Bandit_table::ToString() {
     for(int situation=CO; situation <= BB_CO_DE_SB; situation++){
         string epsilon_str;
         if(situation_epsilon_map.find(static_cast<Situation>(situation)) == situation_epsilon_map.end()){
-            epsilon_str = "~";
+            //epsilon_str = "~";
+            bandit_string += "   "+converter[situation] + ": ~  | ";
+
         } else{
-            epsilon_str = to_string(situation_epsilon_map[static_cast<Situation>(situation)]);
+            //epsilon_str = "\e[1m" + to_string(situation_epsilon_map[static_cast<Situation>(situation)]) + "\e[0m";
+            bandit_string += "\e[1m   "+converter[situation] + ": " + to_string(situation_epsilon_map[static_cast<Situation>(situation)]) + "  | \e[0m";
         }
 
-        bandit_string += "   "+converter[situation] + ": " + epsilon_str + "  | ";
+        //bandit_string += "   "+converter[situation] + ": " + epsilon_str + "  | ";
     }
 
     for(int card_a = 0 ; card_a < 13 ; card_a++){

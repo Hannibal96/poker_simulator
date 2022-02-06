@@ -6,8 +6,8 @@
 #include "PokerPlayer.h"
 #include "PokerTable.h"
 
-#define REPEATS 10000000
-#define PRINTS  1000000
+#define REPEATS 1000
+#define PRINTS  1000
 
 using namespace std;
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
     double bb = 0.25 * factor, sb = 0.1 * factor, all_in = 2.0 * factor;
 
 
-    PokerTable table = PokerTable(player1, player2, player3, player4, bb, sb, all_in ,10, false, 10);
+    PokerTable table = PokerTable(player1, player2, player3, player4, bb, sb, all_in ,10, false, 1);
 
 
     cout << "==============================================================================================================" << endl;
