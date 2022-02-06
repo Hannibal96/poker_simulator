@@ -96,7 +96,7 @@ Action Bandit_table::get_action(Situation situation, Card a, Card b){
         return Fold;
 
     r = (double)rand() / RAND_MAX;
-    if(r >= tie_break_epsilon)
+    if(r <= tie_break_epsilon)
         return AllIn;
     return Fold;
 

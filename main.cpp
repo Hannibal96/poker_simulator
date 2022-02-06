@@ -6,8 +6,8 @@
 #include "PokerPlayer.h"
 #include "PokerTable.h"
 
-#define REPEATS 1000
-#define PRINTS  1000
+#define REPEATS 100000
+#define PRINTS  100000
 
 using namespace std;
 
@@ -40,16 +40,7 @@ int main(int argc, char *argv[]) {
     PokerPlayer player3 = PokerPlayer(name3, 13, sb_stg, SmallBlind);
     PokerPlayer player4 = PokerPlayer(name4, 14, bb_stg, BigBlind);
 
-
-    vector<double> factors = {0.1, 0.5, 1.0, 2.0, 5.0, 10.0};
-    std::random_device rd;  // Will be used to obtain a seed for the random number engine
-    std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
-    std::uniform_real_distribution<> dis(0.0, 1.0);
-    double r = dis(gen);
-    auto idx = (unsigned int) (6 * r);
-
-    //double factor = factors[idx];
-    double factor = 1.0;
+    double factor = 10*((double)rand()+1)/RAND_MAX;
     double bb = 0.25 * factor, sb = 0.1 * factor, all_in = 2.0 * factor;
 
 
@@ -680,7 +671,7 @@ map<Situation, vector<double>> ParseInput(int argc, char *argv[]){
         cout << "-Help:  " << endl <<
              "    input format: --Situation Stragey "
              "    For example:"
-             "    ./sim.exe --CO Vector_1_25 --DE Bandit_<start>_<end>_<decay>_<cycle> --DE_CO Vector_1_15 --SB Vector_1_60 --SB_CO Vector_1_15"
+             "    ./sim.exe --CO Vector_1_25 --DE Bandit_<start>_<end>_<decay>_<tie_break>_<cycle> --DE_CO Vector_1_15 --SB Vector_1_60 --SB_CO Vector_1_15"
              " --SB_DE Bandit_0.3_0.05_0.9_1000 --SB_CO_DE Vector_2_20 --BB_CO Vector_1_30 --BB_DE Vector_1_30 --BB_SB Vector_1_30"
              " --BB_CO_DE Vector_2_30 --BB_CO_SB Vector_2_30 --BB_DE_SB Vector_2_30 --BB_CO_DE_SB Vector_3_35" << endl;
     }
