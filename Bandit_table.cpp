@@ -90,6 +90,11 @@ Action Bandit_table::get_action(Situation situation, Card a, Card b){
     double avg_all_in = calc_action_value(situation, hand, AllIn, false)  ;
     double avg_fold = calc_action_value(situation, hand, Fold, false) ;
 
+    if(epsilon == 0){
+        avg_all_in = calc_action_value(situation, hand, AllIn, true)  ;
+        avg_fold = calc_action_value(situation, hand, Fold, true) ;
+    }
+
     if(avg_all_in > avg_fold)
         return AllIn;
     else if (avg_all_in < avg_fold)
