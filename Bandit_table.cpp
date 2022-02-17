@@ -24,7 +24,6 @@ Bandit_table::Bandit_table() {
     seed = dis(gen);
 
     class_counter ++;
-    srand(time(nullptr) + class_counter);   // Initialization, should only be called once.
 }
 
 void Bandit_table::update_parameters(Situation situation, double start_epsilon, double final_epsilon, double decay,
@@ -74,6 +73,7 @@ int Bandit_table::CalcHandIdx(Card a, Card b){
 
 Action Bandit_table::get_action(Situation situation, Card a, Card b){
 
+    seed ++;
     srand(seed+class_counter+time(nullptr));
     int hand = CalcHandIdx(a, b);
     double r = (double)rand() / RAND_MAX;
