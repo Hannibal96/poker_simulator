@@ -73,7 +73,7 @@ int Bandit_table::CalcHandIdx(Card a, Card b){
 
 Action Bandit_table::get_action(Situation situation, Card a, Card b){
 
-    seed ++;
+    seed += 1000;
     srand(seed+class_counter+time(nullptr));
     int hand = CalcHandIdx(a, b);
     double r = (double)rand() / RAND_MAX;
