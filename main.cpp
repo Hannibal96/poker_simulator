@@ -48,6 +48,13 @@ int main(int argc, char *argv[]) {
     PokerTable table = PokerTable(player1, player2, player3, player4, bb, sb, all_in ,10, false, 20);
 
 
+    static std::random_device rd;  // Will be used to obtain a seed for the random number engine
+    static std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
+    static std::uniform_int_distribution<> dis(1, 999999999);
+
+    cout << dis(gen) << endl;
+    exit(0);
+
     cout << "==============================================================================================================" << endl;
     cout << "====================================== Factor:" << factor << "==========================================================" << endl;
     cout << "==============================================================================================================" << endl;

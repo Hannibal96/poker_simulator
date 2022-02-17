@@ -54,7 +54,7 @@ void Deck::Shuffle() {
     static std::uniform_int_distribution<> dis(1, 999999999);
 
     //shuffle(cards.begin(), cards.end(), std::mt19937( time(nullptr) + dis(gen)));
-    shuffle(cards.begin(), cards.end(), time(nullptr) + curr_seed);
+    shuffle(cards.begin(), cards.end(), std::mt19937( time(nullptr) + dis(gen)));
 }
 
 
