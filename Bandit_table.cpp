@@ -17,6 +17,12 @@ Bandit_table::Bandit_table() {
         }
     }
 
+    static std::random_device rd;  // Will be used to obtain a seed for the random number engine
+    static std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
+    static std::uniform_int_distribution<> dis(1, 999999999);
+
+    seed = dis(gen);
+
     class_counter ++;
     srand(time(nullptr) + class_counter);   // Initialization, should only be called once.
 }
@@ -68,6 +74,7 @@ int Bandit_table::CalcHandIdx(Card a, Card b){
 
 Action Bandit_table::get_action(Situation situation, Card a, Card b){
 
+    srand(seed);
     int hand = CalcHandIdx(a, b);
     double r = (double)rand() / RAND_MAX;
 

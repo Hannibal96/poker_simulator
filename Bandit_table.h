@@ -20,6 +20,8 @@ private:
 
     //double epsilon_, final_epsilon_, decay_;
     //int decay_cycle_;
+    int seed;
+
     static int class_counter;
 
 public:
