@@ -22,14 +22,14 @@ private:
     double curr_pot;
     double big_blind_, small_blind_, all_in_;
     int table_id_;
-    int hands_counter;
+    long unsigned int hands_counter;
     int repeats_;
     History curr_history;
 
-    map<HandRank, int> hands_stats;
+    map<HandRank, long unsigned int> hands_stats;
     map<HandRank, string> ranks_names;
 
-    map<History, int> scenarios_stats;
+    map<History, long unsigned int> scenarios_stats;
     map<History, string> scenarios_names;
     bool update_positions_;
     void EndRound();
@@ -51,7 +51,7 @@ static bool SortByHand(PokerPlayer p1, PokerPlayer p2);
 
 static bool SortByID(PokerPlayer p1, PokerPlayer p2);
 
-static void UpdateHandsStats(map<HandRank, int > & ranks_stats,uint32_t hand);
+static void UpdateHandsStats(map<HandRank, long unsigned int > & ranks_stats,uint32_t hand);
 
 
 std::ostream& operator<<(std::ostream& os, PokerTable& table);

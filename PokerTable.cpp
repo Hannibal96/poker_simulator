@@ -30,7 +30,7 @@ PokerTable::PokerTable(PokerPlayer const & player_a , PokerPlayer const & player
 
     update_positions_ = update_positions;
 
-    hands_stats = map<HandRank, int>();
+    hands_stats = map<HandRank, long unsigned int>();
     for (int rank = HighCArd; rank != StraightFlush + 1; rank++) {
         auto hand_rank = static_cast<HandRank >(rank);
         hands_stats[hand_rank] = 0;
@@ -349,7 +349,7 @@ void PokerTable::Round() {
     EndRound();
 }
 
-static void UpdateHandsStats(map<HandRank, int > & ranks_stats, uint32_t hand_hash ){
+static void UpdateHandsStats(map<HandRank, long unsigned int > & ranks_stats, uint32_t hand_hash ){
     if(hand_hash < 1296)
         ranks_stats[HighCArd] ++;
     else if(hand_hash < 4141)
