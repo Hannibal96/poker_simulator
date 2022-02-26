@@ -162,6 +162,16 @@ void Bandit_table::update_table(Situation situation, Card a, Card b, Action act,
     }
 
 
+    if(counter % cycle_decay){      // Shrinkage
+
+        get<0>(table_[entry]) = get<0>(table_[entry]) / get<1>(table_[entry]);
+        get<0>(table_[comp_entry]) = get<0>(table_[comp_entry]) / get<1>(table_[comp_entry]);
+
+        get<1>(table_[entry]) = 0;
+        get<1>(table_[comp_entry]) = 0;
+
+        get<2>(table_[entry]) = 0;
+    }
 
     if(counter % cycle_decay == 0 && epsilon > final_epsilon){
         epsilon *= epsilon_decay;
