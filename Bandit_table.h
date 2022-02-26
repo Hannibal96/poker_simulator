@@ -34,6 +34,7 @@ public:
     void update_table(Situation situation, Card a, Card b, Action act, double reward);
     void update_parameters(Situation situation, double start_epsilon, double final_epsilon, double decay,
                            double tie_break_epsilon, int decay_cycle);
+    void shrink();
     double calc_action_value(Situation situation, int hand, Action act, bool ucb);
     string ToString();
 };

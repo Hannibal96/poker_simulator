@@ -6,7 +6,7 @@
 #include "PokerPlayer.h"
 #include "PokerTable.h"
 
-#define REPEATS 1000000
+#define REPEATS 10000000
 #define PRINTS  1000000
 
 using namespace std;

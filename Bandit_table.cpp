@@ -118,6 +118,33 @@ Action Bandit_table::get_action(Situation situation, Card a, Card b){
 //    return get_action(state.first, state.second);
 //}
 
+void Bandit_table::shrink() {
+    for(int situation = CO; situation <= BB_CO_DE_SB ; situation++){
+        for(int hand = 0; hand < 169 ; hand ++){
+            for(int act = Fold ; act <= AllIn ; act ++ ){
+                State s{static_cast<Situation>(situation), hand};
+                TableEntry entry{s, static_cast<Action>(act)};
+
+                int n = get<1>(table_[entry]);
+
+                get<0>(table_[entry]) = get<0>(table_[entry]) / (n+!n);
+                get<1>(table_[entry]) = 1;
+                get<2>(table_[entry]) = 2;
+
+            }
+        }
+    }
+
+    static std::random_device rd;  // Will be used to obtain a seed for the random number engine
+    static std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
+    static std::uniform_int_distribution<> dis(1, 999999999);
+
+    seed = dis(gen);
+
+    class_counter ++;
+}
+
+
 void Bandit_table::update_table(Situation situation, Card a, Card b, Action act, double reward){
 
     if(situation_epsilon_map.empty())
@@ -162,15 +189,8 @@ void Bandit_table::update_table(Situation situation, Card a, Card b, Action act,
     }
 
 
-    if(counter % cycle_decay){      // Shrinkage
-
-        get<0>(table_[entry]) = get<0>(table_[entry]) / get<1>(table_[entry]);
-        get<0>(table_[comp_entry]) = get<0>(table_[comp_entry]) / get<1>(table_[comp_entry]);
-
-        get<1>(table_[entry]) = 0;
-        get<1>(table_[comp_entry]) = 0;
-
-        get<2>(table_[entry]) = 0;
+    if(counter % cycle_decay == 0){      // Shrinkage
+        this->shrink();
     }
 
     if(counter % cycle_decay == 0 && epsilon > final_epsilon){
