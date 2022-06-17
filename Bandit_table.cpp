@@ -188,10 +188,10 @@ void Bandit_table::update_table(Situation situation, Card a, Card b, Action act,
         counter = situation_decay_counter[situation];
     }
 
-
+    /*
     if(counter % cycle_decay == 0){      // Shrinkage
         this->shrink();
-    }
+    }*/
 
     if(counter % cycle_decay == 0 && epsilon > final_epsilon){
         epsilon *= epsilon_decay;

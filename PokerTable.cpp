@@ -231,8 +231,6 @@ void PokerTable::Round() {
         community_cards.push_back(deck.DealCard());
 
 
-
-
         for (int i = 0; i < TABLE_SIZE; i++) {      // evaluate hands
             players[i].EvaluateHandHash(community_cards);
         }
