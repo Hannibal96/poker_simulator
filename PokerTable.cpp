@@ -250,17 +250,33 @@ void PokerTable::Round() {
 
         vector<int> winning_idx = vector<int>();
         //1000
-        if(flag_01_ge and flag_final_ge)
+        if(flag_01_ge and flag_final_ge){
+            if(players[0].GetPlayerBestHashHand() >= 7453)
+                if(players[0].IsJAckPot(community_cards))
+                    players[0].UpdateMoney(100/repeats_);
             winning_idx.push_back(0);
+        }
         //0100
-        else if(flag_01_lo and flag_final_ge)
+        else if(flag_01_lo and flag_final_ge){
+            if(players[1].GetPlayerBestHashHand() >= 7453)
+                if(players[1].IsJAckPot(community_cards))
+                    players[1].UpdateMoney(100/repeats_);
             winning_idx.push_back(1);
+        }
         //0010
-        else if(flag_23_ge and flag_final_lo)
+        else if(flag_23_ge and flag_final_lo){
+            if(players[2].GetPlayerBestHashHand() >= 7453)
+                if(players[2].IsJAckPot(community_cards))
+                    players[2].UpdateMoney(100/repeats_);
             winning_idx.push_back(2);
+        }
         //0001
-        else if(flag_23_lo and flag_final_lo)
+        else if(flag_23_lo and flag_final_lo){
+            if(players[3].GetPlayerBestHashHand() >= 7453)
+                if(players[3].IsJAckPot(community_cards))
+                    players[3].UpdateMoney(100/repeats_);
             winning_idx.push_back(3);
+        }
         //1100
         else if(flag_01_eq and flag_final_ge){
             winning_idx.push_back(0);
@@ -342,7 +358,7 @@ void PokerTable::Round() {
         total_money += x.GetMoney();
         UpdateHandsStats(hands_stats, x.GetPlayerBestHashHand());
     }
-    assert(abs(total_money) <= 0.1 && "-ASSERT- none zero sum of money, ");
+    //assert(abs(total_money) <= 0.1 && "-ASSERT- none zero sum of money, ");
 
     EndRound();
 }

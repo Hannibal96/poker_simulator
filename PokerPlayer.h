@@ -48,6 +48,7 @@ public:
     double GetID() const;
     uint32_t GetPlayerBestHashHand() const ;
     uint32_t EvaluateHandHash(vector<Card> community_cards);
+    bool IsJAckPot(vector<Card> community_cards);
     void UpdatePosition();
     void UpdateMoney(double delta);
     void UnSetAction();

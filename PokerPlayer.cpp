@@ -36,6 +36,31 @@ uint16_t calc_hand_hash(uint8_t c1, uint8_t c2, uint8_t c3, uint8_t c4, uint8_t 
     return rank_hash[offsets[hash >> RANK_OFFSET_SHIFT] + (hash & RANK_HASH_MOD)];
 }
 
+bool PokerPlayer::IsJAckPot(vector<Card> community_cards){
+    map<Suit, uint8_t> suit_converter = {{Heart, 1}, {Diamond, 2}, {Spade, 0},{Club, 3}};
+
+    uint8_t c0 = uint8_t(14 - community_cards[0].GetValue()) * 4 + suit_converter[community_cards[0].GetSuit()];
+    uint8_t c1 = uint8_t(14 - community_cards[1].GetValue()) * 4 + suit_converter[community_cards[1].GetSuit()];
+    uint8_t c2 = uint8_t(14 - community_cards[2].GetValue()) * 4 + suit_converter[community_cards[2].GetSuit()];
+    uint8_t c3 = uint8_t(14 - community_cards[3].GetValue()) * 4 + suit_converter[community_cards[3].GetSuit()];
+    uint8_t c4 = uint8_t(14 - community_cards[4].GetValue()) * 4 + suit_converter[community_cards[4].GetSuit()];
+
+    uint8_t c5 = uint8_t(14 - holding_cards[0].GetValue()) * 4 + suit_converter[holding_cards[0].GetSuit()];
+    uint8_t c6 = uint8_t(14 - holding_cards[1].GetValue()) * 4 + suit_converter[holding_cards[1].GetSuit()];
+
+    uint8_t c7 = uint8_t(14 - holding_cards[0].GetValue()) * 4 + (suit_converter[holding_cards[0].GetSuit()]+1)%4;
+    uint8_t c8 = uint8_t(14 - holding_cards[1].GetValue()) * 4 + (suit_converter[holding_cards[1].GetSuit()]+1)%4;
+
+    uint32_t change_1 = calc_hand_hash(c0, c1, c2, c3, c4, c5, c8);
+    uint32_t change_2 = calc_hand_hash(c0, c1, c2, c3, c4, c7, c6);
+
+    if(change_1 < best_hand_hash && change_2 < best_hand_hash){
+        return true;
+    }
+
+    return false;
+}
+
 
 uint32_t PokerPlayer::EvaluateHandHash(vector<Card> community_cards) {
 
