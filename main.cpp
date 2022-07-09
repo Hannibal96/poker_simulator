@@ -6,12 +6,10 @@
 #include "PokerPlayer.h"
 #include "PokerTable.h"
 
-#define REPEATS 10000000
-#define PRINTS  1000000
 
 using namespace std;
 
-map<Situation, vector<double>> ParseInput(int argc, char *argv[]);
+tuple<map<Situation, vector<double>>, map<string, double>> ParseInputStrategy(int argc, char *argv[]);
 Strategy BuildStrategy(map<Situation, vector<double>> map, Position pos);
 VectorStrategy GetStrategyVector(int players, int range);
 VectorStrategy GetStrategyVectorP1(int range);
@@ -28,7 +26,13 @@ int main(int argc, char *argv[]) {
     string name4 = "Player4";
 
     Strategy co_stg, de_stg, sb_stg, bb_stg;
-    map<Situation, vector<double>> situation_strategy_map = ParseInput(argc, argv);
+
+    //tuple<map<Situation, vector<double>>, map<string, double>> tuple = ParseInputStrategy(argc, argv);
+
+    //map<Situation, vector<double>> situation_strategy_map;
+    //map<string, double> parameters_map;
+
+    auto [situation_strategy_map, parameters_map] = ParseInputStrategy(argc, argv);
 
     co_stg = BuildStrategy(situation_strategy_map, CutOff);
     de_stg = BuildStrategy(situation_strategy_map, Dealer);
@@ -42,19 +46,26 @@ int main(int argc, char *argv[]) {
 
     double factor = 10*((double)rand()+1)/RAND_MAX;
     factor = 1;
-    double bb = 0.25 * factor, sb = 0.1 * factor, all_in = 2.0 * factor;
+
+    double bb = parameters_map["bb"] * factor,
+            sb = parameters_map["sb"] * factor,
+            all_in = parameters_map["all_in"] * factor;
+
+    int print = int(parameters_map["print"]),
+        repeats = int(parameters_map["repeats"]);
 
     PokerTable table = PokerTable(player1, player2, player3, player4, bb, sb, all_in ,10, false, 100);
 
     cout << "==============================================================================================================" << endl;
-    cout << "====================================== Factor:" << factor << "==========================================================" << endl;
+    cout << "================== Repeats: " << repeats << " === Prints: " << print << " =====================================================" << endl;
+    cout << "================== All_in: " << all_in << " === BB: " << bb << " === SB: " << sb << " === Factor: " << factor << " ==========================================" << endl;
     cout << "==============================================================================================================" << endl;
 
-    for(int i=0; i<REPEATS; i++){
+    for(int i=0; i<repeats; i++){
 
         table.Round();
 
-        if((i+1)%PRINTS == 0 || i == 0) {
+        if((i+1)%print == 0 || i == 0) {
             cout << "==============================================================================================================" << endl;
             cout << "============================******************************************************============================" << endl;
             cout << "==============================================================================================================" << endl;
@@ -665,7 +676,7 @@ VectorStrategy GetStrategyVector(int players, int range){
     }
 }
 
-map<Situation, vector<double>> ParseInput(int argc, char *argv[]){
+tuple<map<Situation, vector<double>>, map<string, double>> ParseInputStrategy(int argc, char *argv[]){
     if(argc == 1){
         cout << "-Help:  " << endl <<
              "    input format: --Situation Stragey "
@@ -673,6 +684,7 @@ map<Situation, vector<double>> ParseInput(int argc, char *argv[]){
              "    ./sim.exe --CO Vector_1_25 --DE Bandit_<start>_<end>_<decay>_<tie_break>_<cycle> --DE_CO Vector_1_15 --SB Vector_1_60 --SB_CO Vector_1_15"
              " --SB_DE Bandit_0.3_0.05_0.9_1000 --SB_CO_DE Vector_2_20 --BB_CO Vector_1_30 --BB_DE Vector_1_30 --BB_SB Vector_1_30"
              " --BB_CO_DE Vector_2_30 --BB_CO_SB Vector_2_30 --BB_DE_SB Vector_2_30 --BB_CO_DE_SB Vector_3_35" << endl;
+        exit(0);
     }
 
     map<string, Situation> string_situation_map = map<string, Situation>();
@@ -683,6 +695,7 @@ map<Situation, vector<double>> ParseInput(int argc, char *argv[]){
     string_situation_map["BB_CO_DE_SB"] = BB_CO_DE_SB;
 
     map<Situation, vector<double>> situation_strategy_map = map<Situation, vector<double> >();
+    map<string, double> parameters_map = map<string , double>();
     string delim = "_";
     string s, pos, type;
     double num_players, range;
@@ -726,11 +739,43 @@ map<Situation, vector<double>> ParseInput(int argc, char *argv[]){
                 situation_strategy_map[curr_situation] = {start_epsilon, final_epsilon, epsilon_decay, epsilon_tie_break, decay_cycle};
             }
         }
+
+        else if(s == "--bb" || s == "--BB" || s == "--Bb"  ) {
+            s = argv[++i];
+            parameters_map["bb"] = stod(s);
+        }
+        else if(s == "--sb" || s == "--SB" || s == "--Sb"  ) {
+            s = argv[++i];
+            parameters_map["sb"] = stod(s);
+        }
+        else if(s == "--allin" || s == "--ALLIN" || s == "--Allin" || s == "--AllIn" ||
+                s == "--all_in" || s == "--ALL_IN" || s == "--All_in" || s == "--All_In") {
+            s = argv[++i];
+            parameters_map["all_in"] = stod(s);
+        }
+        else if(s == "--print" || s == "--Print" || s == "--PRINT"  ) {
+            s = argv[++i];
+            parameters_map["print"] = stod(s);
+        }
+        else if(s == "--repeat" || s == "--Repeat" || s == "--REPEAT" ||
+                s == "--repeats" || s == "--Repeats" || s == "--REPEATS") {
+            s = argv[++i];
+            parameters_map["repeats"] = stod(s);
+        }
+
+
         else{
             cout << "--Wrong Input:  " << endl <<
-                 "    input format --CO MIN-RANGE-CO_MAX-RANGE-CO --DE MIN-DE_MAX-DE --SB MIN-SB_MAX-SB --BB MIN-BB_MAX-BB" << endl;
+                 "    input format --CO MIN-RANGE-CO_MAX-RANGE-CO --DE MIN-DE_MAX-DE --SB MIN-SB_MAX-SB --BB MIN-BB_MAX-BB"
+                 << endl << "--AllIn 2.0 --BB 0.25 --SB 0.1 --print 1000000 --repeat 10000000" << endl;
         }
     }
-    return situation_strategy_map;
+
+    tuple<map<Situation, vector<double>>, map<string, double>> tuple =
+            make_tuple(situation_strategy_map, parameters_map);
+
+    return tuple;
 }
+
+
 
