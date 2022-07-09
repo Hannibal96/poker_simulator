@@ -52,16 +52,17 @@ int main(int argc, char *argv[]) {
             all_in = parameters_map["all_in"] * factor;
 
     int print = int(parameters_map["print"]),
-        repeats = int(parameters_map["repeats"]);
+        repeats = int(parameters_map["repeats"]),
+        rounds = int(parameters_map["rounds"]);
 
-    PokerTable table = PokerTable(player1, player2, player3, player4, bb, sb, all_in ,10, false, 100);
+    PokerTable table = PokerTable(player1, player2, player3, player4, bb, sb, all_in ,10, false, repeats);
 
     cout << "==============================================================================================================" << endl;
     cout << "================== Repeats: " << repeats << " === Prints: " << print << " =====================================================" << endl;
     cout << "================== All_in: " << all_in << " === BB: " << bb << " === SB: " << sb << " === Factor: " << factor << " ==========================================" << endl;
     cout << "==============================================================================================================" << endl;
 
-    for(int i=0; i<repeats; i++){
+    for(int i=0; i<rounds; i++){
 
         table.Round();
 
@@ -761,6 +762,11 @@ tuple<map<Situation, vector<double>>, map<string, double>> ParseInputStrategy(in
                 s == "--repeats" || s == "--Repeats" || s == "--REPEATS") {
             s = argv[++i];
             parameters_map["repeats"] = stod(s);
+        }
+
+        else if(s == "--rounds" || s == "--Rounds" || s == "--ROUNDS" ) {
+            s = argv[++i];
+            parameters_map["rounds"] = stod(s);
         }
 
 
