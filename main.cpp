@@ -142,7 +142,9 @@ Strategy BuildStrategy(map<Situation, vector<double>> map, Position pos){
 }
 
 VectorStrategy GetStrategyVectorP1(int range){
+    // open player
     VectorStrategy stg;
+
     switch (range) {
         case 0: {
             vector<int> stg_00_unst = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -152,108 +154,80 @@ VectorStrategy GetStrategyVectorP1(int range){
             break;
         }
         case 5: {
-            vector<int> stg_05_unst = vector<int>{0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2};
-            vector<int> stg_05_suit = vector<int>{0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3};
+            vector<int> stg_05_unst = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1};
+            vector<int> stg_05_suit = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 4};
             string name_05 = "P1_FivePercent";
             stg = VectorStrategy(stg_05_unst, stg_05_suit, name_05);
             break;
         }
         case 10: {
-            vector<int> stg_10_unst = vector<int>{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5};
-            vector<int> stg_10_suit = vector<int>{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 4};
+            vector<int> stg_10_unst = vector<int>{0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2};
+            vector<int> stg_10_suit = vector<int>{0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 4};
             string name_10 = "P1_TenPercent";
             stg = VectorStrategy(stg_10_unst, stg_10_suit, name_10);
             break;
         }
         case 15: {
-            vector<int> stg_15_unst = vector<int>{0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 4};
-            vector<int> stg_15_suit = vector<int>{0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 6};
+            vector<int> stg_15_unst = vector<int>{0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3};
+            vector<int> stg_15_suit = vector<int>{0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 3};
             string name_15 = "P1_FifteenPercent";
             stg = VectorStrategy(stg_15_unst, stg_15_suit, name_15);
             break;
         }
         case 20: {
-            vector<int> stg_20_unst = vector<int>{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, 5};
-            vector<int> stg_20_suit = vector<int>{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 2, 8};
+            vector<int> stg_20_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3};
+            vector<int> stg_20_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 8};
             string name_20 = "P1_TwentyPercent";
             stg = VectorStrategy(stg_20_unst, stg_20_suit, name_20);
             break;
         }
         case 25: {
-            vector<int> stg_25_unst = vector<int>{0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 3, 7};
-            vector<int> stg_25_suit = vector<int>{0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7};
+            vector<int> stg_25_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 2, 5};
+            vector<int> stg_25_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 8};
             string name_25 = "P1_TwentyfivePercent";
             stg = VectorStrategy(stg_25_unst, stg_25_suit, name_25);
             break;
         }
         case 30: {
-            vector<int> stg_30_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7};
-            vector<int> stg_30_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5};
+            vector<int> stg_30_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 8};
+            vector<int> stg_30_suit = vector<int>{1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 2, 6};
             string name_30 = "P1_ThirtyPercent";
             stg = VectorStrategy(stg_30_unst, stg_30_suit, name_30);
             break;
         }
         case 35: {
-            vector<int> stg_35_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5};
-            vector<int> stg_35_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 7, 1};
+            vector<int> stg_35_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 3, 7};
+            vector<int> stg_35_suit = vector<int>{1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 3, 4, 2};
             string name_35 = "P1_ThirtyfivePercent";
             stg = VectorStrategy(stg_35_unst, stg_35_suit, name_35);
             break;
         }
         case 40: {
-            vector<int> stg_40_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 5, 3};
-            vector<int> stg_40_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 1};
+            vector<int> stg_40_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 7};
+            vector<int> stg_40_suit = vector<int>{1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 3, 4, 1};
             string name_40 = "P1_FourtyPercent";
             stg = VectorStrategy(stg_40_unst, stg_40_suit, name_40);
             break;
         }
         case 45: {
-            vector<int> stg_45_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 7, 1};
-            vector<int> stg_45_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 2, 6, 1, 1};
+            vector<int> stg_45_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 6, 3};
+            vector<int> stg_45_suit = vector<int>{1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 3, 3, 1};
             string name_45 = "P1_FourtyfivePercent";
             stg = VectorStrategy(stg_45_unst, stg_45_suit, name_45);
             break;
         }
         case 50: {
-            vector<int> stg_50_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 4, 1};
-            vector<int> stg_50_suit = vector<int>{1, 0, 0, 0, 0, 0, 1, 1, 1, 3, 4, 1, 1};
+            vector<int> stg_50_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 7, 1};
+            vector<int> stg_50_suit = vector<int>{1, 0, 0, 0, 1, 0, 1, 1, 1, 2, 4, 1, 1};
             string name_50 = "P1_FiftyPercent";
             stg = VectorStrategy(stg_50_unst, stg_50_suit, name_50);
             break;
         }
         case 55: {
-            vector<int> stg_55_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 2, 2, 4, 3, 1};
-            vector<int> stg_55_suit = vector<int>{1, 0, 0, 0, 1, 0, 1, 1, 1, 4, 2, 1, 1};
+            vector<int> stg_55_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 5, 1};
+            vector<int> stg_55_suit = vector<int>{1, 0, 0, 1, 0, 1, 0, 1, 1, 3, 3, 1, 1};
             string name_55 = "P1_FiftyfivePercent";
             stg = VectorStrategy(stg_55_unst, stg_55_suit, name_55);
-            break;
-        }
-        case 60: {
-            vector<int> stg_60_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 2, 6, 1, 1};
-            vector<int> stg_60_suit = vector<int>{1, 0, 0, 1, 1, 0, 1, 1, 2, 3, 1, 1, 1};
-            string name_60 = "P1_SixtyPercent";
-            stg = VectorStrategy(stg_60_unst, stg_60_suit, name_60);
-            break;
-        }
-        case 65: {
-            vector<int> stg_65_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
-            vector<int> stg_65_suit = vector<int>{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 9};
-            string name_65 = "P1_SixtyfivePercent";
-            stg = VectorStrategy(stg_65_unst, stg_65_suit, name_65);
-            break;
-        }
-        case 70: {
-            vector<int> stg_70_unst = vector<int>{1, 0, 0, 0, 0, 0, 1, 0, 2, 3, 4, 1, 1};
-            vector<int> stg_70_suit = vector<int>{1, 0, 1, 1, 0, 1, 0, 1, 4, 1, 1, 1, 1};
-            string name_70 = "P1_SeventyPercent";
-            stg = VectorStrategy(stg_70_unst, stg_70_suit, name_70);
-            break;
-        }
-        case 75:{
-            vector<int> stg_75_unst = vector<int>{1, 0, 0, 0, 1, 0, 1, 1, 1, 4, 2, 1, 1};
-            vector<int> stg_75_suit = vector<int>{1, 0, 2, 1, 0, 1, 0, 3, 1, 1, 1, 1, 1};
-            string name_75 = "P1_SeventyfivePercent";
-            stg = VectorStrategy(stg_75_unst, stg_75_suit, name_75);
             break;
         }
         case 100:{
@@ -267,386 +241,102 @@ VectorStrategy GetStrategyVectorP1(int range){
             cout << "-E- Can't init " << range << " Strategy vector!" << endl;
             exit(1);
     }
+
     return stg;
 }
 
 VectorStrategy GetStrategyVectorP2(int range){
+    // defend player
     VectorStrategy stg;
     switch (range) {
         case 0: {
             vector<int> stg_00_unst = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
             vector<int> stg_00_suit = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            string name_00 = "P2_ZeroPercent";
+            string name_00 = "P1_ZeroPercent";
             stg = VectorStrategy(stg_00_unst, stg_00_suit, name_00);
             break;
         }
         case 5: {
-            vector<int> stg_05_unst = vector<int>{0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2};
-            vector<int> stg_05_suit = vector<int>{0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3};
-            string name_05 = "P2_FivePercent";
+            vector<int> stg_05_unst = vector<int>{0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1};
+            vector<int> stg_05_suit = vector<int>{0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 3};
+            string name_05 = "P1_FivePercent";
             stg = VectorStrategy(stg_05_unst, stg_05_suit, name_05);
             break;
         }
         case 10: {
-            vector<int> stg_10_unst = vector<int>{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5};
-            vector<int> stg_10_suit = vector<int>{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 4};
-            string name_10 = "P2_TenPercent";
+            vector<int> stg_10_unst = vector<int>{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 4};
+            vector<int> stg_10_suit = vector<int>{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 4};
+            string name_10 = "P1_TenPercent";
             stg = VectorStrategy(stg_10_unst, stg_10_suit, name_10);
             break;
         }
         case 15: {
-            vector<int> stg_15_unst = vector<int>{0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 4};
-            vector<int> stg_15_suit = vector<int>{0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 6};
-            string name_15 = "P2_FifteenPercent";
+            vector<int> stg_15_unst = vector<int>{0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5};
+            vector<int> stg_15_suit = vector<int>{0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 3, 6};
+            string name_15 = "P1_FifteenPercent";
             stg = VectorStrategy(stg_15_unst, stg_15_suit, name_15);
             break;
         }
         case 20: {
-            vector<int> stg_20_unst = vector<int>{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, 5};
-            vector<int> stg_20_suit = vector<int>{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 2, 8};
-            string name_20 = "P2_TwentyPercent";
+            vector<int> stg_20_unst = vector<int>{0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 4};
+            vector<int> stg_20_suit = vector<int>{0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 8};
+            string name_20 = "P1_TwentyPercent";
             stg = VectorStrategy(stg_20_unst, stg_20_suit, name_20);
             break;
         }
         case 25: {
-            vector<int> stg_25_unst = vector<int>{0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 3, 7};
-            vector<int> stg_25_suit = vector<int>{0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7};
-            string name_25 = "P2_TwentyfivePercent";
+            vector<int> stg_25_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 7};
+            vector<int> stg_25_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 8};
+            string name_25 = "P1_TwentyfivePercent";
             stg = VectorStrategy(stg_25_unst, stg_25_suit, name_25);
             break;
         }
         case 30: {
-            vector<int> stg_30_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7};
-            vector<int> stg_30_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5};
-            string name_30 = "P2_ThirtyPercent";
+            vector<int> stg_30_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 8};
+            vector<int> stg_30_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 5, 4};
+            string name_30 = "P1_ThirtyPercent";
             stg = VectorStrategy(stg_30_unst, stg_30_suit, name_30);
             break;
         }
         case 35: {
-            vector<int> stg_35_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5};
-            vector<int> stg_35_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 7, 1};
-            string name_35 = "P2_ThirtyfivePercent";
+            vector<int> stg_35_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 4, 6};
+            vector<int> stg_35_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 7, 1};
+            string name_35 = "P1_ThirtyfivePercent";
             stg = VectorStrategy(stg_35_unst, stg_35_suit, name_35);
             break;
         }
         case 40: {
-            vector<int> stg_40_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 5, 3};
-            vector<int> stg_40_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 1};
-            string name_40 = "P2_FourtyPercent";
+            vector<int> stg_40_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5};
+            vector<int> stg_40_suit = vector<int>{1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 3, 4, 1};
+            string name_40 = "P1_FourtyPercent";
             stg = VectorStrategy(stg_40_unst, stg_40_suit, name_40);
             break;
         }
         case 45: {
-            vector<int> stg_45_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 7, 1};
-            vector<int> stg_45_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 2, 6, 1, 1};
-            string name_45 = "P2_FourtyfivePercent";
+            vector<int> stg_45_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 5, 3};
+            vector<int> stg_45_suit = vector<int>{1, 0, 0, 1, 0, 0, 1, 0, 1, 1, 5, 2, 1};
+            string name_45 = "P1_FourtyfivePercent";
             stg = VectorStrategy(stg_45_unst, stg_45_suit, name_45);
             break;
         }
         case 50: {
-            vector<int> stg_50_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 4, 1};
-            vector<int> stg_50_suit = vector<int>{1, 0, 0, 0, 0, 0, 1, 1, 1, 3, 4, 1, 1};
-            string name_50 = "P2_FiftyPercent";
+            vector<int> stg_50_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 1};
+            vector<int> stg_50_suit = vector<int>{1, 0, 0, 1, 0, 0, 1, 1, 1, 2, 4, 1, 1};
+            string name_50 = "P1_FiftyPercent";
             stg = VectorStrategy(stg_50_unst, stg_50_suit, name_50);
             break;
         }
         case 55: {
-            vector<int> stg_55_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 2, 2, 4, 3, 1};
+            vector<int> stg_55_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 4, 4, 1};
             vector<int> stg_55_suit = vector<int>{1, 0, 0, 0, 1, 0, 1, 1, 1, 4, 2, 1, 1};
-            string name_55 = "P2_FiftyfivePercent";
+            string name_55 = "P1_FiftyfivePercent";
             stg = VectorStrategy(stg_55_unst, stg_55_suit, name_55);
-            break;
-        }
-        case 60: {
-            vector<int> stg_60_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 2, 6, 1, 1};
-            vector<int> stg_60_suit = vector<int>{1, 0, 0, 1, 1, 0, 1, 1, 2, 3, 1, 1, 1};
-            string name_60 = "P2_SixtyPercent";
-            stg = VectorStrategy(stg_60_unst, stg_60_suit, name_60);
-            break;
-        }
-        case 65: {
-            vector<int> stg_65_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
-            vector<int> stg_65_suit = vector<int>{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 9};
-            string name_65 = "P2_SixtyfivePercent";
-            stg = VectorStrategy(stg_65_unst, stg_65_suit, name_65);
-            break;
-        }
-        case 70: {
-            vector<int> stg_70_unst = vector<int>{1, 0, 0, 0, 0, 0, 1, 0, 2, 3, 4, 1, 1};
-            vector<int> stg_70_suit = vector<int>{1, 0, 1, 1, 0, 1, 0, 1, 4, 1, 1, 1, 1};
-            string name_70 = "P2_SeventyPercent";
-            stg = VectorStrategy(stg_70_unst, stg_70_suit, name_70);
-            break;
-        }
-        case 75:{
-            vector<int> stg_75_unst = vector<int>{1, 0, 0, 0, 1, 0, 1, 1, 1, 4, 2, 1, 1};
-            vector<int> stg_75_suit = vector<int>{1, 0, 2, 1, 0, 1, 0, 3, 1, 1, 1, 1, 1};
-            string name_75 = "P2_SeventyfivePercent";
-            stg = VectorStrategy(stg_75_unst, stg_75_suit, name_75);
             break;
         }
         case 100:{
             vector<int> stg_100_unst = vector<int>{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
             vector<int> stg_100_suit = vector<int>{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-            string name_100 = "P2_HundredPercent";
-            stg = VectorStrategy(stg_100_unst, stg_100_suit, name_100);
-            break;
-        }
-        default:
-            cout << "-E- Can't init " << range << " Strategy vector!" << endl;
-            exit(1);
-    }
-    return stg;
-}
-
-VectorStrategy GetStrategyVectorP3(int range){
-    VectorStrategy stg;
-    switch (range) {
-        case 0: {
-            vector<int> stg_00_unst = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            vector<int> stg_00_suit = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            string name_00 = "P3_ZeroPercent";
-            stg = VectorStrategy(stg_00_unst, stg_00_suit, name_00);
-            break;
-        }
-        case 5: {
-            vector<int> stg_05_unst = vector<int>{0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2};
-            vector<int> stg_05_suit = vector<int>{0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3};
-            string name_05 = "P3_FivePercent";
-            stg = VectorStrategy(stg_05_unst, stg_05_suit, name_05);
-            break;
-        }
-        case 10: {
-            vector<int> stg_10_unst = vector<int>{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5};
-            vector<int> stg_10_suit = vector<int>{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 4};
-            string name_10 = "P3_TenPercent";
-            stg = VectorStrategy(stg_10_unst, stg_10_suit, name_10);
-            break;
-        }
-        case 15: {
-            vector<int> stg_15_unst = vector<int>{0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 4};
-            vector<int> stg_15_suit = vector<int>{0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 6};
-            string name_15 = "P3_FifteenPercent";
-            stg = VectorStrategy(stg_15_unst, stg_15_suit, name_15);
-            break;
-        }
-        case 20: {
-            vector<int> stg_20_unst = vector<int>{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, 5};
-            vector<int> stg_20_suit = vector<int>{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 2, 8};
-            string name_20 = "P3_TwentyPercent";
-            stg = VectorStrategy(stg_20_unst, stg_20_suit, name_20);
-            break;
-        }
-        case 25: {
-            vector<int> stg_25_unst = vector<int>{0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 3, 7};
-            vector<int> stg_25_suit = vector<int>{0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7};
-            string name_25 = "P3_TwentyfivePercent";
-            stg = VectorStrategy(stg_25_unst, stg_25_suit, name_25);
-            break;
-        }
-        case 30: {
-            vector<int> stg_30_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7};
-            vector<int> stg_30_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5};
-            string name_30 = "P3_ThirtyPercent";
-            stg = VectorStrategy(stg_30_unst, stg_30_suit, name_30);
-            break;
-        }
-        case 35: {
-            vector<int> stg_35_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5};
-            vector<int> stg_35_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 7, 1};
-            string name_35 = "P3_ThirtyfivePercent";
-            stg = VectorStrategy(stg_35_unst, stg_35_suit, name_35);
-            break;
-        }
-        case 40: {
-            vector<int> stg_40_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 5, 3};
-            vector<int> stg_40_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 1};
-            string name_40 = "P3_FourtyPercent";
-            stg = VectorStrategy(stg_40_unst, stg_40_suit, name_40);
-            break;
-        }
-        case 45: {
-            vector<int> stg_45_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 7, 1};
-            vector<int> stg_45_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 2, 6, 1, 1};
-            string name_45 = "P3_FourtyfivePercent";
-            stg = VectorStrategy(stg_45_unst, stg_45_suit, name_45);
-            break;
-        }
-        case 50: {
-            vector<int> stg_50_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 4, 1};
-            vector<int> stg_50_suit = vector<int>{1, 0, 0, 0, 0, 0, 1, 1, 1, 3, 4, 1, 1};
-            string name_50 = "P3_FiftyPercent";
-            stg = VectorStrategy(stg_50_unst, stg_50_suit, name_50);
-            break;
-        }
-        case 55: {
-            vector<int> stg_55_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 2, 2, 4, 3, 1};
-            vector<int> stg_55_suit = vector<int>{1, 0, 0, 0, 1, 0, 1, 1, 1, 4, 2, 1, 1};
-            string name_55 = "P3_FiftyfivePercent";
-            stg = VectorStrategy(stg_55_unst, stg_55_suit, name_55);
-            break;
-        }
-        case 60: {
-            vector<int> stg_60_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 2, 6, 1, 1};
-            vector<int> stg_60_suit = vector<int>{1, 0, 0, 1, 1, 0, 1, 1, 2, 3, 1, 1, 1};
-            string name_60 = "P3_SixtyPercent";
-            stg = VectorStrategy(stg_60_unst, stg_60_suit, name_60);
-            break;
-        }
-        case 65: {
-            vector<int> stg_65_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
-            vector<int> stg_65_suit = vector<int>{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 9};
-            string name_65 = "P3_SixtyfivePercent";
-            stg = VectorStrategy(stg_65_unst, stg_65_suit, name_65);
-            break;
-        }
-        case 70: {
-            vector<int> stg_70_unst = vector<int>{1, 0, 0, 0, 0, 0, 1, 0, 2, 3, 4, 1, 1};
-            vector<int> stg_70_suit = vector<int>{1, 0, 1, 1, 0, 1, 0, 1, 4, 1, 1, 1, 1};
-            string name_70 = "P3_SeventyPercent";
-            stg = VectorStrategy(stg_70_unst, stg_70_suit, name_70);
-            break;
-        }
-        case 75:{
-            vector<int> stg_75_unst = vector<int>{1, 0, 0, 0, 1, 0, 1, 1, 1, 4, 2, 1, 1};
-            vector<int> stg_75_suit = vector<int>{1, 0, 2, 1, 0, 1, 0, 3, 1, 1, 1, 1, 1};
-            string name_75 = "P3_SeventyfivePercent";
-            stg = VectorStrategy(stg_75_unst, stg_75_suit, name_75);
-            break;
-        }
-        case 100:{
-            vector<int> stg_100_unst = vector<int>{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-            vector<int> stg_100_suit = vector<int>{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-            string name_100 = "P3_HundredPercent";
-            stg = VectorStrategy(stg_100_unst, stg_100_suit, name_100);
-            break;
-        }
-        default:
-            cout << "-E- Can't init " << range << " Strategy vector!" << endl;
-            exit(1);
-    }
-    return stg;
-}
-
-VectorStrategy GetStrategyVectorP4(int range){
-    VectorStrategy stg;
-    switch (range) {
-        case 0: {
-            vector<int> stg_00_unst = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            vector<int> stg_00_suit = vector<int>{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-            string name_00 = "P4_ZeroPercent";
-            stg = VectorStrategy(stg_00_unst, stg_00_suit, name_00);
-            break;
-        }
-        case 5: {
-            vector<int> stg_05_unst = vector<int>{0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2};
-            vector<int> stg_05_suit = vector<int>{0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 3};
-            string name_05 = "P4_FivePercent";
-            stg = VectorStrategy(stg_05_unst, stg_05_suit, name_05);
-            break;
-        }
-        case 10: {
-            vector<int> stg_10_unst = vector<int>{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 5};
-            vector<int> stg_10_suit = vector<int>{0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 4};
-            string name_10 = "P4_TenPercent";
-            stg = VectorStrategy(stg_10_unst, stg_10_suit, name_10);
-            break;
-        }
-        case 15: {
-            vector<int> stg_15_unst = vector<int>{0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 4};
-            vector<int> stg_15_suit = vector<int>{0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 6};
-            string name_15 = "P4_FifteenPercent";
-            stg = VectorStrategy(stg_15_unst, stg_15_suit, name_15);
-            break;
-        }
-        case 20: {
-            vector<int> stg_20_unst = vector<int>{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, 5};
-            vector<int> stg_20_suit = vector<int>{0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 2, 2, 8};
-            string name_20 = "P4_TwentyPercent";
-            stg = VectorStrategy(stg_20_unst, stg_20_suit, name_20);
-            break;
-        }
-        case 25: {
-            vector<int> stg_25_unst = vector<int>{0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 3, 7};
-            vector<int> stg_25_suit = vector<int>{0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7};
-            string name_25 = "P4_TwentyfivePercent";
-            stg = VectorStrategy(stg_25_unst, stg_25_suit, name_25);
-            break;
-        }
-        case 30: {
-            vector<int> stg_30_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7};
-            vector<int> stg_30_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5};
-            string name_30 = "P4_ThirtyPercent";
-            stg = VectorStrategy(stg_30_unst, stg_30_suit, name_30);
-            break;
-        }
-        case 35: {
-            vector<int> stg_35_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 5};
-            vector<int> stg_35_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 7, 1};
-            string name_35 = "P4_ThirtyfivePercent";
-            stg = VectorStrategy(stg_35_unst, stg_35_suit, name_35);
-            break;
-        }
-        case 40: {
-            vector<int> stg_40_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 5, 3};
-            vector<int> stg_40_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 1};
-            string name_40 = "P4_FourtyPercent";
-            stg = VectorStrategy(stg_40_unst, stg_40_suit, name_40);
-            break;
-        }
-        case 45: {
-            vector<int> stg_45_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 7, 1};
-            vector<int> stg_45_suit = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 2, 6, 1, 1};
-            string name_45 = "P4_FourtyfivePercent";
-            stg = VectorStrategy(stg_45_unst, stg_45_suit, name_45);
-            break;
-        }
-        case 50: {
-            vector<int> stg_50_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 1, 2, 4, 4, 1};
-            vector<int> stg_50_suit = vector<int>{1, 0, 0, 0, 0, 0, 1, 1, 1, 3, 4, 1, 1};
-            string name_50 = "P4_FiftyPercent";
-            stg = VectorStrategy(stg_50_unst, stg_50_suit, name_50);
-            break;
-        }
-        case 55: {
-            vector<int> stg_55_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 2, 2, 4, 3, 1};
-            vector<int> stg_55_suit = vector<int>{1, 0, 0, 0, 1, 0, 1, 1, 1, 4, 2, 1, 1};
-            string name_55 = "P4_FiftyfivePercent";
-            stg = VectorStrategy(stg_55_unst, stg_55_suit, name_55);
-            break;
-        }
-        case 60: {
-            vector<int> stg_60_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 1, 1, 2, 6, 1, 1};
-            vector<int> stg_60_suit = vector<int>{1, 0, 0, 1, 1, 0, 1, 1, 2, 3, 1, 1, 1};
-            string name_60 = "P4_SixtyPercent";
-            stg = VectorStrategy(stg_60_unst, stg_60_suit, name_60);
-            break;
-        }
-        case 65: {
-            vector<int> stg_65_unst = vector<int>{1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1};
-            vector<int> stg_65_suit = vector<int>{1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 9};
-            string name_65 = "P4_SixtyfivePercent";
-            stg = VectorStrategy(stg_65_unst, stg_65_suit, name_65);
-            break;
-        }
-        case 70: {
-            vector<int> stg_70_unst = vector<int>{1, 0, 0, 0, 0, 0, 1, 0, 2, 3, 4, 1, 1};
-            vector<int> stg_70_suit = vector<int>{1, 0, 1, 1, 0, 1, 0, 1, 4, 1, 1, 1, 1};
-            string name_70 = "P4_SeventyPercent";
-            stg = VectorStrategy(stg_70_unst, stg_70_suit, name_70);
-            break;
-        }
-        case 75:{
-            vector<int> stg_75_unst = vector<int>{1, 0, 0, 0, 1, 0, 1, 1, 1, 4, 2, 1, 1};
-            vector<int> stg_75_suit = vector<int>{1, 0, 2, 1, 0, 1, 0, 3, 1, 1, 1, 1, 1};
-            string name_75 = "P4_SeventyfivePercent";
-            stg = VectorStrategy(stg_75_unst, stg_75_suit, name_75);
-            break;
-        }
-        case 100:{
-            vector<int> stg_100_unst = vector<int>{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-            vector<int> stg_100_suit = vector<int>{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-            string name_100 = "P4_HundredPercent";
+            string name_100 = "P1_HundredPercent";
             stg = VectorStrategy(stg_100_unst, stg_100_suit, name_100);
             break;
         }
@@ -664,12 +354,6 @@ VectorStrategy GetStrategyVector(int players, int range){
             break;
         case 2:
             return GetStrategyVectorP2(range);
-            break;
-        case 3:
-            return GetStrategyVectorP3(range);
-            break;
-        case 4:
-            return GetStrategyVectorP4(range);
             break;
         default:
             cout << "-E- Can't init " << range << " Strategy vector!" << endl;
@@ -741,11 +425,11 @@ tuple<map<Situation, vector<double>>, map<string, double>> ParseInputStrategy(in
             }
         }
 
-        else if(s == "--bb" || s == "--BB" || s == "--Bb"  ) {
+        else if(s == "--bb") {
             s = argv[++i];
             parameters_map["bb"] = stod(s);
         }
-        else if(s == "--sb" || s == "--SB" || s == "--Sb"  ) {
+        else if(s == "--sb") {
             s = argv[++i];
             parameters_map["sb"] = stod(s);
         }
