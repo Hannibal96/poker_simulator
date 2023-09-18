@@ -209,7 +209,12 @@ void PokerTable::Round() {
         }
     }
 
-    for(int r=0 ; r<repeats_; r++) {        // Deal Comm Cards + Evaluate
+    // FIXME:
+    //  BUG: check if there is a showdown!
+
+    bool show_down = curr_pot > small_blind_ + big_blind_ ;
+
+    for(int r=0 ; r < repeats_ * show_down + not show_down; r++) {        // Deal Comm Cards + Evaluate
         if(r != 0 && r%5 ==0){
             deck = Deck();
             for(int i=0 ; i<TABLE_SIZE ; i++){
@@ -230,7 +235,6 @@ void PokerTable::Round() {
         community_cards.push_back(deck.DealCard());
         deck.DealCard();
         community_cards.push_back(deck.DealCard());
-
 
         for (int i = 0; i < TABLE_SIZE; i++) {      // evaluate hands
             players[i].EvaluateHandHash(community_cards);
@@ -253,28 +257,28 @@ void PokerTable::Round() {
         //1000
         if(flag_01_ge and flag_final_ge){
             if(players[0].GetPlayerBestHashHand() >= 7453)
-                if(players[0].IsJAckPot(community_cards))
+                if(players[0].IsJAckPot(community_cards) and show_down)
                     players[0].UpdateMoney(jack_pot_/repeats_);
             winning_idx.push_back(0);
         }
         //0100
         else if(flag_01_lo and flag_final_ge){
              if(players[1].GetPlayerBestHashHand() >= 7453)
-                if(players[1].IsJAckPot(community_cards))
+                if(players[1].IsJAckPot(community_cards) and show_down)
                     players[1].UpdateMoney(jack_pot_/repeats_);
             winning_idx.push_back(1);
         }
         //0010
         else if(flag_23_ge and flag_final_lo){
              if(players[2].GetPlayerBestHashHand() >= 7453)
-                if(players[2].IsJAckPot(community_cards))
+                if(players[2].IsJAckPot(community_cards) and show_down)
                     players[2].UpdateMoney(jack_pot_/repeats_);
             winning_idx.push_back(2);
         }
         //0001
         else if(flag_23_lo and flag_final_lo){
              if(players[3].GetPlayerBestHashHand() >= 7453)
-                if(players[3].IsJAckPot(community_cards))
+                if(players[3].IsJAckPot(community_cards) and show_down)
                     players[3].UpdateMoney(jack_pot_/repeats_);
             winning_idx.push_back(3);
         }
@@ -344,7 +348,7 @@ void PokerTable::Round() {
 
         unsigned int winning_counter=winning_idx.size();
 
-        double wins_money = (double) (curr_pot) / (repeats_ * winning_counter);
+        double wins_money = (double) (curr_pot) / ((repeats_ * show_down + not show_down) * winning_counter);
         for(auto idx: winning_idx){
             players[idx].UpdateMoney(wins_money);
         }
