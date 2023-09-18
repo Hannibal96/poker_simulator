@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     double bb = parameters_map["bb"] * factor,
             sb = parameters_map["sb"] * factor,
             all_in = parameters_map["all_in"] * factor,
-            jack_pot = parameters_map["JP"] * factor; // * all_in;
+            jack_pot = parameters_map["jackpot"] * factor; // * all_in;
 
     int print = int(parameters_map["print"]),
         repeats = int(parameters_map["repeats"]),
