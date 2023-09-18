@@ -49,17 +49,18 @@ int main(int argc, char *argv[]) {
 
     double bb = parameters_map["bb"] * factor,
             sb = parameters_map["sb"] * factor,
-            all_in = parameters_map["all_in"] * factor;
+            all_in = parameters_map["all_in"] * factor,
+            jack_pot = parameters_map["JP"] * factor; // * all_in;
 
     int print = int(parameters_map["print"]),
         repeats = int(parameters_map["repeats"]),
         rounds = int(parameters_map["rounds"]);
 
-    PokerTable table = PokerTable(player1, player2, player3, player4, bb, sb, all_in ,10, false, repeats);
+    PokerTable table = PokerTable(player1, player2, player3, player4, bb, sb, all_in, jack_pot ,10, false, repeats);
 
     cout << "==============================================================================================================" << endl;
     cout << "================== Repeats: " << repeats << " === Prints: " << print << " =====================================================" << endl;
-    cout << "================== All_in: " << all_in << " === BB: " << bb << " === SB: " << sb << " === Factor: " << factor << " ==========================================" << endl;
+    cout << "================== All_in: " << all_in << " === BB: " << bb << " === SB: " << sb << " === Factor: " << factor << " === JackPot: " << jack_pot << " =================================" << endl;
     cout << "==============================================================================================================" << endl;
 
     for(int i=0; i<rounds; i++){
@@ -453,11 +454,15 @@ tuple<map<Situation, vector<double>>, map<string, double>> ParseInputStrategy(in
             parameters_map["rounds"] = stod(s);
         }
 
+        else if(s == "--jackpot" || s == "--Jackpot" || s == "--JP" ) {
+            s = argv[++i];
+            parameters_map["jackpot"] = stod(s);
+        }
 
         else{
             cout << "--Wrong Input:  " << endl <<
                  "    input format --CO MIN-RANGE-CO_MAX-RANGE-CO --DE MIN-DE_MAX-DE --SB MIN-SB_MAX-SB --BB MIN-BB_MAX-BB"
-                 << endl << "--AllIn 2.0 --BB 0.25 --SB 0.1 --print 1000000 --repeat 10000000" << endl;
+                 << endl << "--AllIn 2.0 --BB 0.25 --SB 0.1 --JP 100 --print 1000000 --repeat 10000000" << endl;
         }
     }
 

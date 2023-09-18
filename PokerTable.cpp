@@ -8,7 +8,8 @@
 
 PokerTable::PokerTable(PokerPlayer const & player_a , PokerPlayer const & player_b,
                        PokerPlayer const & player_c, PokerPlayer const & player_d,
-                       double big_blind, double small_blind, double all_in, int table_id, bool update_positions, int repeats) {
+                       double big_blind, double small_blind, double all_in, double jackpot,
+                       int table_id, bool update_positions, int repeats) {
 
     players.push_back(player_a);
     players.push_back(player_b);
@@ -18,6 +19,8 @@ PokerTable::PokerTable(PokerPlayer const & player_a , PokerPlayer const & player
     big_blind_ = big_blind;
     small_blind_ = small_blind;
     all_in_ = all_in;
+    jack_pot_ = jackpot;
+
     table_id_ = table_id;
 
     repeats_ = repeats;
@@ -206,16 +209,14 @@ void PokerTable::Round() {
         }
     }
 
-    for(int r=0 ; r<repeats_; r++) {
+    for(int r=0 ; r<repeats_; r++) {        // Deal Comm Cards + Evaluate
         if(r != 0 && r%5 ==0){
-
             deck = Deck();
             for(int i=0 ; i<TABLE_SIZE ; i++){
                 deck.DisCard(players[i].GetHoldingCard1());
                 deck.DisCard(players[i].GetHoldingCard2());
             }
             deck.Shuffle();
-
         }
 
         community_cards.clear();
@@ -251,30 +252,30 @@ void PokerTable::Round() {
         vector<int> winning_idx = vector<int>();
         //1000
         if(flag_01_ge and flag_final_ge){
-           /* if(players[0].GetPlayerBestHashHand() >= 7453)
+            if(players[0].GetPlayerBestHashHand() >= 7453)
                 if(players[0].IsJAckPot(community_cards))
-                    players[0].UpdateMoney(100/repeats_); */
+                    players[0].UpdateMoney(jack_pot_/repeats_);
             winning_idx.push_back(0);
         }
         //0100
         else if(flag_01_lo and flag_final_ge){
-            /* if(players[1].GetPlayerBestHashHand() >= 7453)
+             if(players[1].GetPlayerBestHashHand() >= 7453)
                 if(players[1].IsJAckPot(community_cards))
-                    players[1].UpdateMoney(100/repeats_); */
+                    players[1].UpdateMoney(jack_pot_/repeats_);
             winning_idx.push_back(1);
         }
         //0010
         else if(flag_23_ge and flag_final_lo){
-            /* if(players[2].GetPlayerBestHashHand() >= 7453)
+             if(players[2].GetPlayerBestHashHand() >= 7453)
                 if(players[2].IsJAckPot(community_cards))
-                    players[2].UpdateMoney(100/repeats_); */
+                    players[2].UpdateMoney(jack_pot_/repeats_);
             winning_idx.push_back(2);
         }
         //0001
         else if(flag_23_lo and flag_final_lo){
-            /* if(players[3].GetPlayerBestHashHand() >= 7453)
+             if(players[3].GetPlayerBestHashHand() >= 7453)
                 if(players[3].IsJAckPot(community_cards))
-                    players[3].UpdateMoney(100/repeats_); */
+                    players[3].UpdateMoney(jack_pot_/repeats_);
             winning_idx.push_back(3);
         }
         //1100
@@ -347,7 +348,7 @@ void PokerTable::Round() {
         for(auto idx: winning_idx){
             players[idx].UpdateMoney(wins_money);
         }
-
+        /* FIXME: IDEA - mabye sum all the money per player and only add it once*/
     }
 
     scenarios_stats[curr_history] ++;
@@ -358,7 +359,10 @@ void PokerTable::Round() {
         total_money += x.GetMoney();
         UpdateHandsStats(hands_stats, x.GetPlayerBestHashHand());
     }
-    assert(abs(total_money) <= 0.1 && "-ASSERT- none zero sum of money, ");
+
+    if (jack_pot_ == 0){
+        assert(abs(total_money) <= 0.1 && "-ASSERT- none zero sum of money, ");
+    }
 
     EndRound();
 }

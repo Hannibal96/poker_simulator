@@ -20,7 +20,7 @@ private:
     vector<Card> community_cards;
     int curr_co_idx;
     double curr_pot;
-    double big_blind_, small_blind_, all_in_;
+    double big_blind_, small_blind_, all_in_, jack_pot_;
     int table_id_;
     long unsigned int hands_counter;
     int repeats_;
@@ -39,7 +39,8 @@ private:
 public:
     PokerTable(PokerPlayer const & player_a, PokerPlayer const & player_b,
                PokerPlayer const & player_c, PokerPlayer const & player_d,
-               double big_blind, double small_blind, double all_in, int table_id, bool update_positions, int repeats);
+               double big_blind, double small_blind, double all_in, double jackpot,
+               int table_id, bool update_positions, int repeats);
     ~PokerTable() = default;
     void Round();
     string GetStatsSring(int iteration);
