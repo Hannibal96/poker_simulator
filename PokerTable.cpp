@@ -55,6 +55,11 @@ PokerTable::PokerTable(PokerPlayer const & player_a , PokerPlayer const & player
                     { Quads, "Quads" },
                     { StraightFlush, "StraightFlush" }, };
 
+    jackpots_occur[CutOff] = 0;
+    jackpots_occur[Dealer] = 0;
+    jackpots_occur[SmallBlind] = 0;
+    jackpots_occur[BigBlind] = 0;
+
     scenarios_names = {{ BigBlind_In, "Empty-BigBlind" },
                        { CutOff_In, "OneRaise-CutOff" },
                        { Dealer_In, "OneRaise-Dealer" },
@@ -70,6 +75,13 @@ PokerTable::PokerTable(PokerPlayer const & player_a , PokerPlayer const & player
                        { CutOff_SmallBlind_BigBlind_In, "ThreeRaises-CutOff, SmallBlind, BigBlind" },
                        { Dealer_SmallBlind_BigBlind_In, "ThreeRaises-Dealer, SmallBlind, BigBlind" },
                        { CutOff_Dealer_SmallBlind_BigBlind_In, "FourRaises-CutOff, Dealer, SmallBlind, BigBlind" },};
+
+    positions_names = {{Position::BigBlind, "BigBlind"},
+                       {Position::SmallBlind, "SmallBlind"},
+                       {Position::Dealer, "Dealer"},
+                       {Position::CutOff, "CutOff"},
+                       };
+
 }
 
 
@@ -212,7 +224,7 @@ void PokerTable::Round() {
     // FIXME:
     //  BUG: check if there is a showdown!
 
-    bool show_down = curr_pot > small_blind_ + big_blind_ ;
+    bool show_down = curr_pot >= 2 * all_in_ ;
 
     for(int r=0 ; r < repeats_ * show_down + not show_down; r++) {        // Deal Comm Cards + Evaluate
         if(r != 0 && r%5 ==0){
@@ -256,30 +268,42 @@ void PokerTable::Round() {
         vector<int> winning_idx = vector<int>();
         //1000
         if(flag_01_ge and flag_final_ge){
-            if(players[0].GetPlayerBestHashHand() >= 7453)
-                if(players[0].IsJAckPot(community_cards) and show_down)
-                    players[0].UpdateMoney(jack_pot_/repeats_);
+            if(players[0].GetPlayerBestHashHand() >= 7453) {
+                if (players[0].IsJAckPot(community_cards) and show_down) {
+                    players[0].UpdateMoney(jack_pot_ / repeats_);
+                    jackpots_occur[players[0].GetPosition()] += 1.0 / repeats_;
+                }
+            }
             winning_idx.push_back(0);
         }
         //0100
         else if(flag_01_lo and flag_final_ge){
-             if(players[1].GetPlayerBestHashHand() >= 7453)
-                if(players[1].IsJAckPot(community_cards) and show_down)
-                    players[1].UpdateMoney(jack_pot_/repeats_);
+             if(players[1].GetPlayerBestHashHand() >= 7453) {
+                 if (players[1].IsJAckPot(community_cards) and show_down) {
+                     players[1].UpdateMoney(jack_pot_ / repeats_);
+                     jackpots_occur[players[1].GetPosition()] += 1.0 / repeats_;
+                 }
+             }
             winning_idx.push_back(1);
         }
         //0010
         else if(flag_23_ge and flag_final_lo){
-             if(players[2].GetPlayerBestHashHand() >= 7453)
-                if(players[2].IsJAckPot(community_cards) and show_down)
-                    players[2].UpdateMoney(jack_pot_/repeats_);
+             if(players[2].GetPlayerBestHashHand() >= 7453) {
+                 if (players[2].IsJAckPot(community_cards) and show_down) {
+                     players[2].UpdateMoney(jack_pot_ / repeats_);
+                     jackpots_occur[players[2].GetPosition()] += 1.0 / repeats_;
+                 }
+             }
             winning_idx.push_back(2);
         }
         //0001
         else if(flag_23_lo and flag_final_lo){
-             if(players[3].GetPlayerBestHashHand() >= 7453)
-                if(players[3].IsJAckPot(community_cards) and show_down)
-                    players[3].UpdateMoney(jack_pot_/repeats_);
+             if(players[3].GetPlayerBestHashHand() >= 7453) {
+                 if (players[3].IsJAckPot(community_cards) and show_down) {
+                     players[3].UpdateMoney(jack_pot_ / repeats_);
+                     jackpots_occur[players[3].GetPosition()] += 1.0 / repeats_;
+                 }
+             }
             winning_idx.push_back(3);
         }
         //1100
@@ -399,6 +423,7 @@ void PokerTable::EndRound() {
 
     for(int i=0;i<TABLE_SIZE;i++){
         players[i].UpdateTable();
+        // FIXME BUG! updating by last curr reward
     }
 }
 
@@ -431,6 +456,13 @@ string PokerTable::GetStatsSring(int iteration) {
         stats_string += scenarios_names[x.first] + ": " + to_string(100*(double)(x.second)/(iteration)) + "\n";
         percentage_sum += 100*(double)(x.second)/(iteration);
     }
+
+    stats_string += "\nJackpots:\n";
+    for(auto pos : {Position::CutOff, Position::Dealer, Position::SmallBlind, Position::BigBlind}){
+        stats_string += positions_names[pos] + ":" + to_string(100.0 * jackpots_occur[pos] / iteration) + "\n";
+    }
+
+    stats_string += "\n";
     if(abs(100-percentage_sum) > 0.01){
         cout << "==========================" << endl;
         cout << percentage_sum << endl;

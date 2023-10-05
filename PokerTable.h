@@ -28,10 +28,12 @@ private:
 
     map<HandRank, long unsigned int> hands_stats;
     map<HandRank, string> ranks_names;
-
+    map<Position, string> positions_names;
     map<History, long unsigned int> scenarios_stats;
     map<History, string> scenarios_names;
+    map<Position, double> jackpots_occur;
     bool update_positions_;
+
     void EndRound();
     void StartRound();
     void UpdateHistory(Position position, Action action);
