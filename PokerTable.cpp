@@ -387,11 +387,12 @@ void PokerTable::Round() {
         total_money += x.GetMoney();
         UpdateHandsStats(hands_stats, x.GetPlayerBestHashHand());
     }
-
-    if (jack_pot_ == 0){
-        assert(abs(total_money) <= 0.1 && "-ASSERT- none zero sum of money, ");
+    double total_jp = 0;
+    for(auto pos : {Position::CutOff, Position::Dealer, Position::SmallBlind, Position::BigBlind}){
+        total_jp += jackpots_occur[pos];
     }
 
+    assert(abs(total_money - total_jp * jack_pot_) <= 0.1 && "-ASSERT- none zero sum of money, ");
     EndRound();
 }
 
