@@ -3,7 +3,7 @@
 //
 #include <bits/stdc++.h>
 #include "PokerHand.h"
-#include "Card.h"
+#include "../deck_utils/Card.h"
 
 
 static bool CardGreaterThan(Card c1, Card c2){

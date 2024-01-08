@@ -6,13 +6,13 @@
 #define POKER_SIMULATOR_POKERPLAYER_H
 
 #include "Strategy.h"
-#include "Enums.h"
+#include "../poker_utils/Enums.h"
 #include "Bandit_table.h"
 #include "VectorStrategy.h"
 #include "Q_table.h"
 #include <bits/stdc++.h>
 #include <iostream>
-#include "hashes.h"
+#include "../poker_utils/hashes.h"
 
 class PokerPlayer {
 private:

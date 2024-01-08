@@ -6,9 +6,9 @@
 #define POKER_SIMULATOR_POKERTABLE_H
 
 #include <vector>
-#include "PokerPlayer.h"
-#include "Deck.h"
-#include "SlimDeck.h"
+#include "../agents_utils/PokerPlayer.h"
+#include "../deck_utils/Deck.h"
+#include "../deck_utils/SlimDeck.h"
 #include "Enums.h"
 
 using namespace std;
