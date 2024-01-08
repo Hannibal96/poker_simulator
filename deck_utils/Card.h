@@ -5,7 +5,7 @@
 #ifndef POKER_SIMULATOR_CARD_H
 #define POKER_SIMULATOR_CARD_H
 
-#include "Enums.h"
+#include "../poker_utils/Enums.h"
 #include <iostream>
 
 using namespace std;

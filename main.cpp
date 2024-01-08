@@ -1,10 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <bits/stdc++.h>
-#include "Card.h"
-#include "VectorStrategy.h"
-#include "PokerPlayer.h"
-#include "PokerTable.h"
+#include "deck_utils/Card.h"
+#include "agents_utils/VectorStrategy.h"
+#include "agents_utils/PokerPlayer.h"
+#include "poker_utils/PokerTable.h"
 
 
 using namespace std;

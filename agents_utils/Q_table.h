@@ -5,7 +5,7 @@
 #ifndef POKER_SIMULATOR_Q_TABLE_H
 #define POKER_SIMULATOR_Q_TABLE_H
 
-#include "Card.h"
+#include "../deck_utils/Card.h"
 #include <map>
 #include <tuple>
 #include <random>

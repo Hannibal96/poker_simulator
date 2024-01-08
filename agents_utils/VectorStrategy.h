@@ -7,8 +7,8 @@
 
 #include <iostream>
 #include <vector>
-#include "Card.h"
-#include "Enums.h"
+#include "../deck_utils/Card.h"
+#include "../poker_utils/Enums.h"
 
 using namespace std;
 
