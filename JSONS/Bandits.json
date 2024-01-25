@@ -1,0 +1,40 @@
+{
+  "Table": {
+    "AllIn": 2.0,
+    "BigBlind": 0.25,
+    "SmallBlind": 0.1,
+    "JackPot": 130.0,
+    "Factor": 1.0
+  },
+  "Players": {
+    "Player1": {
+      "Name": "Player1",
+      "InitPosition": "CutOff",
+      "Algorithm": "Bandit"
+    },
+    "Player2": {
+      "Name": "Player2",
+      "InitPosition": "Dealer",
+      "Algorithm": "Bandit"
+    },
+    "Player3": {
+      "Name": "Player3",
+      "InitPosition": "SmallBlind",
+      "Algorithm": "Bandit"
+    },
+    "Player4": {
+      "Name": "Player4",
+      "InitPosition": "BigBlind",
+      "Algorithm": "Bandit"
+    }
+  },
+
+  "Simulation": {
+    "OutPut": "./../Logs/bandits.log",
+    "UpdatePositions": false,
+    "Seed": 0,
+    "Rounds": 100000000,
+    "Repeats": 100,
+    "Print": 10000000
+  }
+}

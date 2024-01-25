@@ -15,64 +15,7 @@ Value Card::GetValue() {
 }
 
 string Card::ToString() const {
-    string card_string;
-    switch(value_) {
-        case 2:
-            card_string += "2";
-            break;
-        case 3:
-            card_string += "3";
-            break;
-        case 4:
-            card_string += "4";
-            break;
-        case 5:
-            card_string += "5";
-            break;
-        case 6:
-            card_string += "6";
-            break;
-        case 7:
-            card_string += "7";
-            break;
-        case 8:
-            card_string += "8";
-            break;
-        case 9:
-            card_string += "9";
-            break;
-        case 10:
-            card_string += "10";
-            break;
-        case 11:
-            card_string += "J";
-            break;
-        case 12:
-            card_string += "Q";
-            break;
-        case 13:
-            card_string += "K";
-            break;
-        case 14:
-            card_string += "A";
-            break;
-    }
-    switch (suit_){         // TODO: switch with ♥ ♦ ♠ ♣
-        case Heart:
-            card_string += "h";
-            break;
-        case Diamond:
-            card_string += "d";
-            break;
-        case Spade:
-            card_string += "s";
-            break;
-        case Club:
-            card_string += "c";
-            break;
-
-    }
-    return card_string;
+    return card_val_str.at(value_) + card_suit_str.at(suit_);
 }
 
 std::ostream& operator<<(std::ostream& os, const Card& card)

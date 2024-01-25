@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#g++ *.cpp *.h -std=c++17 -o simulator.exe
+#g++ *.cpp *.h -std=c++17 -o ./exe/simulator.exe
 
 BB=0.25
 SB=0.1

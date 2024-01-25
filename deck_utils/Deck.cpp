@@ -6,14 +6,11 @@
 #include "Card.h"
 #include <bits/stdc++.h>
 #include <ctime>
-
 #include <random>
-
-int Deck::curr_seed = 0;
 
 
 Deck::Deck() {
-    for ( int valInt = Duce; valInt != Ace+1; valInt++ ){
+    for ( int valInt = Deuce; valInt != Ace+1; valInt++ ){
         auto val = static_cast<Value >(valInt);
         for ( int suitInt = Heart; suitInt != Club+1; suitInt++ ){
             auto suit = static_cast<Suit >(suitInt);
@@ -36,18 +33,7 @@ void Deck::DisCard(Card card){
     cards.erase(pos);
 }
 
-Card Deck::DealRandCard() {
-
-    int r = rand() % cards.size();
-    Card c = cards[r];
-    auto pos = find(cards.begin(), cards.end(), cards[r]);
-    cards.erase(pos);
-    return c;
-}
-
-
 void Deck::Shuffle() {
-    curr_seed ++;
 
     static std::random_device rd;  // Will be used to obtain a seed for the random number engine
     static std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
@@ -56,7 +42,6 @@ void Deck::Shuffle() {
     //shuffle(cards.begin(), cards.end(), std::mt19937( time(nullptr) + dis(gen)));
     shuffle(cards.begin(), cards.end(), std::mt19937( time(nullptr) + dis(gen)));
 }
-
 
 string Deck::ToString() const {     // TODO: fix visabillity, add delimiters such as | and allignment
     string deck_string;

@@ -23,7 +23,6 @@ public:
     void DisCard(Card card);
 
     string ToString() const;
-    static int curr_seed;
 
 private:
     vector<Card> cards;

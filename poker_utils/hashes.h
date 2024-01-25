@@ -5150,7 +5150,7 @@ uint16_t const offsets[16384] = {
 };
 
 
-#define INDEX_DUCE 12
+#define INDEX_DEUCE 12
 #define INDEX_THREE 11
 #define INDEX_FOUR 10
 #define INDEX_FIVE 9
