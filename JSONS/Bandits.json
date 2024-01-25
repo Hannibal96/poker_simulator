@@ -33,8 +33,8 @@
     "OutPut": "./../Logs/bandits.log",
     "UpdatePositions": false,
     "Seed": 0,
-    "Rounds": 100000000,
+    "Rounds": 10000,
     "Repeats": 100,
-    "Print": 10000000
+    "Print": 10000
   }
 }
