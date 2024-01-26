@@ -73,7 +73,8 @@ void Epsilon_Greedy_Agent::update_parameters(State state, Action action, double 
 
 
 string Epsilon_Greedy_Agent::ToString() const{
-    return "EG Agent \n" + Agent::ToString();
+    return "EG Agent, min eps:" + to_string(min_epsilon_) + ", decay rate: " + to_string(decay_rate_)
+                + "\n" + Agent::ToString();
 }
 
 

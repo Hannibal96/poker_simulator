@@ -86,7 +86,7 @@ void MWU_Agent::update_parameters(State state, Action action, double reward) {
 
 
 string MWU_Agent::ToString() const {
-    return "MWU Agent \n" + Agent::ToString();
+    return "MWU Agent, Beta: " + to_string(beta_) + ", T: " + to_string(T_) + "\n" + Agent::ToString();
 }
 
 string MWU_Agent::get_entry_str(State state, int col_w) const {
