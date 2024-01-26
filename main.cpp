@@ -19,6 +19,10 @@ int main(int argc, char *argv[]) {
     string output_path;
     if(arguments.find("output") != arguments.end()){
         output_path = arguments["output"];
+        if(output_path.find('.') == string::npos){
+            output_path += ".log";
+        }
+        output_path = "./../Logs/" + output_path;
     } else {
         output_path = parseJsonFileOutput(json_path);
     }
