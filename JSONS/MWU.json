@@ -43,18 +43,18 @@
       "Algorithm": "MWU",
       "Parameters": {
         "Beta": 0.95,
-        "T": 1000,
+        "T": 100,
         "InitP": 0.5
       }
     }
   },
 
   "Simulation": {
-    "OutPut": "./../Logs/MWU.log",
+    "OutPut": "./Logs/MWU.log",
     "UpdatePositions": false,
     "Seed": 0,
-    "Rounds": 10000000,
-    "Repeats": 1,
+    "Rounds": 100000000000,
+    "Repeats": 10,
     "Print": 1000000
   }
 }
