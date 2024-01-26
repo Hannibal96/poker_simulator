@@ -11,17 +11,49 @@ Agent* ParseAgent(const nlohmann::json& agentJson){
         return new Bandit_Agent(agentName);
     }
     if(agentType == "MWU"){
-        auto params = agentJson["Parameters"];
-        double beta = params["Beta"];
-        unsigned int T = params["T"];
-        double init_p = params["InitP"];
+        double beta, init_p;
+        unsigned int T;
+        if(agentJson.contains("Parameters")){
+            auto params = agentJson["Parameters"];
+            if(params.contains("Beta"))
+                beta = params["Beta"];
+            else
+                beta = 0.95;
+            if(params.contains("T"))
+                T = params["T"];
+            else
+                T = 1000;
+            if(params.contains("InitP"))
+                init_p = params["InitP"];
+            else
+                init_p = 0.5;
+        }
+        else{
+            beta = 0.95, init_p = 0.5;
+            T = 1000;
+        }
         return new MWU_Agent(agentName, beta, T, init_p);
     }
     if(agentType == "EpsilonGreedy"){
-        auto params = agentJson["Parameters"];
-        double init_epsilon = params["InitEpsilon"];
-        double min_epsilon = params["MinEpsilon"];
-        double decay_rate = params["DecayRate"];
+        double init_epsilon, min_epsilon, decay_rate;
+        if(agentJson.contains("Parameters")){
+            auto params = agentJson["Parameters"];
+            if(params.contains("InitEpsilon"))
+                init_epsilon = params["InitEpsilon"];
+            else
+                init_epsilon = 0.5;
+            if(params.contains("MinEpsilon"))
+                min_epsilon = params["MinEpsilon"];
+            else
+                min_epsilon = 0.01;
+            if(params.contains("DecayRate"))
+                decay_rate = params["DecayRate"];
+            else
+                decay_rate = 0.99;
+        }
+        else {
+            init_epsilon = 0.5, min_epsilon = 0.01, decay_rate = 0.99;
+        }
         return new Epsilon_Greedy_Agent(agentName, init_epsilon, min_epsilon, decay_rate);
     }
     if(agentType == "FixStrategy"){

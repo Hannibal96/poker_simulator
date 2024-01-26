@@ -8,17 +8,31 @@
 using namespace std;
 
 void sim_print(PokerTable table, int i);
-string parse_args(int argc, char *argv[]);
+map<string, string> parse_args(int argc, char *argv[]);
 void printProgressBar(int percentage, double ips);
 
 int main(int argc, char *argv[]) {
 
-    string json_path = parse_args(argc, argv);
+    map<string, string> arguments = parse_args(argc, argv);
+    string json_path = arguments["json"];
+
+    string output_path;
+    if(arguments.find("output") != arguments.end()){
+        output_path = arguments["output"];
+    } else {
+        output_path = parseJsonFileOutput(json_path);
+    }
 
     vector<PokerPlayer> players = parseJsonFilePlayers(json_path);
     map<string, double> table_params = parseJsonFileTable(json_path);
-    string output_path = parseJsonFileOutput(json_path);
     map<string, double> env_map = parseJsonFileEnv(json_path);
+
+    int seed;
+    if(arguments.find("seed") != arguments.end()){
+        seed = stoi(arguments["seed"]);
+    } else {
+        seed = int(env_map["seed"]);
+    }
 
     if(!output_path.empty())
         freopen(output_path.c_str(), "w", stdout);
@@ -30,8 +44,7 @@ int main(int argc, char *argv[]) {
 
     int print = int(env_map["print"]),
         repeats = int(env_map["repeats"]),
-        rounds = int(env_map["rounds"]),
-        seed = int(env_map["seed"]); // TODO: use seed
+        rounds = int(env_map["rounds"]);
 
     bool update_pos = bool(env_map["update_pos"]);
 
@@ -61,8 +74,9 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-string parse_args(int argc, char *argv[]){
-    string json_path;
+map<string, string> parse_args(int argc, char *argv[]){
+    string json_path, seed, output;
+    map<string, string> arguments;
     for(int i=1; i < argc; i++){
         if(strcmp(argv[i], "-j") == 0 || strcmp(argv[i], "--json") == 0 || strcmp(argv[i], "-json") == 0){
             json_path = argv[i+1];
@@ -70,6 +84,14 @@ string parse_args(int argc, char *argv[]){
         else if(strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-help") == 0){
             cout << "Usage: " << argv[0] << " [-j/--json/-json] [path to json file]" << endl;
             exit(0);
+        }
+        else if(strcmp(argv[i], "-o") == 0 || strcmp(argv[i], "--out") == 0 || strcmp(argv[i], "-out") == 0
+                    || strcmp(argv[i], "--output") == 0 || strcmp(argv[i], "-output") == 0
+                    || strcmp(argv[i], "--out_put") == 0 || strcmp(argv[i], "-out_put") == 0){
+            output = argv[i+1];
+        }
+        else if(strcmp(argv[i], "-s") == 0 || strcmp(argv[i], "--seed") == 0 || strcmp(argv[i], "-seed") == 0){
+            seed = argv[i+1];
         }
         else{
             cout << "Invalid argument: " << argv[i] << endl;
@@ -82,10 +104,16 @@ string parse_args(int argc, char *argv[]){
         exit(1);
     }
 
-    if(json_path.find('/') != string::npos || json_path.find('\\') != string::npos)
-        return json_path;
-    else
-        return "../JSONS/" + json_path;
+    if(not (json_path.find('/') != string::npos || json_path.find('\\') != string::npos))
+        json_path = "../JSONS/" + json_path;
+
+    arguments["json"] = json_path;
+    if(not output.empty())
+        arguments["output"] = output;
+    if(not seed.empty())
+        arguments["seed"] = seed;
+
+    return arguments;
 }
 
 
