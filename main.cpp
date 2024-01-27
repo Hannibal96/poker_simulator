@@ -47,9 +47,9 @@ int main(int argc, char *argv[]) {
            jack_pot = table_params["jack_pot"];
 
     int print = int(env_map["print"]),
-        repeats = int(env_map["repeats"]),
-        rounds = int(env_map["rounds"]);
+        repeats = int(env_map["repeats"]);
 
+    long unsigned int rounds = int(env_map["rounds"]);
     bool update_pos = bool(env_map["update_pos"]);
 
     PokerTable table = PokerTable(players,
