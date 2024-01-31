@@ -37,6 +37,8 @@ int main(int argc, char *argv[]) {
     } else {
         seed = int(env_map["seed"]);
     }
+    global_seed = seed;
+    globalGen.seed(seed);
 
     if(!output_path.empty())
         freopen(output_path.c_str(), "w", stdout);

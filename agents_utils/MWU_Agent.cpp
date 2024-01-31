@@ -25,7 +25,7 @@ Action MWU_Agent::get_action(State state) const {
     TableEntry entry_f{state, Fold};
 
     double p_a = get<3>(table_.at(entry_a));
-    double random = (double) rand() / (RAND_MAX);
+    double random = global_uniform_dist(globalGen);
     if (random < p_a)
         return AllIn;
     return Fold;

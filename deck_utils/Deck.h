@@ -17,7 +17,6 @@ public:
     ~Deck() = default;
 
     Card DealCard();
-    Card DealRandCard();
 
     void Shuffle();
     void DisCard(Card card);

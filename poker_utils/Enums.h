@@ -10,7 +10,13 @@ using namespace std;
 #include <tuple>
 #include <string>
 #include <map>
+#include <random>
 #define TABLE_SIZE 4
+
+extern int global_seed;
+extern std::mt19937 globalGen;
+extern std::uniform_real_distribution<double> global_uniform_dist;
+
 
 enum Position{BigBlind, SmallBlind, Dealer, CutOff};
 enum Suit{Heart = 0 , Diamond, Spade, Club};

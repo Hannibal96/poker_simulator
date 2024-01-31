@@ -3,10 +3,8 @@
 //
 
 #include "Deck.h"
-#include "Card.h"
 #include <bits/stdc++.h>
 #include <ctime>
-#include <random>
 
 
 Deck::Deck() {
@@ -34,13 +32,11 @@ void Deck::DisCard(Card card){
 }
 
 void Deck::Shuffle() {
-
-    static std::random_device rd;  // Will be used to obtain a seed for the random number engine
-    static std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
-    static std::uniform_int_distribution<> dis(1, 999999999);
-
+    // / static std::random_device rd;  // Will be used to obtain a seed for the random number engine
+    //static std::mt19937 g(rd()); // Standard mersenne_twister_engine seeded with rd()
+    // / static std::mt19937 g(global_seed);
     //shuffle(cards.begin(), cards.end(), std::mt19937( time(nullptr) + dis(gen)));
-    shuffle(cards.begin(), cards.end(), std::mt19937( time(nullptr) + dis(gen)));
+    shuffle(cards.begin(), cards.end(), globalGen);
 }
 
 string Deck::ToString() const {     // TODO: fix visabillity, add delimiters such as | and allignment

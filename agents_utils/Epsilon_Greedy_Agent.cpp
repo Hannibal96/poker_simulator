@@ -18,17 +18,16 @@ Epsilon_Greedy_Agent::Epsilon_Greedy_Agent(std::string &name, double init_epsilo
     }
     min_epsilon_ = min_epsilon;
     decay_rate_ = decay_rate;
-    // TODO: random stuff
 }
 
 Action Epsilon_Greedy_Agent::get_action(State state) const {
 
     TableEntry entry_f{state, Fold}, entry_a{state, AllIn};
     double epsilon = get<0>(table_.at(entry_a));
-    double random = (double) rand() / (RAND_MAX);
+    double random = global_uniform_dist(globalGen);
 
     if (random < epsilon){ // exploration
-        random = (double) rand() / (RAND_MAX);
+        random = global_uniform_dist(globalGen);
         if (random < 0.5)
             return Fold;
         return AllIn;
@@ -43,7 +42,7 @@ Action Epsilon_Greedy_Agent::get_action(State state) const {
     double reward_f = total_reward_f / (n_f + int (!n_f));
 
     if (reward_a == reward_f){
-        random = (double) rand() / (RAND_MAX);
+        random = global_uniform_dist(globalGen);
         if (random < 0.5)
             return Fold;
         return AllIn;

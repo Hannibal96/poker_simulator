@@ -16,7 +16,6 @@ Bandit_Agent::Bandit_Agent(std::string &name) {
             }
         }
     }
-    // TODO: random stuff
 }
 
 
@@ -32,7 +31,7 @@ Action Bandit_Agent::get_action(State state) const {
     double ucb_f = calc_ucb(f_data);
 
     if (ucb_a == ucb_f){
-        double random = (double) rand() / (RAND_MAX);
+        double random = global_uniform_dist(globalGen);
         if (random < 0.5)
             return AllIn;
         return Fold;
