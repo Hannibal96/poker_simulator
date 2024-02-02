@@ -203,6 +203,7 @@ void PokerTable::players_action(){
 vector<int> PokerTable::GetWinners() {
     bool flag_01_eq, flag_23_eq, flag_01_ge, flag_23_ge,
             flag_01_lo, flag_23_lo, flag_final_eq, flag_final_ge, flag_final_lo;
+    bool show_down = curr_pot >= 2 * all_in_ ;
     flag_01_eq = (players[0] == players[1]);
     flag_01_ge = (players[0] > players[1]);
     flag_01_lo = !(flag_01_eq || flag_01_ge);
@@ -217,7 +218,7 @@ vector<int> PokerTable::GetWinners() {
     vector<int> winning_idx = vector<int>();
     //1000
     if(flag_01_ge and flag_final_ge){
-        if (players[0].IsJAckPot(community_cards)) {
+        if (players[0].IsJAckPot(community_cards) and show_down) {
             players[0].UpdateMoney(jack_pot_ / repeats_);
             jackpots_occur[players[0].GetPosition()] += 1.0 / repeats_;
         }
@@ -225,7 +226,7 @@ vector<int> PokerTable::GetWinners() {
     }
     //0100
     else if(flag_01_lo and flag_final_ge){
-        if (players[1].IsJAckPot(community_cards)) {
+        if (players[1].IsJAckPot(community_cards) and show_down) {
             players[1].UpdateMoney(jack_pot_ / repeats_);
             jackpots_occur[players[1].GetPosition()] += 1.0 / repeats_;
         }
@@ -233,7 +234,7 @@ vector<int> PokerTable::GetWinners() {
     }
     //0010
     else if(flag_23_ge and flag_final_lo){
-        if (players[2].IsJAckPot(community_cards)) {
+        if (players[2].IsJAckPot(community_cards) and show_down) {
             players[2].UpdateMoney(jack_pot_ / repeats_);
             jackpots_occur[players[2].GetPosition()] += 1.0 / repeats_;
         }
@@ -241,7 +242,7 @@ vector<int> PokerTable::GetWinners() {
     }
     //0001
     else if(flag_23_lo and flag_final_lo){
-        if (players[3].IsJAckPot(community_cards)) {
+        if (players[3].IsJAckPot(community_cards) and show_down) {
             players[3].UpdateMoney(jack_pot_ / repeats_);
             jackpots_occur[players[3].GetPosition()] += 1.0 / repeats_;
         }
