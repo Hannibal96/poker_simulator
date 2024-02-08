@@ -332,6 +332,14 @@ void PokerTable::deal_community_cards() {
     community_cards.push_back(deck.DealCard());
 }
 
+
+void PokerTable::RunRounds(int rounds) {
+    for(int i=0 ; i<rounds ; i++){
+        Round();
+    }
+}
+
+
 void PokerTable::Round() {
 
     StartRound(); // update positions, clear cards and rewards, new deck and shuffle

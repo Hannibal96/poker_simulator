@@ -47,6 +47,7 @@ public:
                bool update_positions, int repeats);
     ~PokerTable() = default;
     void Round();
+    void RunRounds(int rounds);
     string GetStatsString(int iteration);
     string ToString() ;
 };

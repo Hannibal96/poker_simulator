@@ -129,11 +129,13 @@ map<string, double> parseJsonFileEnv(const std::string& fileName){
     int repeats = env_map["Repeats"];
     uint64_t rounds = env_map["Rounds"].get<std::uint64_t>();
     bool update_pos = env_map["UpdatePositions"];
+    int threads = env_map["Threads"];
 
     return map<string, double>{{"seed", seed},
                                {"repeats", repeats},
                                {"rounds", rounds},
                                 {"print", env_map["Print"]},
-                               {"update_pos", update_pos}
+                               {"update_pos", update_pos},
+                               {"threads", threads}
                                };
 }

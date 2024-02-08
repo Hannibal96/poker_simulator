@@ -11,6 +11,11 @@ void sim_print(PokerTable table, int i);
 map<string, string> parse_args(int argc, char *argv[]);
 void printProgressBar(int percentage, double ips);
 
+void print_thread(int i){
+    this_thread::sleep_for(chrono::seconds(1));
+    cout << "Thread " << i << " is running" << endl;
+}
+
 int main(int argc, char *argv[]) {
 
     map<string, string> arguments = parse_args(argc, argv);
@@ -40,8 +45,8 @@ int main(int argc, char *argv[]) {
     global_seed = seed;
     globalGen.seed(seed);
 
-    if(!output_path.empty())
-        freopen(output_path.c_str(), "w", stdout);
+    //if(!output_path.empty())
+    //    freopen(output_path.c_str(), "w", stdout);
 
     double bb = table_params["big_blind"],
            sb = table_params["small_blind"],
@@ -52,28 +57,52 @@ int main(int argc, char *argv[]) {
         repeats = int(env_map["repeats"]);
 
     uint64_t rounds = uint64_t(env_map["rounds"]);
+    int numberOfThreads = int(env_map["threads"]);
     bool update_pos = bool(env_map["update_pos"]);
-
-    PokerTable table = PokerTable(players,
-                                  bb, sb, all_in, jack_pot ,
-                                  update_pos, repeats);
+    uint64_t rounds_per_thread = rounds / numberOfThreads;
 
     auto startTime = std::chrono::high_resolution_clock::now();
 
-    for(int i=0; i < rounds; i++){
-        table.Round();
+//    PokerTable table1 = PokerTable(players, bb, sb, all_in, jack_pot, update_pos, repeats);
+//    PokerTable table2 = PokerTable(players, bb, sb, all_in, jack_pot, update_pos, repeats);
+//    PokerTable table3 = PokerTable(players, bb, sb, all_in, jack_pot, update_pos, repeats);
+//    PokerTable table4 = PokerTable(players, bb, sb, all_in, jack_pot, update_pos, repeats);
+//    PokerTable table5 = PokerTable(players, bb, sb, all_in, jack_pot, update_pos, repeats);
+//
+//    thread t1(&PokerTable::RunRounds, &table1, rounds_per_thread);
+//    thread t2(&PokerTable::RunRounds, &table2, rounds_per_thread);
+//    thread t3(&PokerTable::RunRounds, &table3, rounds_per_thread);
+//    thread t4(&PokerTable::RunRounds, &table4, rounds_per_thread);
+//    thread t5(&PokerTable::RunRounds, &table5, rounds_per_thread);
 
-        if((i+1) % (rounds/100 + not (rounds/100)) == 0 or i == 0){
-            auto currentTime = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> elapsedSeconds = currentTime - startTime;
-            double ips = i / elapsedSeconds.count();
-            printProgressBar((i+1)*100/rounds, ips);
-        }
+//    t1.join();
+//    t2.join();
+//    t3.join();
+//    t4.join();
+//    t5.join();
 
-        if((i+1) % print == 0 || i == 0) {
-            sim_print(table, i);
-        }
+
+    vector<std::thread> threads;
+    threads.reserve(numberOfThreads);
+    vector<PokerTable> tables;
+    tables.reserve(numberOfThreads);
+    for (int i = 0; i < numberOfThreads; ++i) {
+        tables.emplace_back(players, bb, sb,
+                            all_in, jack_pot, update_pos, repeats);
+        //threads.emplace_back(print_thread, i);
+        threads.emplace_back(&PokerTable::RunRounds, &tables[i], rounds_per_thread);
     }
+    for (auto& t : threads) {
+        t.join();
+    }
+
+    // printProgressBar((i+1)*100/rounds, ips);
+    // sim_print(table, i);
+
+    auto currentTime = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsedSeconds = currentTime - startTime;
+    double ips = rounds / elapsedSeconds.count();
+    cout << ips << endl;
 
     if(!output_path.empty())
         freopen("/dev/tty", "a", stdout);
