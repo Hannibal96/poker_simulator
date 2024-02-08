@@ -3,7 +3,8 @@
 
 for i in {1..5}
 do
-	./simulator_db.exe -j MWU.json --seed ${i} --out MWU_debug_${i}.log &
+	./simulator.exe -j MWU.json --seed ${i} --out MWU_${i}.log &
+	./simulator.exe -j Bandits.json --seed ${i} --out Bandits_${i}.log &
 done
 
 
