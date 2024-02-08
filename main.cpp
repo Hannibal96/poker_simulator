@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
     int print = int(env_map["print"]),
         repeats = int(env_map["repeats"]);
 
-    long unsigned int rounds = int(env_map["rounds"]);
+    uint64_t rounds = uint64_t(env_map["rounds"]);
     bool update_pos = bool(env_map["update_pos"]);
 
     PokerTable table = PokerTable(players,

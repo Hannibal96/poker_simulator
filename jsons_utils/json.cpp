@@ -127,7 +127,7 @@ map<string, double> parseJsonFileEnv(const std::string& fileName){
     auto env_map = jsonData["Simulation"];
     int seed = env_map["Seed"];
     int repeats = env_map["Repeats"];
-    int rounds = env_map["Rounds"];
+    uint64_t rounds = env_map["Rounds"].get<std::uint64_t>();
     bool update_pos = env_map["UpdatePositions"];
 
     return map<string, double>{{"seed", seed},
