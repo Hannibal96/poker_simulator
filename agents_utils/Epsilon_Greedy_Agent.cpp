@@ -21,7 +21,7 @@ Epsilon_Greedy_Agent::Epsilon_Greedy_Agent(std::string &name, double init_epsilo
 }
 
 Action Epsilon_Greedy_Agent::get_action(State state) const {
-
+    std::lock_guard<std::mutex> lock(mutexes[state]);
     TableEntry entry_f{state, Fold}, entry_a{state, AllIn};
     double epsilon = get<0>(table_.at(entry_a));
     double random = global_uniform_dist(globalGen);
@@ -53,6 +53,7 @@ Action Epsilon_Greedy_Agent::get_action(State state) const {
 }
 
 void Epsilon_Greedy_Agent::update_parameters(State state, Action action, double reward) {
+    std::lock_guard<std::mutex> lock(mutexes[state]);
     TableEntry entry_f{state, Fold}, entry_a{state, AllIn};
     double new_epsilon = get<0>(table_.at(entry_f)) * decay_rate_;
     new_epsilon = max(new_epsilon, min_epsilon_);
