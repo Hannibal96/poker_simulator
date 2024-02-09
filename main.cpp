@@ -41,8 +41,8 @@ int main(int argc, char *argv[]) {
     global_seed = seed;
     globalGen.seed(seed);
 
-    if(!output_path.empty())
-        freopen(output_path.c_str(), "w", stdout);
+//    if(!output_path.empty())
+//        freopen(output_path.c_str(), "w", stdout);
 
     double bb = table_params["big_blind"],
            sb = table_params["small_blind"],

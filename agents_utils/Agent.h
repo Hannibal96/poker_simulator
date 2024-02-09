@@ -13,6 +13,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <mutex>
 
 class Agent {
 private:
@@ -42,6 +43,8 @@ public:
             hand += "o";
         return hand;
     }
+
+    static map<State, mutex> mutexes;
 };
 
 std::ostream& operator<<(std::ostream& os, const Agent& agent);

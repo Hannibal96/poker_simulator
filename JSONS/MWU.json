@@ -54,8 +54,8 @@
     "UpdatePositions": false,
     "Seed": 0,
     "Rounds": 10000000,
-    "Repeats": 1,
+    "Repeats": 10,
     "Print": 100000000,
-    "Threads": 10
+    "Threads": 1
   }
 }
