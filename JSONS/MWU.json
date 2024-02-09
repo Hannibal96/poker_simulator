@@ -53,8 +53,8 @@
     "OutPut": "./../Logs/MWU.log",
     "UpdatePositions": false,
     "Seed": 0,
-    "Rounds": 10000000000,
-    "Repeats": 1,
+    "Rounds": 10000000,
+    "Repeats": 10,
     "Print": 100000000
   }
 }
