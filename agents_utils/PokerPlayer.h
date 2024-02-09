@@ -64,6 +64,9 @@ public:
     void UnSetAction();
     void ResetReward();
     void UpdateTable();
+    Agent &GetAgent(){
+        return agent;
+    }
 
     string ToString() ;
     bool operator>(const PokerPlayer& player);

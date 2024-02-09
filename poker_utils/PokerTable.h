@@ -50,6 +50,7 @@ public:
     void RunRounds(int rounds);
     string GetStatsString(int iteration);
     string ToString() ;
+    uint64_t GetHandsCounter() const;
 };
 
 std::ostream& operator<<(std::ostream& os, PokerTable& table);

@@ -421,6 +421,11 @@ void PokerTable::UpdateHandsStats(uint32_t hand_hash, unsigned int repeats){
         assert(false);
 }
 
+uint64_t PokerTable::GetHandsCounter() const{
+    return hands_counter;
+}
+
+
 string PokerTable::GetStatsString(int iteration) {
     string stats_string;
     for(auto x: hands_stats){
