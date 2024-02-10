@@ -462,7 +462,7 @@ uint64_t PokerTable::GetHandsCounter() const{
 }
 
 
-string PokerTable::GetStatsString(int iteration) {
+string PokerTable::GetStatsString(uint64_t iteration) {
     bool flag = iteration == 0;
     if(flag)
         iteration = 1;
@@ -491,18 +491,18 @@ string PokerTable::GetStatsString(int iteration) {
 
     string stats_string;
     for(auto x: hands_stats){
-        stats_string += ranks_names.at(x.first) + ": " + to_string(100*(double)(x.second)/(TABLE_SIZE * iteration)) + "\n";
+        stats_string += ranks_names.at(x.first) + ": " + to_string(100*(long double)(x.second)/(TABLE_SIZE * iteration)) + "\n";
     }
     stats_string += "\n";
-    double percentage_sum = 0;
+    long double percentage_sum = 0;
     for(auto x: scenarios_stats){
-        stats_string += scenarios_names.at(x.first) + ": " + to_string(100*(double)(x.second)/(iteration)) + "\n";
-        percentage_sum += 100*(double)(x.second)/(iteration);
+        stats_string += scenarios_names.at(x.first) + ": " + to_string(100*(long double)(x.second)/(iteration)) + "\n";
+        percentage_sum += 100*(long double)(x.second)/(iteration);
     }
 
     stats_string += "\nJackpots:\n";
     for(auto pos : {Position::CutOff, Position::Dealer, Position::SmallBlind, Position::BigBlind}){
-        stats_string += positions_names.at(pos) + ":" + to_string(100.0 * jackpots_occur[pos] / iteration) + "\n";
+        stats_string += positions_names.at(pos) + ":" + to_string(100.0 * (long double)jackpots_occur[pos] / iteration) + "\n";
     }
 
     stats_string += "\n";

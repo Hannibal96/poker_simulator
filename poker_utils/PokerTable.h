@@ -55,7 +55,7 @@ public:
     ~PokerTable();
     void RunRounds(int rounds);
     string ToString() ;
-    static string GetStatsString(int iteration);
+    static string GetStatsString(uint64_t iteration);
     uint64_t GetHandsCounter() const;
     static void initializeStatistics();
     static mutex print_mutex;
