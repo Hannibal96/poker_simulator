@@ -30,7 +30,7 @@
   },
 
   "Simulation": {
-    "OutPut": "./Logs/bandits.log",
+    "OutPut": "./../Logs/bandits.log",
     "UpdatePositions": false,
     "Seed": 0,
     "Rounds": 10000000000,

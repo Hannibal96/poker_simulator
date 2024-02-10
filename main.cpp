@@ -57,26 +57,29 @@ int main(int argc, char *argv[]) {
     bool update_pos = bool(env_map["update_pos"]);
     uint64_t rounds_per_thread = 1 + rounds / numberOfThreads;
 
-    auto startTime = std::chrono::high_resolution_clock::now();
-
-    vector<std::thread> threads;
-    threads.reserve(numberOfThreads);
     vector<PokerTable> tables;
     tables.reserve(numberOfThreads);
     for (int i = 0; i < numberOfThreads; ++i) {
         tables.emplace_back(players, bb, sb,
                             all_in, jack_pot, update_pos, repeats);
+    }
+
+    PokerTable::initializeStatistics();
+    PokerTable::print_count = print;
+
+    auto startTime = std::chrono::high_resolution_clock::now();
+
+    vector<std::thread> threads;
+    threads.reserve(numberOfThreads);
+    for (int i = 0; i < numberOfThreads; ++i) {
         threads.emplace_back(&PokerTable::RunRounds, &tables[i], rounds_per_thread);
     }
+
     uint64_t total_hands = 0;
     uint64_t next_check = 0;
-    uint64_t print_next_check = print;
 
     while (total_hands < rounds) {
-        total_hands = 0;
-        for(const auto& table : tables)
-            total_hands += table.GetHandsCounter();
-
+        total_hands = PokerTable::total_hands_counter;
         if(total_hands > next_check) {
             auto currentTime = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double> elapsedSeconds = currentTime - startTime;
@@ -84,15 +87,11 @@ int main(int argc, char *argv[]) {
             printProgressBar(int(total_hands * 100 / rounds), ips);
             next_check += rounds / 100;
         }
-        if(total_hands > print_next_check) {
-            cout << total_hands << " hands played" << endl;
-            for(int i=0 ; i<4 ; i++){
-                cout << players[i].GetMoney() << endl;
-                cout << players[i].GetAgent().ToString() << endl;
-            }
-            print_next_check += print;
+        if(total_hands % print == 0 and total_hands != 0) {
+            cout << tables[0] << endl;
+            PokerTable::print_mutex.unlock();
         }
-        this_thread::sleep_for(chrono::milliseconds(100));
+        this_thread::sleep_for(chrono::milliseconds(1000));
     }
 
     for (auto& t : threads) {

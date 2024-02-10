@@ -6,6 +6,35 @@
 #include <bits/stdc++.h>
 #include <utility>
 
+uint64_t PokerTable::total_hands_counter = 0;
+uint64_t PokerTable::print_count;
+mutex PokerTable::print_mutex;
+map<HandRank, long double> PokerTable::hands_stats;
+map<History, long unsigned int> PokerTable::scenarios_stats;
+map<Position, double> PokerTable::jackpots_occur;
+vector<PokerTable*> PokerTable::pt_instances;
+
+
+void PokerTable::initializeStatistics() {
+    PokerTable::hands_stats = map<HandRank, long double>();
+    for (int rank = HighCArd; rank != StraightFlush + 1; rank++) {
+        auto hand_rank = static_cast<HandRank >(rank);
+        hands_stats[hand_rank] = 0;
+    }
+
+    PokerTable::scenarios_stats = map<History, long unsigned int>();
+    for (int scenario = BigBlind_In; scenario != CutOff_Dealer_SmallBlind_BigBlind_In + 1; scenario++) {
+        auto curr_scenario = static_cast<History >(scenario);
+        scenarios_stats[curr_scenario] = 0;
+    }
+
+    PokerTable::jackpots_occur = map<Position, double>();
+    for(int pos = BigBlind; pos < CutOff + 1; pos++){
+        auto curr_pos = static_cast<Position >(pos);
+        jackpots_occur[curr_pos] = 0;
+    }
+}
+
 
 PokerTable::PokerTable(vector<PokerPlayer> players_vec,
                        double big_blind, double small_blind, double all_in, double jackpot,
@@ -28,22 +57,25 @@ PokerTable::PokerTable(vector<PokerPlayer> players_vec,
 
     update_positions_ = update_positions;
 
-    hands_stats = map<HandRank, long double>();
     for (int rank = HighCArd; rank != StraightFlush + 1; rank++) {
         auto hand_rank = static_cast<HandRank >(rank);
-        hands_stats[hand_rank] = 0;
+        private_hands_stats[hand_rank] = 0;
     }
 
     for (int scenario = BigBlind_In; scenario != CutOff_Dealer_SmallBlind_BigBlind_In + 1; scenario++) {
         auto curr_scenario = static_cast<History >(scenario);
-        scenarios_stats[curr_scenario] = 0;
+        private_scenarios_stats[curr_scenario] = 0;
     }
 
     for(int pos = BigBlind; pos < CutOff + 1; pos++){
         auto curr_pos = static_cast<Position >(pos);
-        jackpots_occur[curr_pos] = 0;
+        private_jackpots_occur[curr_pos] = 0;
     }
+    pt_instances.push_back(this);
+}
 
+PokerTable::~PokerTable() {
+    pt_instances.erase(std::remove(pt_instances.begin(), pt_instances.end(), this), pt_instances.end());
 }
 
 
@@ -148,6 +180,12 @@ void PokerTable::EndRound() {
 }
 
 void PokerTable::StartRound() {
+    print_mutex.lock();
+    total_hands_counter++;
+    if (total_hands_counter % print_count != 0 or total_hands_counter == 0) {
+        print_mutex.unlock();
+    }
+
     curr_pot = 0;
     if(update_positions_)
         curr_co_idx = (curr_co_idx + 1) % TABLE_SIZE;
@@ -220,7 +258,7 @@ vector<int> PokerTable::GetWinners() {
     if(flag_01_ge and flag_final_ge){
         if (players[0].IsJAckPot(community_cards) and show_down) {
             players[0].UpdateMoney(jack_pot_ / repeats_);
-            jackpots_occur[players[0].GetPosition()] += 1.0 / repeats_;
+            private_jackpots_occur[players[0].GetPosition()] += 1.0 / repeats_;
         }
         winning_idx.push_back(0);
     }
@@ -228,7 +266,7 @@ vector<int> PokerTable::GetWinners() {
     else if(flag_01_lo and flag_final_ge){
         if (players[1].IsJAckPot(community_cards) and show_down) {
             players[1].UpdateMoney(jack_pot_ / repeats_);
-            jackpots_occur[players[1].GetPosition()] += 1.0 / repeats_;
+            private_jackpots_occur[players[1].GetPosition()] += 1.0 / repeats_;
         }
         winning_idx.push_back(1);
     }
@@ -236,7 +274,7 @@ vector<int> PokerTable::GetWinners() {
     else if(flag_23_ge and flag_final_lo){
         if (players[2].IsJAckPot(community_cards) and show_down) {
             players[2].UpdateMoney(jack_pot_ / repeats_);
-            jackpots_occur[players[2].GetPosition()] += 1.0 / repeats_;
+            private_jackpots_occur[players[2].GetPosition()] += 1.0 / repeats_;
         }
         winning_idx.push_back(2);
     }
@@ -244,7 +282,7 @@ vector<int> PokerTable::GetWinners() {
     else if(flag_23_lo and flag_final_lo){
         if (players[3].IsJAckPot(community_cards) and show_down) {
             players[3].UpdateMoney(jack_pot_ / repeats_);
-            jackpots_occur[players[3].GetPosition()] += 1.0 / repeats_;
+            private_jackpots_occur[players[3].GetPosition()] += 1.0 / repeats_;
         }
         winning_idx.push_back(3);
     }
@@ -332,13 +370,11 @@ void PokerTable::deal_community_cards() {
     community_cards.push_back(deck.DealCard());
 }
 
-
 void PokerTable::RunRounds(int rounds) {
     for(int i=0 ; i<rounds ; i++){
         Round();
     }
 }
-
 
 void PokerTable::Round() {
 
@@ -379,7 +415,7 @@ void PokerTable::Round() {
         /* FIXME: IDEA - mabye sum all the money per player and only add it once*/
     }
 
-    scenarios_stats[curr_history] ++;
+    private_scenarios_stats[curr_history] ++;
 
     hands_counter++;
     total_money_sanity_check();
@@ -393,30 +429,30 @@ void PokerTable::total_money_sanity_check() {
     }
     double total_jp = 0;
     for(auto pos : {Position::CutOff, Position::Dealer, Position::SmallBlind, Position::BigBlind}){
-        total_jp += jackpots_occur[pos];
+        total_jp += private_jackpots_occur[pos];
     }
     assert(abs(total_money - total_jp * jack_pot_) <= 0.1 && "-ASSERT- not zero sum of money, ");
 }
 
 void PokerTable::UpdateHandsStats(uint32_t hand_hash, unsigned int repeats){
     if(hand_hash < 1296)
-        hands_stats[HighCArd] += 1.0 / repeats;
+        private_hands_stats[HighCArd] += 1.0 / repeats;
     else if(hand_hash < 4141)
-        hands_stats[Pair] += 1.0 / repeats;
+        private_hands_stats[Pair] += 1.0 / repeats;
     else if(hand_hash < 5004)
-        hands_stats[TwoPairs] += 1.0 / repeats;
+        private_hands_stats[TwoPairs] += 1.0 / repeats;
     else if(hand_hash < 5854)
-        hands_stats[Trips] += 1.0 / repeats;
+        private_hands_stats[Trips] += 1.0 / repeats;
     else if(hand_hash < 5864)
-        hands_stats[Straight] += 1.0 / repeats;
+        private_hands_stats[Straight] += 1.0 / repeats;
     else if(hand_hash < 7141)
-        hands_stats[Flush] += 1.0 / repeats;
+        private_hands_stats[Flush] += 1.0 / repeats;
     else if(hand_hash < 7297)
-        hands_stats[FullHouse] += 1.0 / repeats;
+        private_hands_stats[FullHouse] += 1.0 / repeats;
     else if(hand_hash < 7453)
-        hands_stats[Quads] += 1.0 / repeats;
+        private_hands_stats[Quads] += 1.0 / repeats;
     else if(hand_hash <= 7462)
-        hands_stats[StraightFlush] += 1.0 / repeats;
+        private_hands_stats[StraightFlush] += 1.0 / repeats;
     else
         assert(false);
 }
@@ -427,6 +463,32 @@ uint64_t PokerTable::GetHandsCounter() const{
 
 
 string PokerTable::GetStatsString(int iteration) {
+    bool flag = iteration == 0;
+    if(flag)
+        iteration = 1;
+
+    for (auto& pair : hands_stats) {
+        pair.second = 0;
+    }
+    for (auto& pair : scenarios_stats) {
+        pair.second = 0;
+    }
+    for (auto& pair : jackpots_occur) {
+        pair.second = 0;
+    }
+
+    for(PokerTable* pt : pt_instances){
+        for(auto x: pt->private_hands_stats){
+            hands_stats[x.first] += x.second;
+        }
+        for(auto x: pt->private_scenarios_stats){
+            scenarios_stats[x.first] += x.second;
+        }
+        for(auto x: pt->private_jackpots_occur){
+            jackpots_occur[x.first] += x.second;
+        }
+    }
+
     string stats_string;
     for(auto x: hands_stats){
         stats_string += ranks_names.at(x.first) + ": " + to_string(100*(double)(x.second)/(TABLE_SIZE * iteration)) + "\n";
@@ -444,29 +506,29 @@ string PokerTable::GetStatsString(int iteration) {
     }
 
     stats_string += "\n";
-    if(abs(100-percentage_sum) > 0.01){
+    if(abs(100-percentage_sum) > 0.01 and !flag){
         cout << "==========================" << endl;
         cout << percentage_sum << endl;
         cout << "==========================" << endl;
-        exit(8);
+        assert(false && "-ASSERT- not 100% of scenarios");
     }
-    assert(abs(100-percentage_sum) < 0.01);
 
     return stats_string;
 }
 
-string PokerTable::ToString() {        //TODO: change printing format to something more nice
+string PokerTable::ToString() {
     string table_string = "=====================================================================\n";
-    table_string += "========= Poker Table Summary: #Hand: "+to_string(hands_counter)+"\n\n| ";
+    table_string += "========= Poker Table Summary: #Hand: "+to_string(total_hands_counter)+"\n\n| ";
 
-    for(auto x: community_cards){
-        table_string += x.ToString()+" | ";
-    }
-    table_string += "\n";
+//    for(auto x: community_cards){
+//        table_string += x.ToString()+" | ";
+//    }
+//    table_string += "\n";
 
-    for(int i=0; i<TABLE_SIZE; i++){
-        table_string += players[i].ToString();
-    }
+//    for(int i=0; i<TABLE_SIZE; i++){
+//        table_string += players[i].ToString();
+//    }
+    table_string += GetStatsString(total_hands_counter);
     table_string += "\n=====================================================================\n";
     return table_string+"\n";
 
