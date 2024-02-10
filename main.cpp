@@ -41,8 +41,8 @@ int main(int argc, char *argv[]) {
     global_seed = seed;
     globalGen.seed(seed);
 
-//    if(!output_path.empty())
-//        freopen(output_path.c_str(), "w", stdout);
+    if(!output_path.empty())
+        freopen(output_path.c_str(), "w", stdout);
 
     double bb = table_params["big_blind"],
            sb = table_params["small_blind"],
@@ -76,17 +76,14 @@ int main(int argc, char *argv[]) {
     }
 
     uint64_t total_hands = 0;
-    uint64_t next_check = 0;
 
     while (total_hands < rounds) {
         total_hands = PokerTable::total_hands_counter;
-        if(total_hands > next_check) {
-            auto currentTime = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> elapsedSeconds = currentTime - startTime;
-            double ips = double (total_hands) / elapsedSeconds.count();
-            printProgressBar(int(total_hands * 100 / rounds), ips);
-            next_check += rounds / 100;
-        }
+        auto currentTime = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsedSeconds = currentTime - startTime;
+        double ips = double (total_hands) / elapsedSeconds.count();
+        printProgressBar(int(total_hands * 100 / rounds), ips);
+
         if(total_hands % print == 0 and total_hands != 0) {
             cout << tables[0] << endl;
             PokerTable::print_mutex.unlock();
