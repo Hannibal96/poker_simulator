@@ -525,9 +525,9 @@ string PokerTable::ToString() {
 //    }
 //    table_string += "\n";
 
-//    for(int i=0; i<TABLE_SIZE; i++){
-//        table_string += players[i].ToString();
-//    }
+    for(int i=0; i<TABLE_SIZE; i++){
+        table_string += players[i].GetAgent().ToString();
+    }
     table_string += GetStatsString(total_hands_counter);
     table_string += "\n=====================================================================\n";
     return table_string+"\n";
