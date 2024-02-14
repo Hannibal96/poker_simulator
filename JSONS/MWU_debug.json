@@ -50,7 +50,7 @@
   },
 
   "Simulation": {
-    "OutPut": "./Logs/MWU_debug.log",
+    "OutPut": "./../Logs/MWU_debug.log",
     "UpdatePositions": false,
     "Seed": 0,
     "Rounds": 10000000000,

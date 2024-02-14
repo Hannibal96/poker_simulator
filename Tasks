@@ -2,7 +2,9 @@ Implementation:
     - Fix Strategy
         - decide of way of parameters handling
         - Implement strategy
+    - Start from predefined strategy
     - End 2 end results tests as an qualibrium point
     - MWU with running average
+
 Performance:
      TODO: check unordered maps for better performance

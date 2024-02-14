@@ -3,6 +3,7 @@
 //
 #include "Agent.h"
 
+map<State, mutex> Agent::mutexes;
 
 std::ostream& operator<<(std::ostream& os, const Agent& agent){
     os << agent.ToString();

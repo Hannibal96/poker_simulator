@@ -50,11 +50,21 @@
   },
 
   "Simulation": {
+<<<<<<< HEAD
     "OutPut": "./../Logs/MWU.log",
     "UpdatePositions": false,
     "Seed": 0,
     "Rounds": 10000000,
     "Repeats": 10,
     "Print": 100000000
+=======
+    "OutPut": "./../Logs/MWU_.log",
+    "UpdatePositions": false,
+    "Seed": 0,
+    "Rounds": 1000000000000,
+    "Repeats": 10,
+    "Print": 1,
+    "Threads": 1
+>>>>>>> multi-threading
   }
 }

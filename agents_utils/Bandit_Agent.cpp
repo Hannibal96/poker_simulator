@@ -20,7 +20,7 @@ Bandit_Agent::Bandit_Agent(std::string &name) {
 
 
 Action Bandit_Agent::get_action(State state) const {
-
+    std::lock_guard<std::mutex> lock(mutexes[state]);
     TableEntry entry_f{state, Fold};
     TableEntry entry_a{state, AllIn};
 
@@ -44,6 +44,7 @@ Action Bandit_Agent::get_action(State state) const {
 }
 
 void Bandit_Agent::update_parameters(State state, Action action, double reward) {
+    std::lock_guard<std::mutex> lock(mutexes[state]);
     TableEntry entry{state, action}, next_entry;
     if(action == AllIn)
         next_entry = TableEntry{state, Fold};

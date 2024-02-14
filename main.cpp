@@ -11,6 +11,7 @@ void sim_print(PokerTable table, int i);
 map<string, string> parse_args(int argc, char *argv[]);
 void printProgressBar(int percentage, double ips);
 
+
 int main(int argc, char *argv[]) {
 
     map<string, string> arguments = parse_args(argc, argv);
@@ -52,27 +53,46 @@ int main(int argc, char *argv[]) {
         repeats = int(env_map["repeats"]);
 
     uint64_t rounds = uint64_t(env_map["rounds"]);
+    int numberOfThreads = int(env_map["threads"]);
     bool update_pos = bool(env_map["update_pos"]);
+    uint64_t rounds_per_thread = 1 + rounds / numberOfThreads;
 
-    PokerTable table = PokerTable(players,
-                                  bb, sb, all_in, jack_pot ,
-                                  update_pos, repeats);
+    vector<PokerTable> tables;
+    tables.reserve(numberOfThreads);
+    for (int i = 0; i < numberOfThreads; ++i) {
+        tables.emplace_back(players, bb, sb,
+                            all_in, jack_pot, update_pos, repeats);
+    }
+
+    PokerTable::initializeStatistics();
+    PokerTable::print_count = print;
 
     auto startTime = std::chrono::high_resolution_clock::now();
 
-    for(int i=0; i < rounds; i++){
-        table.Round();
+    vector<std::thread> threads;
+    threads.reserve(numberOfThreads);
+    for (int i = 0; i < numberOfThreads; ++i) {
+        threads.emplace_back(&PokerTable::RunRounds, &tables[i], rounds_per_thread);
+    }
 
-        if((i+1) % (rounds/100 + not (rounds/100)) == 0 or i == 0){
-            auto currentTime = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> elapsedSeconds = currentTime - startTime;
-            double ips = i / elapsedSeconds.count();
-            printProgressBar((i+1)*100/rounds, ips);
-        }
+    uint64_t total_hands = 0;
 
-        if((i+1) % print == 0 || i == 0) {
-            sim_print(table, i);
+    while (total_hands < rounds) {
+        total_hands = PokerTable::total_hands_counter;
+        auto currentTime = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsedSeconds = currentTime - startTime;
+        double ips = double (total_hands) / elapsedSeconds.count();
+        printProgressBar(int(total_hands * 100 / rounds), ips);
+
+        if(total_hands % print == 0 and total_hands != 0) {
+            cout << tables[0] << endl;
+            PokerTable::print_mutex.unlock();
         }
+        this_thread::sleep_for(chrono::milliseconds(1000));
+    }
+
+    for (auto& t : threads) {
+        t.join();
     }
 
     if(!output_path.empty())
