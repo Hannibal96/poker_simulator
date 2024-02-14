@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import os
-
+import glob
+import pickle
 
 card_val_d = {
     '2': 2,
@@ -18,8 +18,6 @@ card_val_d = {
     'K': 13,
     'A': 14,
 }
-
-
 situation_d = {
     "CO": 0,
     "DE": 1,
@@ -36,12 +34,27 @@ situation_d = {
     "BB_DE_SB": 12,
     "BB_CO_DE_SB": 13,
 }
-
 player_d = {
     "CutOff": 0,
     "Dealer": 1,
     "SmallBlind": 2,
     "BigBlind": 3,
+}
+situation_player_d = {
+    "CO": "CutOff",
+    "DE": "Dealer",
+    "DE_CO": "Dealer",
+    "SB": "SmallBlind",
+    "SB_CO": "SmallBlind",
+    "SB_DE": "SmallBlind",
+    "SB_CO_DE": "SmallBlind",
+    "BB_CO": "BigBlind",
+    "BB_DE": "BigBlind",
+    "BB_SB": "BigBlind",
+    "BB_CO_DE": "BigBlind",
+    "BB_CO_SB": "BigBlind",
+    "BB_DE_SB": "BigBlind",
+    "BB_CO_DE_SB": "BigBlind"
 }
 
 
@@ -60,83 +73,79 @@ def count_lines(filename):
         return sum(1 for _ in file)
 
 
-def parse_mwu_log(file):
-    N = round(count_lines(file) / 744)
+def find_block_length(file):
     file = open(file)
-    data_results = np.zeros([4, N, 14, 169])
+    block_length = 0
+    flag = False
+    for i, line in enumerate(file):
+        if flag:
+            block_length += 1
+        if "Summary" in line:
+            if flag:
+                break
+            else:
+                flag = True
+    return block_length
+
+
+def parse_mwu_line(split_line):
+    values = [float(i) for i in split_line[1:-1]]
+    return values
+
+
+def parse_bandit_line(split_line):
+    values = []
+    for idx, entry_values in enumerate(split_line[1:-1]):
+        entry_values_split = entry_values.split(" ")
+        sign = entry_values_split[1]
+        diff = float(entry_values_split[2])
+        if sign == "A":
+            sign = 1
+        elif sign == "F":
+            sign = -1
+        else:
+            raise ValueError("Invalid sign")
+        values.append(sign * diff)
+    return values
+
+
+def add_initial_values_mwu(data, v):
+    array = np.ones((4, 1, 14, 169)) * v
+    new_arr = np.concatenate((array, data), axis=1)
+    return new_arr
+
+
+def parse_log(file, parser, v):
+    block_length = find_block_length(file)
+    N = round(count_lines(file) / block_length)
+    file = open(file)
+    data_results_ = np.zeros([4, N, 14, 169])
     curr_t = -1
     curr_player = -1
     for i, line in enumerate(file):
-        if "Position: CutOff" in line:
-            curr_player = 0
+        if "22o" in line:
+            curr_player += 1
             curr_t += 1
-        if "Position: Dealer" in line:
-            curr_player = 1
-        if "Position: SmallBlind" in line:
-            curr_player = 2
-        if "Position: BigBlind" in line:
-            curr_player = 3
 
         split_line = line.split("|")
         if len(split_line) == 16:
             if split_line[0][0] == " ":
                 continue
             else:
+                assert curr_player != -1
                 hand_idx = hand_str_2_idx(hand=split_line[0])
-                values = [float(i) for i in split_line[1:-1]]
-                data_results[curr_player, curr_t, :, hand_idx] = values
+                data_results_[curr_player % 4, curr_t // 4, :, hand_idx] = parser(split_line=split_line)
 
-    return data_results
-
-
-def parse_bandit_log(file):
-    N = round(count_lines(file) / 744)
-    file = open(file)
-    data_results = np.zeros([4, N, 14, 169])
-    curr_t = -1
-    curr_player = -1
-    for i, line in enumerate(file):
-        if "Position: CutOff" in line:
-            curr_player = 0
-            curr_t += 1
-        if "Position: Dealer" in line:
-            curr_player = 1
-        if "Position: SmallBlind" in line:
-            curr_player = 2
-        if "Position: BigBlind" in line:
-            curr_player = 3
-
-        split_line = line.split("|")
-        if len(split_line) == 16:
-            if split_line[0][0] == " ":
-                continue
-            else:
-                hand_idx = hand_str_2_idx(hand=split_line[0])
-
-                for idx, entry_values in enumerate(split_line[1:-1]):
-                    entry_values_split = entry_values.split(" ")
-                    sign = entry_values_split[1]
-                    diff = float(entry_values_split[2])
-                    if sign == "A":
-                        sign = 1
-                    elif sign == "F":
-                        sign = -1
-                    else:
-                        raise ValueError("Invalid sign")
-                    data_results[curr_player, curr_t, idx, hand_idx] = sign * diff
+    data_results_ = add_initial_values_mwu(data_results_, v=v)
+    return data_results_
 
 
-    return data_results
-
-
-
-
-def mwu_data():
+def get_data(path, parser, init_v):
     f_data_results = []
-    for filename in os.listdir("./"):
-        if filename.startswith("MWU"):
-            data_res = parse_mwu_log(filename)
-            f_data_results.append(data_res)
+    files = glob.glob(path)
+    for filename in files:
+        data_res = parse_log(filename, parser, v=init_v)
+        f_data_results.append(data_res)
 
     min_t = min([data_res.shape[1] for data_res in f_data_results])
     for i, data_res in enumerate(f_data_results):
@@ -145,63 +154,27 @@ def mwu_data():
     return f_data_results
 
 
-def bandit_data():
-    f_data_results = []
-    for filename in os.listdir("./"):
-        if filename.startswith("bandit"):
-            data_res = parse_bandit_log(filename)
-            f_data_results.append(data_res)
+if __name__ == "__main__":
 
-    min_t = min([data_res.shape[1] for data_res in f_data_results])
-    for i, data_res in enumerate(f_data_results):
-        f_data_results[i] = data_res[:, :min_t, :, :]
-    f_data_results = np.array(f_data_results)
-    return f_data_results
+    data_results = get_data(path="MWU_*_10T.log", parser=parse_mwu_line, init_v=0.5)
 
+    mean_data_results = np.mean(data_results, axis=0)
+    std_data_results = np.std(data_results, axis=0)
 
-data_results = bandit_data()
-mean_data_results = np.mean(data_results, axis=0)
-std_data_results = np.std(data_results, axis=0)
+    sit = "BB_DE"
+    for hand in ['K6s', 'K7s', 'K6o']:
+        t = range(data_results.shape[2])
+        m = mean_data_results[player_d[situation_player_d[sit]], :, situation_d[sit], hand_str_2_idx(hand)]
+        s = std_data_results[player_d[situation_player_d[sit]], :, situation_d[sit], hand_str_2_idx(hand)]
+        plt.plot(t, m, label=hand)
+        plt.fill_between(t, m-s, m+s, color='gray', alpha=0.2)
 
-for hand in ['72o', '62o', '54o']:
-    t = range(data_results.shape[2])
-    m = mean_data_results[player_d["Dealer"], :, situation_d["DE"], hand_str_2_idx(hand)]
-    s = std_data_results[player_d["Dealer"], :, situation_d["DE"], hand_str_2_idx(hand)]
-    plt.plot(t, m, label=hand)
-    plt.fill_between(t, m-s, m+s, color='gray', alpha=0.2)
-
-plt.title("Data")
-plt.legend()
-plt.grid()
-plt.xlabel("#Iteration * 10**7")
-plt.ylabel("<P>")
-plt.show()
-
-
-
-
-
-0/0
-
-
-data_results = mwu_data()
-
-mean_data_results = np.mean(data_results, axis=0)
-std_data_results = np.std(data_results, axis=0)
-
-for hand in ['K5s']:
-    t = range(data_results.shape[2])
-    m = mean_data_results[player_d["Dealer"], :, situation_d["DE"], hand_str_2_idx(hand)]
-    s = std_data_results[player_d["Dealer"], :, situation_d["DE"], hand_str_2_idx(hand)]
-    plt.plot(t, m, label=hand)
-    plt.fill_between(t, m-s, m+s, color='gray', alpha=0.2)
-
-plt.title("Data")
-plt.legend()
-plt.grid()
-plt.xlabel("#Iteration * 10**7")
-plt.ylabel("<P>")
-plt.show()
+    plt.title("Data")
+    plt.legend()
+    plt.grid()
+    plt.xlabel("#Iteration * 10**7")
+    plt.ylabel("<P>")
+    plt.show()
 
 
 
