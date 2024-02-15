@@ -4,13 +4,10 @@
 #include "agents_utils/PokerPlayer.h"
 #include "poker_utils/PokerTable.h"
 #include "jsons_utils/json.h"
-
 using namespace std;
 
-void sim_print(PokerTable table, int i);
 map<string, string> parse_args(int argc, char *argv[]);
 void printProgressBar(int percentage, double ips);
-
 
 int main(int argc, char *argv[]) {
 
@@ -141,17 +138,6 @@ map<string, string> parse_args(int argc, char *argv[]){
 
     return arguments;
 }
-
-
-void sim_print(PokerTable table, int i){
-    cout << "==============================================================================================================" << endl;
-    cout << "============================******************************************************============================" << endl;
-    cout << "==============================================================================================================" << endl;
-
-    cout << table << endl;
-    cout << table.GetStatsString((i + 1)) << std::endl;
-}
-
 
 void printProgressBar(int percentage, double ips) {
     const int barWidth = 70;

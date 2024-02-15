@@ -57,8 +57,24 @@ Agent* ParseAgent(const nlohmann::json& agentJson){
         return new Epsilon_Greedy_Agent(agentName, init_epsilon, min_epsilon, decay_rate);
     }
     if(agentType == "FixStrategy"){
-        // TODO: implement
-        throw;
+        auto params = agentJson["Parameters"];
+        string path = params["Path"];
+        std::ifstream file(path);
+        nlohmann::json jsonData;
+        file >> jsonData;
+        file.close();
+        auto env_map = jsonData["table"];
+
+        map<State, double> strategy;
+        for (int situation = 0; situation <= BB_CO_DE_SB; situation++) {
+            for (int hand = 0; hand < 169; hand++) {
+                State state{static_cast<Situation>(situation), hand};
+                strategy[state] = env_map[hand][situation];
+                assert(strategy[state] >= 0 && strategy[state] <= 1 && "p_a is not in [0,1]");
+            }
+        }
+
+        return new Fix_Strategy_Agent(agentName, path, strategy);
     }
     return nullptr;
 }

@@ -1,10 +1,10 @@
 Implementation:
-    - Fix Strategy
-        - decide of way of parameters handling
-        - Implement strategy
-    - Start from predefined strategy
+    - Convert learned strategy to a map for fixed strategy
+    - MWU, Bandit, Epsilon greedy Start from predefined strategy
     - End 2 end results tests as an qualibrium point
-    - MWU with running average
+    - MWU, Bandit with running average
+    - Fix but with multi threading
+    - Fix bug with 12.1B rounds
 
 Performance:
      TODO: check unordered maps for better performance

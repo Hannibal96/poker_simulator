@@ -10,52 +10,44 @@
     "Player1": {
       "Name": "Player1",
       "InitPosition": "CutOff",
-      "Algorithm": "MWU",
+      "Algorithm": "FixStrategy",
       "Parameters": {
-        "Beta": 0.95,
-        "T": 100,
-        "InitP": 0.5
+        "Path": "./../JSONS/strategy table/Random.json"
       }
     },
     "Player2": {
       "Name": "Player2",
       "InitPosition": "Dealer",
-      "Algorithm": "MWU",
+      "Algorithm": "FixStrategy",
       "Parameters": {
-        "Beta": 0.95,
-        "T": 100,
-        "InitP": 0.5
+        "Path": "./../JSONS/strategy table/Random.json"
       }
     },
     "Player3": {
       "Name": "Player3",
       "InitPosition": "SmallBlind",
-      "Algorithm": "MWU",
+      "Algorithm": "FixStrategy",
       "Parameters": {
-        "Beta": 0.95,
-        "T": 100,
-        "InitP": 0.5
+        "Path": "./../JSONS/strategy table/Player1.json"
       }
     },
     "Player4": {
       "Name": "Player4",
       "InitPosition": "BigBlind",
-      "Algorithm": "MWU",
+      "Algorithm": "FixStrategy",
       "Parameters": {
-        "Beta": 0.95,
-        "T": 100,
-        "InitP": 0.5
+        "Path": "./../JSONS/strategy table/Player1.json"
       }
     }
   },
 
   "Simulation": {
-    "OutPut": "./../Logs/MWU_.log",
+    "OutPut": "./../Logs/RandomFixed.log",
     "UpdatePositions": false,
     "Seed": 0,
-    "Rounds": 1000000000000,
+    "Rounds": 10000000,
     "Repeats": 10,
-    "Print": 1,
-    "Threads": 1
+    "Print": 10000000,
+    "Threads": 20
   }
 }

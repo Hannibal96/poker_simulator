@@ -10,6 +10,7 @@
 #include "json.hpp"
 #include "../agents_utils/Bandit_Agent.h"
 #include "../agents_utils/Epsilon_Greedy_Agent.h"
+#include "../agents_utils/Fix_Strategy_Agent.h"
 #include "../agents_utils/MWU_Agent.h"
 #include "../agents_utils/PokerPlayer.h"
 #include <fstream>
