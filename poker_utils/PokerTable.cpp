@@ -518,7 +518,7 @@ string PokerTable::GetStatsString(uint64_t iteration) {
 
 string PokerTable::ToString() {
     string table_string = "=====================================================================\n";
-    table_string += "========= Poker Table Summary: #Hand: "+to_string(total_hands_counter)+"\n\n| ";
+    table_string += "========= Poker Table Summary: #Hand: "+to_string(total_hands_counter)+"\n\n";
 
 //    for(auto x: community_cards){
 //        table_string += x.ToString()+" | ";
@@ -530,13 +530,50 @@ string PokerTable::ToString() {
         for(PokerTable* pt : pt_instances){
             money += pt->players[i].GetMoney();
         }
-        table_string += "Money: " + to_string(money) + " " + players[i].GetAgent().ToString() + "\n";
+        // table_string += "Money: " + to_string(money) + " " + players[i].GetAgent().ToString() + "\n";
+        table_string += positions_names.at(pt_instances[0]->players[i].GetPosition()) +
+                " Money: " + to_string(double(money) / double (total_hands_counter)) + "\n";
     }
-    table_string += GetStatsString(total_hands_counter);
+    table_string += "\n" + GetStatsString(total_hands_counter);
     table_string += "\n=====================================================================\n";
     return table_string+"\n";
 
 }
+
+
+string PokerTable::GetStrategyTable(){
+    int col_width = 13, len, pad, tail;
+    string bandit_string = "    ";
+    for (int situation = 0; situation <= BB_CO_DE_SB; situation++) {
+        string situation_name = situation_names.at(static_cast<Situation>(situation));
+        len = int(situation_name.length());
+        pad = (col_width - len) / 2;
+        tail = (col_width - len) % 2;
+        bandit_string += "|" + string(pad, ' ') + situation_name + string(pad + tail, ' ');
+    }
+    bandit_string += "|\n";
+    Agent* agent;
+    for (int hand = 0; hand < 169; hand++) {
+        bandit_string += Agent::idx_to_hand_string(hand) + " |";
+        for (int situation = 0; situation <= BB_CO_DE_SB; situation++) {
+            State state{static_cast<Situation>(situation), hand};
+            if(situation == 0)
+                agent = &(players[0].GetAgent());
+            else if(situation == 1  or situation == 2)
+                agent = &(players[1].GetAgent());
+            else if(situation == 3  or situation == 4 or situation == 5 or situation == 6)
+                agent = &(players[2].GetAgent());
+            else
+                agent = &(players[3].GetAgent());
+
+            bandit_string += agent->get_entry_str(state, col_width) + "|";
+        }
+        bandit_string += "\n";
+    }
+
+    return bandit_string;
+}
+
 
 std::ostream& operator<<(std::ostream& os,  PokerTable& table){
     os << table.ToString();

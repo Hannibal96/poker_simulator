@@ -50,12 +50,12 @@
   },
 
   "Simulation": {
-    "OutPut": "./../Logs/MWU_.log",
+    "OutPut": "./../Logs/MWU.log",
     "UpdatePositions": false,
     "Seed": 0,
-    "Rounds": 1000000000000,
+    "Rounds": 1000000000,
     "Repeats": 10,
-    "Print": 1,
-    "Threads": 1
+    "Print": 200000000,
+    "Threads": 10
   }
 }

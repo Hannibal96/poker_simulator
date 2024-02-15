@@ -48,6 +48,7 @@ private:
     void UpdateHistory(Position position, Action action);
     void UpdateHandsStats(uint32_t hand_hash, unsigned int repeats);
 
+
 public:
     PokerTable(vector<PokerPlayer> players,
                double big_blind, double small_blind, double all_in, double jackpot,
@@ -58,6 +59,7 @@ public:
     static string GetStatsString(uint64_t iteration);
     uint64_t GetHandsCounter() const;
     static void initializeStatistics();
+    string GetStrategyTable();
     static mutex print_mutex;
     static mutex write_mutex;
     static uint64_t total_hands_counter;

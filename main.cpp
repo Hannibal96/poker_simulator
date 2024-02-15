@@ -83,6 +83,7 @@ int main(int argc, char *argv[]) {
 
         if(total_hands % print == 0 and total_hands != 0) {
             cout << tables[0] << endl;
+            cout << tables[0].GetStrategyTable() << endl;
             PokerTable::print_mutex.unlock();
         }
         this_thread::sleep_for(chrono::milliseconds(1000));
